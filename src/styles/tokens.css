@@ -1,0 +1,64 @@
+/* SECTION 1.3 — colour tokens, exact hex values from the spec */
+:root {
+  --ink: #1d1d1d;
+  --ink-2: #2d2d2d;
+  --ink-3: #353535;
+  --ink-4: #1e1e1e;
+
+  --mute: #888888;
+  --mute-2: #999999;
+  --mute-3: #adadad;
+  --mute-4: #aaaaaa;
+  --mute-5: #a3a3a3;
+  --mute-6: #646464;
+  --mute-7: #848484;
+
+  --sale: #e21e2b;
+  --sale-2: #eb0029;
+  --sale-3: #fe3e4d;
+  --sale-4: #ff5463;
+
+  --line: #dbd6d3;
+  --line-2: #f0f0f0;
+  --line-3: #e5e5e5;
+  --line-4: #e1e1e1;
+  --line-5: #323232;
+
+  --field: #d7ced1;
+  --taupe: #b6a59d;
+  --taupe-ink: #685d5b;
+  --strike: #8e8e8e;
+
+  /* reward points on the product page read as a link-ish blue */
+  --points: #4a7ab8;
+
+  --soft-1: #f8f8f8;
+  --soft-2: #fafafa;
+  --soft-3: #f6f6f6;
+
+  /* 1.1 — font stacks */
+  --font-body: 'PT Sans', 'Noto Sans KR', 'Malgun Gothic', 'AppleGothic', Verdana, Dotum, sans-serif;
+  --font-display: 'Fjalla One', 'PT Sans', 'Noto Sans KR', sans-serif;
+  --font-kr: 'Noto Sans KR', 'Malgun Gothic', sans-serif;
+  --font-condensed: 'Barlow Condensed', 'Fjalla One', sans-serif;
+
+  /* SECTION 10.1 — the only three easings on the site */
+  --easing-one: all 0.3s ease-in-out;
+  --easing-two: all 0.4s ease-in-out;
+  --easing-three: all 0.5s ease-in-out;
+
+  /* 1.4 — layout band */
+  --band-max: 1550px;
+  --band-min: 1263px;
+  --gutter: 50px;
+}
+
+/**
+ * Korean promotes Noto Sans KR to the front of the body stack. The display face
+ * (Fjalla One) carries no Hangul, so Korean headings already fall through to
+ * Noto Sans KR on their own — but Latin numerals, prices and the utility nav
+ * still render in the condensed face, exactly as the spec wants.
+ */
+html[lang^='ko'] {
+  --font-body: 'Noto Sans KR', 'PT Sans', 'Malgun Gothic', 'AppleGothic', Verdana, Dotum, sans-serif;
+}

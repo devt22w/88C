@@ -1,0 +1,453 @@
+/* SECTION 5 — section title block */
+.main_title {
+  text-align: center;
+}
+
+.main_title h2 {
+  font-family: var(--font-display);
+  font-size: 50px;
+  color: var(--ink-2);
+  font-weight: normal;
+  letter-spacing: 6px;
+  padding-bottom: 20px;
+}
+
+/* the 11px right padding is what pushes the sub-line ~11px left of true centre.
+   It is intentional — part of the look. */
+.main_title p {
+  font-size: 22px;
+  color: var(--mute-6);
+  font-weight: 300;
+  letter-spacing: -1px;
+  padding-right: 11px;
+}
+
+.main_title .more {
+  font-size: 17px;
+  color: var(--mute-7);
+  letter-spacing: 1.3px;
+}
+
+/* SECTION 6.1 — section spacing */
+.best_pd {
+  padding-top: 160px;
+}
+
+.best_pd ul {
+  padding-top: 48px;
+}
+
+.new_pd {
+  padding-top: 95px;
+}
+
+.new_pd ul {
+  padding-top: 45px;
+}
+
+/* SECTION 6.2 — three-up hairline grid, not a gap grid */
+.pd ul {
+  font-size: 0;
+}
+
+.pd2 li {
+  display: inline-block;
+  vertical-align: top;
+  width: 33.33%;
+  box-sizing: border-box;
+  border: 1px solid var(--line-2);
+  margin: -1px 0 0 -1px;
+  position: relative;
+  z-index: 1;
+  padding-top: 10px;
+  padding-bottom: 30px;
+}
+
+.pd2 li:hover {
+  z-index: 2;
+}
+
+/* two-up variant for wider cards */
+.pd1 li {
+  display: inline-block;
+  vertical-align: top;
+  width: calc(50% - 21px);
+  margin-right: 42px;
+}
+
+.pd1 li:nth-child(2n) {
+  margin-right: 0;
+}
+
+/* SECTION 6.4 — hover outline: a crisp 2px near-black frame fading in over 0.3s,
+   overlapping the shared hairline so it reads as a selection outline */
+.pd2 li::before {
+  content: '';
+  width: calc(100% + 2px);
+  height: calc(100% + 2px);
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  border: 2px solid var(--ink-2);
+  box-sizing: border-box;
+  z-index: 5;
+  opacity: 0;
+  visibility: hidden;
+  transition: var(--easing-one);
+  pointer-events: none;
+}
+
+.pd2 li:hover::before {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* SECTION 6.3 (a) — thumbnail */
+.pd .thumbnail {
+  margin: 0;
+  overflow: hidden;
+}
+
+.pd .thumbnail > a {
+  width: 100%;
+  display: block;
+  text-align: center;
+  position: relative;
+  z-index: 6;
+}
+
+.pd .thumbnail .slot {
+  display: inline-block;
+  width: 90%;
+}
+
+.pd .thumbnail .slot__img {
+  width: 100%;
+  border: none;
+}
+
+/* the cell reserves a square area so uneven uploads cannot break the baseline */
+.pd .thumbnail .slot__ratio {
+  padding-top: 100%;
+}
+
+/* NEW ITEM only: slow, subtle 5% zoom, clipped by the thumbnail overflow.
+   BEST ITEM thumbnails deliberately do not zoom. */
+.new_pd ul .thumbnail .slot__img,
+.new_pd ul .thumbnail .slot__placeholder {
+  transition: var(--easing-two);
+}
+
+.new_pd ul li:hover .thumbnail .slot__img,
+.new_pd ul li:hover .thumbnail .slot__placeholder {
+  transform: scale(1.05);
+}
+
+/* SECTION 6.3 (b) — information block */
+.pd .information {
+  padding: 40px 30px 20px;
+}
+
+.pd {
+  text-align: center;
+}
+
+.best_pd .information,
+.new_pd .information {
+  text-align: left;
+}
+
+/* (c) colour chips — min-height reserves the row so cards stay aligned */
+.pd .colorchip {
+  min-height: 15px;
+}
+
+.pd .colorchip .color {
+  font-size: 0;
+  text-align: left;
+  margin: 0 auto;
+  max-width: 100%;
+}
+
+.pd .colorchip .color span {
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  margin-right: 5px;
+  vertical-align: top;
+}
+
+.pd .colorchip .color span:last-child {
+  margin-right: 0;
+}
+
+/* (d) name — single line with ellipsis */
+.pd .name {
+  padding-top: 20px;
+}
+
+.pd .name a span {
+  font-size: 20px;
+  color: var(--ink);
+  font-weight: 500;
+  width: 100%;
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  box-sizing: border-box;
+}
+
+/* (e) description — clamped to exactly two lines on a hard 44px height, which is
+   what keeps the price rows of all three cards on one baseline */
+.pd .simple_desc {
+  font-size: 16px;
+  color: var(--mute);
+  font-weight: 300;
+  line-height: 1.4;
+  padding-top: 20px;
+  padding-right: 10px;
+  height: 44px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* (f) price row */
+.pd .price_wrap {
+  padding-top: 35px;
+  letter-spacing: 0.25px;
+  position: relative;
+  font-size: 0;
+}
+
+.pd .price_wrap .custom_price {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: 19px;
+  color: var(--strike);
+  text-decoration: line-through;
+  vertical-align: bottom;
+  margin-bottom: 2px;
+  padding-right: 10px;
+}
+
+.pd .price_wrap .price {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: 25px;
+  color: var(--ink);
+  padding-right: 10px;
+  vertical-align: bottom;
+}
+
+.pd .price_wrap .discount-rate {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: 25px;
+  color: var(--sale);
+  vertical-align: bottom;
+}
+
+/* alternate sale-price treatment with an absolutely positioned label */
+.pd .price_wrap.sale_price {
+  padding-left: 65px;
+}
+
+.pd .price_wrap.sale_price .sale_label {
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-family: var(--font-display);
+  font-size: 25px;
+  color: var(--sale-2);
+}
+
+/* (g) optional ranking badge */
+.pd .prd_num {
+  position: absolute;
+  top: 37px;
+  left: 29px;
+  font-family: var(--font-display);
+  font-size: 30px;
+  border-bottom: 2px solid var(--ink);
+  padding-bottom: 3px;
+  z-index: 2;
+}
+
+/* SECTION 6.4 — add-to-cart pill, fading in centred over the price row */
+.pd .price_wrap .cart_btn {
+  position: absolute;
+  top: 25px;
+  left: 50%;
+  /* The spec centres this with margin-left: -106px, which only lands when the
+     pill computes to exactly 212px. Translating by half its own width gives the
+     identical result at 212px and keeps the pill centred if a translated label
+     ever runs longer. */
+  transform: translateX(-50%);
+  opacity: 0;
+  visibility: hidden;
+  transition: var(--easing-one);
+  z-index: 6;
+  padding: 16px 43.5px;
+  background: var(--ink-2);
+  border-radius: 30px;
+  width: auto;
+  /* the spec's -106px left margin assumes the pill computes to ~212px, so hold
+     that as a floor and the pill stays exactly centred over the price row */
+  min-width: 212px;
+  box-sizing: border-box;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.pd li:hover .price_wrap .cart_btn {
+  opacity: 1;
+  visibility: visible;
+}
+
+.pd .price_wrap .cart_btn .cart_btn_label {
+  font-family: var(--font-display);
+  font-size: 15px;
+  letter-spacing: 1px;
+  color: #f1ece8;
+  vertical-align: middle;
+}
+
+.pd .price_wrap .cart_btn .slot {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  margin-left: 8px;
+  vertical-align: middle;
+}
+
+.pd .price_wrap .cart_btn .slot__img {
+  width: 18px;
+  height: 18px;
+}
+
+/* SECTION 7 — mid banner, a 1443px band inset from the 1550px content band */
+/* No inner padding: on the reference the two panels run flush to both edges
+   of the 1443px band (707px each at 1920, a 30px gutter between them). */
+.mid_banner {
+  width: 100%;
+  max-width: 1443px;
+  margin: 100px auto 0;
+  font-size: 0;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.mid_banner > div::after {
+  content: '';
+  display: block;
+  clear: both;
+}
+
+.mid_banner .banner_item {
+  display: inline-block;
+  width: calc(50% - 15px);
+  float: left;
+  position: relative;
+}
+
+.mid_banner .banner_item:last-child {
+  float: right;
+}
+
+.mid_banner .banner_item .slot {
+  width: 100%;
+}
+
+/* The spec estimates ~3:1; the reference actually paints each panel at
+   707 x 179 at 1920px, which is 179 / 707 = 25.32%. */
+.mid_banner .banner_item .slot__ratio {
+  padding-top: 25.32%;
+}
+
+.mid_banner .banner_item .slot__img {
+  width: 100%;
+  height: auto;
+}
+
+/* live-text variant of the panel: eyebrow label + two-line headline, artwork right */
+.mid_banner .banner_text {
+  position: absolute;
+  top: 50%;
+  left: 60px;
+  transform: translateY(-50%);
+  z-index: 2;
+}
+
+.mid_banner .banner_text .eyebrow {
+  font-family: var(--font-display);
+  font-size: 14px;
+  letter-spacing: 2.5px;
+  color: var(--mute-6);
+  text-transform: uppercase;
+  padding-bottom: 14px;
+}
+
+.mid_banner .banner_text h3 {
+  font-family: var(--font-kr);
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 1.35;
+  color: var(--ink-2);
+}
+
+/* optional rotating badge — 7s linear, infinite, never pauses */
+.mid_banner .mid_tit {
+  position: absolute;
+  top: -26px;
+  left: 45%;
+  margin-left: -328px;
+  animation: spin 7s infinite linear;
+  z-index: 3;
+  width: 92px;
+  height: 92px;
+}
+
+.mid_banner .mid_tit .slot,
+.mid_banner .mid_tit .slot__img {
+  width: 92px;
+  height: 92px;
+  border-radius: 50%;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* NEW ITEM, as the reference lays it out at 1920px: the section lives inside
+   the mid banner's 1443px band with 50px of inner padding, so its grid is
+   1343px wide — narrower than BEST's 1450px — and its cells carry no top
+   padding, with the thumbnail running the full width of the cell (446 of 448)
+   rather than the 90% BEST uses. That full-bleed square is what the 1.05 hover
+   zoom scales inside. */
+.new_pd {
+  max-width: 1443px;
+  margin: 0 auto;
+}
+
+.new_pd .container {
+  max-width: none;
+  min-width: 0;
+  padding: 0 var(--gutter);
+}
+
+.new_pd ul li {
+  padding-top: 0;
+}
+
+.new_pd .thumbnail .slot {
+  width: 100%;
+}

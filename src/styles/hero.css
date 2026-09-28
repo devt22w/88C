@@ -1,0 +1,230 @@
+/* SECTION 4 — hero slider */
+main.main {
+  padding-top: 40px;
+}
+
+/* Measured on the reference at 1920px: the hero is not full-bleed. It is the
+   same 1550px band as everything else, padded 50px each side, so the artwork
+   paints 1450 x 560. The band itself must not clip — the chevrons overhang it
+   by 25px — so the clipping moves onto the slide wrapper. */
+.main_banner {
+  position: relative;
+  max-width: var(--band-max);
+  min-width: var(--band-min);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+  box-sizing: border-box;
+  overflow: visible;
+}
+
+.main_banner .swiper-wrapper {
+  position: relative;
+  width: 100%;
+  height: 560px;
+  overflow: hidden;
+  transform: translate3d(0, 0, 0);
+}
+
+.main_banner .swiper-slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 560px;
+  opacity: 0;
+  visibility: hidden;
+  transition: var(--easing-three);
+}
+
+.main_banner .swiper-slide.is-active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.main_banner .swiper-slide .slide_link {
+  display: block;
+  width: 100%;
+  height: 560px;
+  position: relative;
+}
+
+/* IMAGE SLOT hero_slide_n — hard 560px band, artwork cropped to it */
+.main_banner .slot,
+.main_banner .slot__img {
+  width: 100%;
+  height: 560px;
+}
+
+.main_banner .slot__img {
+  object-fit: cover;
+}
+
+/* live-text variant: headline block 8–10% from the left edge, vertically centred */
+.main_banner .slide_text {
+  position: absolute;
+  top: 50%;
+  left: 9%;
+  transform: translateY(-50%);
+  z-index: 3;
+  max-width: 620px;
+}
+
+.main_banner .slide_text h1 {
+  font-family: var(--font-display);
+  font-size: 60px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  line-height: 1.05;
+  color: var(--ink);
+}
+
+.main_banner .slide_text p {
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--ink-2);
+  padding-top: 18px;
+}
+
+.main_banner .slide_text p + p {
+  padding-top: 0;
+}
+
+/* pagination band, inset 50px each side, dots centred inside it */
+.main_banner .page {
+  position: absolute;
+  bottom: 30px;
+  left: 50px;
+  width: calc(100% - 100px);
+  z-index: 7;
+}
+
+.main_banner .page .swiper-pagination {
+  text-align: center;
+  font-size: 0;
+}
+
+.main_banner .page .swiper-pagination-bullet {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 100%;
+  margin-right: 35px;
+  padding: 0;
+  background: var(--line-3);
+  opacity: 1;
+  cursor: pointer;
+  transition: var(--easing-one);
+}
+
+.main_banner .page .swiper-pagination-bullet:last-child {
+  margin-right: 0;
+}
+
+.main_banner .page .swiper-pagination-bullet-active {
+  background: #000;
+}
+
+/* the default Swiper arrows are hidden on the hero; .main-nav supplies the chevrons */
+.main_banner .swiper-button-next,
+.main_banner .swiper-button-prev {
+  display: none;
+}
+
+.main_banner .main-nav {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: var(--band-max);
+  min-width: var(--band-min);
+  height: 100%;
+  pointer-events: none;
+  z-index: 7;
+}
+
+.main_banner .main-prev,
+.main_banner .main-next {
+  position: absolute;
+  top: 50%;
+  margin-top: -30.5px;
+  width: 29px;
+  height: 61px;
+  font-size: 0;
+  padding: 0;
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+.main_banner .main-prev {
+  left: -25px;
+}
+
+/* the drawn chevron used until a PNG lands in the slot */
+.main_banner .chevron {
+  color: var(--ink-2);
+  opacity: 0.55;
+  transition: var(--easing-one);
+}
+
+.main_banner .main-prev:hover .chevron,
+.main_banner .main-next:hover .chevron {
+  opacity: 1;
+}
+
+.main_banner .main-next {
+  right: -25px;
+}
+
+.main_banner .main-prev .slot,
+.main_banner .main-next .slot,
+.main_banner .main-prev .slot__img,
+.main_banner .main-next .slot__img {
+  width: 29px;
+  height: 61px;
+}
+
+/* SECTION 4 — global Swiper overrides shared by the other carousels */
+.swiper-pagination.static {
+  position: static;
+  text-align: left;
+  padding-top: 29px;
+  font-size: 0;
+}
+
+.swiper-pagination.static .swiper-pagination-bullet {
+  width: 8px;
+  height: 8px;
+  margin-right: 14px;
+  background: var(--line-3);
+  opacity: 1;
+  border-radius: 100%;
+  display: inline-block;
+}
+
+.swiper-pagination.static .swiper-pagination-bullet-active {
+  background: #000;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  bottom: 29px;
+  top: auto;
+  width: 22px;
+  height: 16px;
+  background-size: 16px;
+  position: absolute;
+}
+
+.swiper-button-next {
+  right: 29px;
+}
+
+.swiper-button-prev {
+  right: 66px;
+}
+
+.swiper-button-disabled {
+  opacity: 0.2;
+}

@@ -1,0 +1,488 @@
+/**
+ * LOGIN / JOIN / DELIVERY / CONTACT.
+ *
+ * Measured on the reference login page at 1920px: #contents opens with 100px
+ * of top padding and the form sits in a 400px column, centred in the band. The
+ * fields are the SECTION 9.8 controls already defined in overlays.css.
+ *
+ * Login, from the top of the column (the reference's y, minus the 100px pad):
+ *   tabs 0 (39 tall) · secure line 59 · ID 98 · password 158 · options row 218
+ *   · LOGIN 277 (60 tall) · SNS row 377 (48 tall) · rule 465 · join heading 516
+ *   · join lines 558 · JOIN 642 (60 tall)
+ */
+.account_area {
+  width: 400px;
+  margin: 0 auto 140px;
+}
+
+/* ---- tabs --------------------------------------------------------------- */
+/* each tab owns 200px; its label and underline sit on the middle 160px */
+.account_area .account_tabs {
+  display: flex;
+  height: 39px;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.account_area .account_tabs .tab {
+  flex: 1 1 0;
+  margin: 0 20px;
+  height: 39px;
+  box-sizing: border-box;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  color: #ccc;
+  border-bottom: 3px solid transparent;
+  transition: var(--easing-one);
+}
+
+.account_area .account_tabs .tab.is-active {
+  color: #191919;
+  font-weight: 600;
+  border-bottom-color: #191919;
+}
+
+.account_area .account_tabs a.tab:hover {
+  color: var(--ink-2);
+}
+
+/* ---- page heads (join / delivery / contact) ----------------------------- */
+.account_area .account_title {
+  font-family: var(--font-display);
+  font-size: 30px;
+  font-weight: normal;
+  letter-spacing: 3px;
+  color: var(--ink-2);
+  text-align: center;
+  padding-bottom: 12px;
+}
+
+.account_area .account_lead {
+  font-size: 14px;
+  color: var(--mute);
+  text-align: center;
+  padding-bottom: 28px;
+  line-height: 1.5;
+}
+
+/* ---- the secure-connection line ----------------------------------------- */
+.account_area .secure_row {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 6px;
+  height: 19px;
+  margin: 20px 0;
+  font-size: 13px;
+  color: var(--mute);
+}
+
+/* ---- form rows ---------------------------------------------------------- */
+.account_area .form-textarea {
+  height: 150px;
+  line-height: 1.5;
+  padding: 14px;
+  text-indent: 0;
+  resize: vertical;
+}
+
+/* 59px from the password field's margin to the LOGIN button */
+.account_area .form_row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  height: 59px;
+  box-sizing: border-box;
+  padding-top: 10px;
+  font-size: 13px;
+  color: var(--mute);
+}
+
+.account_area .remember,
+.account_area .agree {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.account_area .agree {
+  padding: 4px 0;
+  font-size: 13px;
+  color: var(--mute);
+}
+
+.account_area .agree + .agree {
+  padding-bottom: 20px;
+}
+
+.account_area .find_links a {
+  color: var(--mute);
+}
+
+.account_area .find_links .divider {
+  padding: 0 8px;
+  color: var(--line-3);
+}
+
+/* ---- buttons: 400 x 60, 16px bold --------------------------------------- */
+.account_area .btn_dark,
+.account_area .btn_outline {
+  display: block;
+  width: 100%;
+  height: 60px;
+  box-sizing: border-box;
+  font-size: 16px;
+  font-weight: 700;
+  text-align: center;
+  transition: var(--easing-one);
+}
+
+.account_area .btn_dark {
+  background: #191919;
+  border: 1px solid #191919;
+  color: #fff;
+}
+
+.account_area .btn_dark:hover {
+  background: #000;
+  border-color: #000;
+}
+
+.account_area .btn_outline {
+  line-height: 58px;
+  background: #fff;
+  border: 1px solid #191919;
+  color: #191919;
+}
+
+.account_area .btn_outline:hover {
+  background: #191919;
+  color: #fff;
+}
+
+/* ---- SNS row: 48px badges, 26px apart, flush right ---------------------- */
+.account_area .sns_row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 48px;
+  margin-top: 40px;
+  padding-bottom: 40px;
+}
+
+.account_area .sns_title {
+  font-family: var(--font-display);
+  font-size: 18px;
+  letter-spacing: 2px;
+  line-height: 48px;
+  color: var(--ink-2);
+}
+
+.account_area .sns_buttons {
+  display: flex;
+  gap: 26px;
+}
+
+.account_area .sns_buttons .slot {
+  width: 48px;
+  height: 48px;
+}
+
+/* ---- join promo: rule, 50px, heading, lines, button --------------------- */
+.account_area .join_block {
+  border-top: 1px solid var(--line-2);
+  padding-top: 50px;
+  text-align: center;
+}
+
+.account_area .join_block h3 {
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 22px;
+  color: var(--ink-2);
+}
+
+.account_area .join_block .join_lines {
+  padding-top: 20px;
+}
+
+.account_area .join_block .join_lines p {
+  font-size: 14px;
+  line-height: 23px;
+  color: var(--mute);
+}
+
+.account_area .join_block .btn_outline {
+  margin-top: 38px;
+}
+
+/* ---- CS block on the contact page --------------------------------------- */
+.account_area .cs_block {
+  border-top: 1px solid var(--line-2);
+  margin-top: 40px;
+  padding-top: 34px;
+  text-align: center;
+}
+
+.account_area .cs_block h3 {
+  font-family: var(--font-display);
+  font-size: 18px;
+  letter-spacing: 1.5px;
+  color: var(--ink-2);
+  padding-bottom: 10px;
+}
+
+.account_area .cs_block .cs_phone {
+  font-family: var(--font-display);
+  font-size: 28px;
+  color: var(--ink);
+  letter-spacing: 0.5px;
+  padding-bottom: 12px;
+}
+
+.account_area .cs_block p {
+  font-size: 14px;
+  color: var(--mute);
+  line-height: 1.7;
+}
+
+/* ---- honesty note ------------------------------------------------------- */
+.account_area .inert_note {
+  font-size: 12px;
+  color: var(--mute-4);
+  text-align: center;
+  padding-top: 24px;
+  line-height: 1.5;
+}
+
+.account_area .account_note {
+  font-size: 13px;
+  color: var(--mute);
+  text-align: center;
+  padding-top: 26px;
+}
+
+/* ---------------------------------------------------------------------------
+   Real accounts: the messages a form gives back, and MY PAGE.
+
+   MY PAGE is the one account screen that outgrows the 400px column — details
+   on the left, order history on the right — so it opts into a wider shell
+   rather than stretching the shared one.
+   --------------------------------------------------------------------------- */
+
+.account_area .form_error,
+.account_area .form_notice {
+  font-size: 13px;
+  line-height: 1.6;
+  padding: 11px 13px;
+  margin-bottom: 14px;
+}
+
+.account_area .form_error {
+  background: #fdf3f3;
+  border: 1px solid #e7c9c9;
+  color: #9d2a2a;
+}
+
+.account_area .form_notice {
+  background: #f2f7f3;
+  border: 1px solid #c7ddcc;
+  color: #2c6b41;
+}
+
+.account_area.wide {
+  width: 1000px;
+  max-width: 100%;
+}
+
+.account_area .account_head {
+  text-align: center;
+  margin-bottom: 34px;
+}
+
+.account_area .btn_text {
+  border: 0;
+  background: none;
+  font-size: 12px;
+  letter-spacing: 1px;
+  color: var(--mute);
+  cursor: pointer;
+  padding: 4px 2px;
+  border-bottom: 1px solid var(--line);
+}
+
+.account_area .btn_text:hover {
+  color: var(--ink-2);
+  border-bottom-color: var(--ink-2);
+}
+
+.account_area .account_columns {
+  display: grid;
+  grid-template-columns: 380px 1fr;
+  gap: 60px;
+  text-align: left;
+}
+
+.account_area .account_sub {
+  font-family: var(--font-display);
+  font-size: 13px;
+  letter-spacing: 1.4px;
+  color: var(--ink-2);
+  padding-bottom: 14px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid var(--line);
+}
+
+.my_orders li {
+  border: 1px solid var(--line);
+  padding: 18px 20px;
+  margin-bottom: 12px;
+}
+
+.my_order_head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.my_order_date {
+  font-size: 12px;
+  color: var(--mute);
+  letter-spacing: 0.5px;
+}
+
+.my_order_items {
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--ink-2);
+  margin-bottom: 12px;
+}
+
+.my_order_foot {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 14px;
+  font-size: 13px;
+}
+
+.my_order_foot > span:first-child {
+  font-weight: 600;
+}
+
+.my_order_stage {
+  flex: 1;
+  font-size: 12px;
+  color: var(--mute);
+}
+
+.my_order_foot a {
+  font-size: 12px;
+  letter-spacing: 0.6px;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 2px;
+}
+
+.my_order_foot a:hover {
+  border-bottom-color: var(--ink-2);
+}
+
+@media (max-width: 1100px) {
+  .account_area .account_columns {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   CONTACT and DELIVERY, once both reach the database.
+
+   The two pages share one enquiry form and one "block" treatment: a hairline
+   box holding facts a shopper may want before anyone replies.
+   --------------------------------------------------------------------------- */
+
+.account_area .enquiry_block {
+  margin-top: 34px;
+}
+
+.account_area .account_sub.center {
+  text-align: center;
+}
+
+.account_area .info_block {
+  margin-top: 40px;
+  border: 1px solid var(--line);
+  padding: 24px 26px;
+  text-align: left;
+}
+
+.account_area .info_block h3 {
+  font-family: var(--font-display);
+  font-size: 12px;
+  letter-spacing: 1.4px;
+  color: var(--ink-2);
+  margin-bottom: 14px;
+}
+
+.account_area .info_block p {
+  font-size: 13px;
+  line-height: 1.9;
+  color: var(--mute);
+}
+
+.contact_list > div {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 10px;
+  padding: 7px 0;
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+.contact_list dt {
+  color: var(--mute-4);
+}
+
+.contact_list dd {
+  color: var(--ink-2);
+}
+
+.contact_list a:hover {
+  text-decoration: underline;
+}
+
+.track_card {
+  margin-top: 26px;
+  border: 1px solid var(--line);
+  padding: 22px 24px;
+  text-align: left;
+}
+
+.track_card dl > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 6px 0;
+  font-size: 13px;
+}
+
+.track_card dt {
+  color: var(--mute-4);
+}
+
+.track_card dd {
+  color: var(--ink-2);
+  font-weight: 500;
+}
+
+.track_items {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--mute);
+}

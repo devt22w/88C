@@ -1,0 +1,99 @@
+/* SECTION 1.2 — hard reset */
+html,
+body,
+div,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+ul,
+ol,
+li,
+dl,
+dt,
+dd,
+form,
+fieldset,
+legend,
+table,
+th,
+td,
+input,
+textarea,
+select,
+button,
+figure {
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body,
+table,
+input,
+textarea,
+select,
+button {
+  font-family: var(--font-body);
+  color: var(--ink);
+  line-height: 1.2;
+}
+
+body {
+  background: #fff;
+  font-size: 14px;
+  /* 12/14.x — fixed-width desktop skin: hold the minimum, scroll horizontally below it */
+  min-width: var(--band-min);
+}
+
+li {
+  list-style: none;
+}
+
+img {
+  border: none;
+  vertical-align: top;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+button {
+  border: 0;
+  cursor: pointer;
+  background: none;
+}
+
+fieldset,
+legend {
+  border: 0;
+}
+
+a {
+  text-decoration: none;
+  color: #000;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+input,
+select,
+textarea {
+  font-size: 14px;
+}

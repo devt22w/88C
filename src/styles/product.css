@@ -1,0 +1,769 @@
+/**
+ * Sub pages: the category listing and the product detail page.
+ *
+ * Every number here was measured on the reference storefront at a 1920px
+ * viewport and checked again at the 1263px minimum; each block below says what
+ * it was matched against.
+ */
+.sub #contents {
+  padding-top: 100px;
+}
+
+/* SECTION 2's 40px on main.main exists to seat the home hero. The reference's
+   sub pages have no such offset: their content starts right at the spacer. */
+.sub main.main {
+  padding-top: 0;
+}
+
+/* ==========================================================================
+   Category listing — positioned against the reference at a 1920px viewport.
+
+     header bottom
+       + 95px  category name: 16px PT Sans, #4a5164, centred on a 48px line
+       + 77px  TOTAL bar: 35px tall, 2px #1d1d1d rule beneath it
+       then    a four-up grid across the full content band (1450px at 1920)
+
+   The band is the same container as the home page, not a fixed 1163px strip:
+   the reference listing widens with the viewport, exactly as the home grid does.
+   ========================================================================== */
+.sub #contents.list_contents {
+  padding-top: 0;
+}
+
+/* #contents already is the 1550px / 50px-gutter band, so the listing adds
+   nothing of its own — adding a second gutter shrank the grid to 1350px */
+.list_area {
+  margin: 0 0 120px;
+}
+
+.list_area .list_title {
+  margin-top: 95px;
+  height: 48px;
+  line-height: 48px;
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: normal;
+  letter-spacing: normal;
+  color: #4a5164;
+  text-align: center;
+}
+
+.list_area .list_bar {
+  margin-top: 77px;
+  height: 35px;
+  border-bottom: 2px solid var(--ink);
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.list_area .list_bar .total {
+  font-family: var(--font-display);
+  font-size: 16px;
+  letter-spacing: 2.5px;
+  color: var(--ink);
+  line-height: 18px;
+}
+
+.list_area .list_bar .sort {
+  display: flex;
+  gap: 29px;
+}
+
+.list_area .list_bar .sort button {
+  padding: 0;
+  font-family: var(--font-body);
+  font-size: 14px;
+  letter-spacing: -0.3px;
+  line-height: 18px;
+  color: #9b9b9b;
+  transition: var(--easing-one);
+}
+
+.list_area .list_bar .sort button:hover,
+.list_area .list_bar .sort button.is-active {
+  color: var(--ink);
+}
+
+/* no data behind these two yet — they stay put and say why on hover */
+.list_area .list_bar .sort button[aria-disabled='true'] {
+  cursor: default;
+}
+
+.list_area .list_bar .sort button[aria-disabled='true']:hover {
+  color: #9b9b9b;
+}
+
+/* four-up instead of the home page's three-up, text set left like the
+   reference; everything else is inherited from the home card */
+.list_grid li {
+  width: 25%;
+  padding-top: 20px;
+}
+
+.list_grid .information {
+  text-align: left;
+}
+
+/* the narrower cell takes the price row down a step: 22 / 17 / 22 against the
+   home card's 25 / 19 / 25, measured off the reference listing */
+.list_grid .price_wrap .price,
+.list_grid .price_wrap .discount-rate {
+  font-size: 22px;
+}
+
+.list_grid .price_wrap .custom_price {
+  font-size: 17px;
+}
+
+.list_area .list_empty {
+  text-align: center;
+  font-size: 15px;
+  color: var(--mute);
+  padding: 90px 0 30px;
+  border-top: 1px solid var(--line-2);
+}
+
+/* ==========================================================================
+   Product detail — positioned against the reference at 1920px.
+
+   The detail band is fluid up to 1280px (1163px at the 1263px minimum). Both
+   columns grow at the same rate, so the image column is half the band plus
+   20px and the info column half the band minus 20px: 660 / 620 at 1920,
+   601.5 / 561.5 at 1263. The image column is a 91px rail, a 39px gutter and a
+   square that takes the rest (530px at 1920). The info column has 70px of left
+   padding, so its content sits on a 550px measure at 1920.
+
+   Vertical rhythm of the info column, from the top of the band:
+     name 0 · summary 39 · rule 107 · price rows 147 (35 / 41 / 35 / 35)
+     · 선택 300 · total 418 · buttons 521
+   ========================================================================== */
+.detail_area {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto 120px;
+}
+
+.detail_area::after {
+  content: '';
+  display: block;
+  clear: both;
+}
+
+/* ---- image column ------------------------------------------------------- */
+.detail_area .image_col {
+  float: left;
+  width: calc(50% + 20px);
+  position: relative;
+}
+
+.detail_area .image_col::after {
+  content: '';
+  display: block;
+  clear: both;
+}
+
+.detail_area .listImg {
+  float: left;
+  width: 91px;
+  margin-right: 39px;
+}
+
+.detail_area .listImg li {
+  width: 91px;
+  height: 91px;
+  margin-bottom: 19px;
+  cursor: pointer;
+  position: relative;
+  box-sizing: border-box;
+  border: 1px solid #efefef;
+  transition: var(--easing-one);
+  background: #fff;
+  padding: 0;
+}
+
+.detail_area .listImg li:last-child {
+  margin-bottom: 0;
+}
+
+.detail_area .listImg li:hover {
+  border-color: #c9c9c9;
+}
+
+.detail_area .listImg li.is-active {
+  border-color: #191919;
+}
+
+.detail_area .listImg .slot,
+.detail_area .listImg .slot__img {
+  width: 100%;
+  height: 100%;
+}
+
+/* the square takes whatever the rail and gutter leave */
+.detail_area .keyImg {
+  float: left;
+  width: calc(100% - 130px);
+  aspect-ratio: 1 / 1;
+  position: relative;
+}
+
+.detail_area .keyImg .slot,
+.detail_area .keyImg .slot__img {
+  width: 100%;
+  height: 100%;
+}
+
+/* ---- hover zoom --------------------------------------------------------- */
+/* the lens tracks the cursor inside the square; the panel starts 10px past the
+   image column and covers the info column while zooming */
+.detail_area .zoom_lens {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  border: 1px solid rgba(29, 29, 29, 0.35);
+  background: rgba(29, 29, 29, 0.08);
+  pointer-events: none;
+  z-index: 7;
+}
+
+.detail_area .zoom_panel {
+  position: absolute;
+  top: 0;
+  left: calc(100% + 10px);
+  width: 500px;
+  height: 500px;
+  border: 1px solid var(--line-2);
+  background-color: #fff;
+  background-repeat: no-repeat;
+  pointer-events: none;
+  z-index: 8;
+}
+
+/* ---- info column -------------------------------------------------------- */
+.detail_area .info_col {
+  float: left;
+  width: calc(50% - 20px);
+  padding-left: 70px;
+  box-sizing: border-box;
+}
+
+.detail_area .info_col .prd_name {
+  height: 39px;
+  font-family: var(--font-body);
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 26px;
+  color: var(--ink);
+}
+
+.detail_area .info_col .prd_summary {
+  font-size: 15px;
+  font-weight: 300;
+  color: var(--mute);
+  line-height: 21px;
+  padding-bottom: 26px;
+  border-bottom: 1px solid var(--line-2);
+  margin-bottom: 39px;
+}
+
+.detail_area .info_col .prd_summary span {
+  display: block;
+}
+
+/* label | value rows, 82px label column */
+.detail_area .spec {
+  margin: 0;
+}
+
+.detail_area .spec .row {
+  display: flex;
+  align-items: flex-start;
+  height: 35px;
+  font-size: 15px;
+  line-height: 19px;
+}
+
+.detail_area .spec .row.sale {
+  height: 41px;
+}
+
+.detail_area .spec dt {
+  width: 82px;
+  flex: 0 0 82px;
+}
+
+.detail_area .spec dd {
+  margin: 0;
+}
+
+.detail_area .spec .consumer,
+.detail_area .spec .consumer s {
+  color: #6f6f6f;
+}
+
+.detail_area .spec .sale dt {
+  color: var(--mute);
+}
+
+/* the sale price sits a pixel above its label, as on the reference */
+.detail_area .spec .sale strong {
+  display: inline-block;
+  margin-top: -1px;
+  font-family: var(--font-body);
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 28px;
+  color: #000;
+}
+
+.detail_area .spec .sale .rate {
+  color: var(--sale);
+  padding-left: 4px;
+}
+
+.detail_area .spec .points {
+  color: #1e5fe2;
+}
+
+.detail_area .spec .shipping,
+.detail_area .spec .shipping strong {
+  color: #666;
+  font-weight: 400;
+}
+
+/* ---- 선택: label left, swatches and the note in the value column ------- */
+.detail_area .options {
+  display: flex;
+  align-items: flex-start;
+  margin-top: 8px;
+  height: 87px;
+}
+
+.detail_area .options .options_label {
+  width: 82px;
+  flex: 0 0 82px;
+  font-size: 14px;
+  font-weight: 300;
+  color: #666;
+  line-height: 43px;
+}
+
+.detail_area .options .options_value {
+  padding-top: 26px;
+}
+
+.detail_area .options .swatches {
+  font-size: 0;
+}
+
+.detail_area .options .swatch {
+  display: inline-block;
+  width: 35px;
+  height: 35px;
+  margin: 0 7px 5px 0;
+  padding: 0;
+  border: 0;
+  box-sizing: border-box;
+  cursor: pointer;
+  position: relative;
+  transition: var(--easing-one);
+}
+
+.detail_area .options .swatch::after {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border: 1px solid transparent;
+  transition: var(--easing-one);
+}
+
+.detail_area .options .swatch:hover::after {
+  border-color: #c9c9c9;
+}
+
+.detail_area .options .swatch.is-selected::after {
+  border-color: var(--ink);
+}
+
+.detail_area .options .required,
+.detail_area .options .chosen {
+  font-size: 14px;
+  line-height: 18px;
+  padding-top: 4px;
+  color: #1f1f1f;
+}
+
+.detail_area .options .required {
+  color: var(--sale);
+}
+
+/* ---- total: one line, read left to right -------------------------------- */
+.detail_area .total {
+  margin-top: 31px;
+  height: 59px;
+  box-sizing: border-box;
+  border-top: 1px solid #231f20;
+  padding-top: 29px;
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  color: #231f20;
+}
+
+.detail_area .total .label {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.detail_area .total .amount {
+  font-style: normal;
+  font-size: 23px;
+  font-weight: 500;
+}
+
+.detail_area .total .count {
+  font-size: 14px;
+  color: var(--mute);
+}
+
+/* ---- buttons: 237 + 237 flush, then a 61px share after 15px ------------- */
+.detail_area .buy_row {
+  display: flex;
+  margin-top: 44px;
+}
+
+.detail_area .btn_buy,
+.detail_area .btn_cart {
+  flex: 1 1 0;
+  height: 60px;
+  font-family: var(--font-body);
+  font-size: 17px;
+  font-weight: 700;
+  box-sizing: border-box;
+  transition: var(--easing-one);
+  cursor: pointer;
+}
+
+.detail_area .btn_buy {
+  background: #231f20;
+  border: 1px solid #231f20;
+  color: #fff;
+}
+
+.detail_area .btn_buy:hover {
+  background: #000;
+  border-color: #000;
+}
+
+.detail_area .btn_cart {
+  background: #fff;
+  border: 1px solid #231f20;
+  color: #231f20;
+}
+
+.detail_area .btn_cart:hover {
+  background: #231f20;
+  color: #fff;
+}
+
+.detail_area .btn_share {
+  flex: 0 0 61px;
+  height: 60px;
+  margin-left: 15px;
+  background: #fff;
+  border: 1px solid #d1d1d1;
+  color: #222;
+  font-size: 18px;
+  box-sizing: border-box;
+  transition: var(--easing-one);
+  cursor: pointer;
+}
+
+.detail_area .btn_share:hover {
+  border-color: var(--ink);
+}
+
+.detail_area .back_row {
+  padding-top: 22px;
+  font-size: 14px;
+}
+
+.detail_area .back_row a {
+  color: var(--mute);
+}
+
+/* ---- long-form detail below -------------------------------------------- */
+.prd_detail {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding-bottom: 40px;
+}
+
+.prd_detail h2 {
+  font-family: var(--font-display);
+  font-size: 24px;
+  letter-spacing: 2px;
+  color: var(--ink-2);
+  text-align: center;
+  padding-bottom: 12px;
+}
+
+.prd_detail p.note {
+  font-size: 14px;
+  color: var(--mute);
+  text-align: center;
+  padding-bottom: 34px;
+}
+
+.prd_detail .sheet {
+  width: 100%;
+}
+
+.prd_detail .sheet .slot {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.not_found {
+  width: 1163px;
+  margin: 0 auto 160px;
+  text-align: center;
+}
+
+.not_found h2 {
+  font-family: var(--font-display);
+  font-size: 36px;
+  letter-spacing: 3px;
+  color: var(--ink-2);
+  padding-bottom: 16px;
+}
+
+.not_found a {
+  font-size: 15px;
+  color: var(--mute);
+}
+
+/* the shade note pulses once when someone tries to add without choosing */
+.detail_area .options .required.is-warning {
+  font-weight: 700;
+  animation: shade-nudge 0.4s ease-in-out;
+}
+
+@keyframes shade-nudge {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-4px); }
+  75% { transform: translateX(4px); }
+}
+
+.detail_area .btn_cart.is-added {
+  background: #231f20;
+  color: #fff;
+}
+
+/* ---------------------------------------------------------------------------
+   Stock and reviews.
+
+   A sold-out shade keeps its place in the row — greyed and crossed, never
+   removed — so the swatch line does not reflow and a shopper can still see
+   which colour it was.
+   --------------------------------------------------------------------------- */
+
+.swatch.is-out {
+  opacity: 0.35;
+  cursor: not-allowed;
+  position: relative;
+}
+
+.swatch.is-out::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top right, transparent 46%, #fff 46%, #fff 54%, transparent 54%);
+}
+
+.stock_note {
+  margin: 14px 0 0;
+  font-size: 13px;
+  letter-spacing: 0.4px;
+}
+
+.stock_note.is-out {
+  color: #a33a3a;
+  font-weight: 600;
+}
+
+.stock_note.is-low {
+  color: #a3701f;
+}
+
+.buy_row button:disabled {
+  background: #c9c9c9;
+  border-color: #c9c9c9;
+  color: #fff;
+  cursor: not-allowed;
+}
+
+.sold_out {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 2;
+  background: rgba(29, 29, 29, 0.82);
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: 11px;
+  letter-spacing: 1.2px;
+  padding: 6px 10px;
+}
+
+.thumbnail {
+  position: relative;
+}
+
+.cart_btn.is-out {
+  opacity: 0.45;
+}
+
+/* ---- reviews ------------------------------------------------------------- */
+.reviews {
+  max-width: 900px;
+  margin: 90px auto 0;
+  text-align: left;
+}
+
+.reviews_head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  border-bottom: 2px solid var(--ink);
+  padding-bottom: 14px;
+  margin-bottom: 22px;
+}
+
+.reviews_head h2 {
+  font-family: var(--font-display);
+  font-size: 16px;
+  letter-spacing: 2px;
+}
+
+.reviews_score {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--mute);
+}
+
+.reviews_score.muted {
+  color: var(--mute-4);
+}
+
+.stars {
+  letter-spacing: 2px;
+  color: var(--line-5);
+}
+
+.stars .on {
+  color: #d8a13a;
+}
+
+.review_list li {
+  border-bottom: 1px solid var(--line);
+  padding: 18px 2px;
+}
+
+.review_top {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.review_date {
+  font-size: 12px;
+  color: var(--mute-4);
+}
+
+.review_list h3 {
+  font-size: 14px;
+  margin-bottom: 6px;
+  color: var(--ink-2);
+}
+
+.review_list p {
+  font-size: 13px;
+  line-height: 1.8;
+  color: var(--mute);
+}
+
+.review_pending,
+.review_signin {
+  margin-top: 18px;
+  font-size: 13px;
+  color: var(--mute);
+}
+
+.review_signin a {
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 2px;
+}
+
+.review_form {
+  margin-top: 34px;
+  max-width: 520px;
+}
+
+.review_form h3 {
+  font-family: var(--font-display);
+  font-size: 12px;
+  letter-spacing: 1.4px;
+  margin-bottom: 14px;
+}
+
+.review_stars {
+  margin-bottom: 12px;
+}
+
+.review_stars button {
+  border: 0;
+  background: none;
+  font-size: 22px;
+  color: var(--line-5);
+  cursor: pointer;
+  padding: 0 2px;
+}
+
+.review_stars button.on {
+  color: #d8a13a;
+}
+
+.review_form .form_error,
+.review_form .form_notice {
+  font-size: 13px;
+  padding: 10px 12px;
+  margin-bottom: 12px;
+}
+
+.review_form .form_error {
+  background: #fdf3f3;
+  border: 1px solid #e7c9c9;
+  color: #9d2a2a;
+}
+
+.review_form .form_notice {
+  background: #f2f7f3;
+  border: 1px solid #c7ddcc;
+  color: #2c6b41;
+}
+
+.review_form .btn_dark {
+  width: 220px;
+  height: 46px;
+  background: var(--ink);
+  color: #fff;
+  border: 0;
+  font-size: 12px;
+  letter-spacing: 1.4px;
+  cursor: pointer;
+}

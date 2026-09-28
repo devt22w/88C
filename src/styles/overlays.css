@@ -1,0 +1,642 @@
+/* SECTION 9.1 — scroll-to-top button, hidden on load, revealed once scrolled */
+.btn-top {
+  position: fixed;
+  right: 50px;
+  bottom: 30px;
+  font-family: var(--font-display);
+  font-size: 15px;
+  color: var(--mute-5);
+  letter-spacing: 1px;
+  text-align: center;
+  z-index: 8;
+  opacity: 0;
+  visibility: hidden;
+  transition: var(--easing-one);
+}
+
+.btn-top.is-visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.btn-top .slot {
+  display: block;
+  margin: 0 auto 8px;
+  width: 18px;
+  height: 12px;
+}
+
+.btn-top .slot__img {
+  width: 18px;
+  height: 12px;
+}
+
+/* SECTION 9.2 — slide-in side menu */
+.menu_wrap {
+  width: 345px;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  right: -345px;
+  background: #fff;
+  z-index: 12;
+  padding: 60px 40px;
+  box-sizing: border-box;
+  transition: var(--easing-one);
+}
+
+.menu_wrap.open {
+  right: 0;
+}
+
+.menu_wrap .close,
+.sch_wrap .close,
+#recent .close {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  background: none;
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  cursor: pointer;
+  padding: 0;
+}
+
+#recent .close {
+  top: 40px;
+  right: 29px;
+}
+
+.menu_wrap .close .slot,
+.sch_wrap .close .slot,
+#recent .close .slot,
+.menu_wrap .close .slot__img,
+.sch_wrap .close .slot__img,
+#recent .close .slot__img {
+  width: 14px;
+  height: 14px;
+}
+
+.menu_wrap .login {
+  padding-top: 10px;
+  position: relative;
+}
+
+.menu_wrap .login p {
+  font-size: 15px;
+  color: var(--mute);
+}
+
+.menu_wrap .login ul {
+  position: absolute;
+  top: 12px;
+  right: 0;
+  line-height: 1;
+  font-size: 0;
+}
+
+.menu_wrap .login ul li {
+  display: inline-block;
+  margin-right: 17px;
+}
+
+.menu_wrap .login ul li:last-child {
+  margin-right: 0;
+}
+
+.menu_wrap .login ul li a {
+  font-family: var(--font-display);
+  font-size: 14px;
+  letter-spacing: 1px;
+}
+
+.menu_wrap .logout .slot,
+.menu_wrap .logout .slot__img {
+  width: 31px;
+  height: 31px;
+  border-radius: 50%;
+  vertical-align: middle;
+  display: inline-block;
+}
+
+.menu_wrap .logout .greeting {
+  font-size: 16px;
+  color: var(--mute);
+  padding-left: 10px;
+}
+
+.menu_wrap .logout .greeting .name {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--ink-2);
+  vertical-align: text-bottom;
+  padding-right: 4px;
+}
+
+.menu_wrap .my_menu {
+  padding-top: 65px;
+}
+
+.menu_wrap .my_menu li {
+  padding-bottom: 25px;
+}
+
+.menu_wrap .my_menu li a {
+  font-size: 20px;
+  color: var(--ink-2);
+  transition: var(--easing-one);
+}
+
+.menu_wrap .my_menu li a:hover {
+  color: var(--sale-4);
+}
+
+.menu_wrap .cs {
+  position: absolute;
+  bottom: 60px;
+  left: 40px;
+  line-height: 1;
+}
+
+.menu_wrap .cs h3 {
+  font-size: 18px;
+  font-weight: normal;
+  padding-bottom: 38px;
+}
+
+.menu_wrap .cs h1 {
+  font-family: var(--font-display);
+  font-size: 25px;
+  font-weight: normal;
+  letter-spacing: 1.5px;
+  padding-bottom: 24px;
+}
+
+.menu_wrap .cs p {
+  font-size: 15px;
+  color: var(--mute);
+  padding-bottom: 10px;
+}
+
+.menu_wrap .cs p:last-child {
+  padding-bottom: 0;
+}
+
+/* full-screen scrims behind the panels */
+.white_bg,
+.dark_bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  display: none;
+}
+
+.white_bg {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.dark_bg {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.white_bg.show,
+.dark_bg.show {
+  display: block;
+}
+
+/* SECTION 9.4 — search modal, cross-fades in place */
+.sch_wrap {
+  width: 552px;
+  height: 442px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  margin-top: -221px;
+  margin-left: -276px;
+  border: 1px solid var(--line-5);
+  background: #fff;
+  box-sizing: border-box;
+  padding: 60px 40px 0;
+  z-index: 11;
+  opacity: 0;
+  visibility: hidden;
+  transition: var(--easing-one);
+}
+
+.sch_wrap.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.sch_wrap .tit {
+  font-size: 23px;
+  color: var(--ink-2);
+  text-align: center;
+  font-weight: normal;
+  padding-bottom: 27px;
+}
+
+.sch_wrap fieldset {
+  border-bottom: 2px solid var(--ink);
+  font-size: 0;
+}
+
+.sch_wrap .keyword {
+  width: 428px;
+  line-height: 61px;
+  height: 61px;
+  font-size: 17px;
+  font-weight: 400;
+  color: var(--ink);
+  border: none;
+  padding: 0;
+  background: none;
+}
+
+.sch_wrap .keyword::placeholder {
+  color: var(--mute);
+}
+
+.sch_wrap .keyword:focus {
+  outline: none;
+}
+
+.sch_wrap .search_btn {
+  display: inline-block;
+  vertical-align: top;
+  width: 42px;
+  height: 61px;
+  position: relative;
+}
+
+.sch_wrap .search_btn .slot {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 22px;
+  height: 22px;
+}
+
+.sch_wrap .search_btn .slot__img {
+  width: 22px;
+  height: 22px;
+}
+
+/* hot keyword ticker — a slow vertical auto-scroll, focused row grows and lights up */
+.sch_wrap .hot_keyword {
+  margin-top: 30px;
+  height: 200px;
+  overflow: hidden;
+  position: relative;
+}
+
+.sch_wrap .hot_keyword .keyword_track {
+  transition: transform 0.5s ease-in-out;
+}
+
+.sch_wrap .hot_keyword li {
+  height: 50px;
+}
+
+.sch_wrap .hot_keyword li button {
+  width: 100%;
+  text-align: left;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.sch_wrap .hot_keyword li a,
+.sch_wrap .hot_keyword li button {
+  display: block;
+  font-size: 15px;
+  color: var(--mute-4);
+  letter-spacing: -0.3px;
+  line-height: 50px;
+  padding: 0 10px;
+  transition: var(--easing-one);
+}
+
+.sch_wrap .hot_keyword li.swiper-slide-next a,
+.sch_wrap .hot_keyword li.swiper-slide-next button {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--ink);
+  background: var(--soft-2);
+}
+
+/* SECTION 9.5 — recently-viewed panel */
+#recent {
+  width: 491px;
+  box-sizing: border-box;
+  position: fixed;
+  right: 114px;
+  top: 50%;
+  margin-top: 52px;
+  transform: translateY(-50%);
+  background: #fff;
+  border: 1px solid var(--line-5);
+  z-index: 11;
+  padding: 29px;
+  opacity: 0;
+  visibility: hidden;
+  transition: var(--easing-one);
+}
+
+#recent.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+#recent h2 a {
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--ink-2);
+  text-align: left;
+  padding: 0;
+}
+
+#recent ul {
+  padding-top: 25px;
+  width: calc(100% + 10px);
+  margin-left: -5px;
+  min-height: 50px;
+  font-size: 0;
+}
+
+#recent ul li {
+  display: inline-block;
+  vertical-align: top;
+  width: calc(25% - 10px);
+  margin: 0 5px;
+}
+
+#recent ul li a {
+  display: block;
+  padding: 5px 0;
+  text-align: center;
+}
+
+#recent ul li .slot {
+  display: inline-block;
+  width: 90%;
+}
+
+#recent ul li .slot__ratio {
+  padding-top: 100%;
+}
+
+#recent ul li .slot__img {
+  width: 100%;
+}
+
+/* SECTION 9.7 — pagination */
+.ec-base-paginate {
+  margin: 50px 0 0;
+  text-align: center;
+  font-size: 0;
+}
+
+.ec-base-paginate li {
+  display: inline-block;
+  margin: 0 9px;
+}
+
+.ec-base-paginate a {
+  display: inline-block;
+  width: 31px;
+  height: 31px;
+  background: #fff;
+  font-family: var(--font-display);
+  font-size: 16px;
+  color: #c6c6c6;
+  line-height: 33px;
+  text-align: center;
+  border-radius: 50%;
+  box-sizing: border-box;
+}
+
+/* the active page is a hard square outline, not a circle */
+.ec-base-paginate a.this {
+  border: 1px solid #231f20;
+  color: #231f20;
+  border-radius: 0;
+}
+
+/* SECTION 9.8 — form controls, kept for visual consistency on sub-pages */
+.form-control,
+.ec-base-form input[type='text'],
+.ec-base-form input[type='password'],
+.ec-base-form select {
+  width: 100%;
+  height: 50px;
+  line-height: 50px;
+  padding: 0;
+  background: #fff;
+  border: 1px solid #dcdcdc;
+  text-indent: 14px;
+  font-size: 14px;
+  color: var(--ink);
+  margin: 0 0 10px;
+  transition: var(--easing-one);
+  box-sizing: border-box;
+}
+
+.form-control:hover,
+.form-control:focus {
+  border-color: var(--ink);
+  outline: none;
+}
+
+.form-control::placeholder {
+  color: #a9a9a9;
+}
+
+select.form-control {
+  appearance: none;
+  -webkit-appearance: none;
+  padding-left: 14px;
+}
+
+.btn-basic {
+  background: #404040;
+  border: 1px solid #404040;
+  color: #f1ece8;
+  box-sizing: border-box;
+  text-align: center;
+  padding: 14px 28px;
+  font-size: 14px;
+}
+
+.btn-basic.transparent {
+  border: 1px solid var(--line);
+  background: transparent;
+  color: #404040;
+}
+
+.btn-basic.gray {
+  border: 1px solid #a2a2a2;
+  background: #a2a2a2;
+  color: #fff;
+}
+
+/* SECTION 9.4b — live results.
+
+   With a query in the box the modal stops being a fixed 442px card: the list
+   is as long as the matches, capped so it never runs past the viewport, and
+   every row carries the product's own 1:1 thumbnail. */
+.sch_wrap.has_results {
+  height: auto;
+  max-height: 76vh;
+  padding-bottom: 24px;
+  display: flex;
+  flex-direction: column;
+}
+
+.sch_results {
+  margin-top: 22px;
+  overflow-y: auto;
+}
+
+.sch_count {
+  font-size: 12px;
+  letter-spacing: 0.6px;
+  color: var(--mute-4);
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 6px;
+}
+
+.sch_results li button {
+  display: grid;
+  grid-template-columns: 54px 1fr auto;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  padding: 9px 6px;
+  border: 0;
+  background: none;
+  text-align: left;
+  cursor: pointer;
+  transition: var(--easing-one);
+}
+
+.sch_results li button:hover {
+  background: var(--soft-2);
+}
+
+.sch_thumb {
+  display: block;
+  width: 54px;
+  background: var(--soft-2);
+}
+
+.sch_name {
+  font-size: 14px;
+  color: var(--ink-2);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.sch_price {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink);
+  white-space: nowrap;
+}
+
+.sch_all {
+  display: block;
+  width: 100%;
+  margin-top: 14px;
+  padding: 11px 0;
+  border: 1px solid var(--line);
+  background: #fff;
+  font-size: 12px;
+  letter-spacing: 1px;
+  color: var(--mute);
+  cursor: pointer;
+  transition: var(--easing-one);
+}
+
+.sch_all:hover {
+  border-color: var(--ink-2);
+  color: var(--ink-2);
+}
+
+/* SECTION 9.5b — the panel's two views.
+
+   RECENT VISIT and MOST VISITED share one grid; only the line under each
+   thumbnail differs, the price for a product you looked at, the running count
+   for one everybody looks at. */
+.recent_tabs {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 18px;
+}
+
+.recent_tabs button {
+  flex: 1;
+  border: 1px solid var(--line);
+  background: #fff;
+  padding: 9px 4px;
+  font-family: var(--font-display);
+  font-size: 11px;
+  letter-spacing: 1px;
+  color: var(--mute);
+  cursor: pointer;
+  transition: var(--easing-one);
+}
+
+.recent_tabs button:hover {
+  color: var(--ink-2);
+  border-color: var(--ink-2);
+}
+
+.recent_tabs button.is-active {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: #fff;
+}
+
+.recent_empty {
+  font-size: 13px;
+  color: var(--mute-4);
+  padding: 30px 0;
+  text-align: center;
+}
+
+#recent li button {
+  display: block;
+  width: 100%;
+  border: 0;
+  background: none;
+  padding: 0;
+  text-align: left;
+  cursor: pointer;
+}
+
+.recent_name {
+  display: block;
+  margin-top: 7px;
+  font-size: 12px;
+  line-height: 1.4;
+  color: var(--ink-2);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.recent_meta {
+  display: block;
+  margin-top: 2px;
+  font-size: 11px;
+  color: var(--mute-4);
+}

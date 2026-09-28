@@ -1,0 +1,493 @@
+/* ---------------------------------------------------------------------------
+   Staff pages (/admin/*).
+
+   Deliberately unlike the storefront: no serif display face, no 1400px grid,
+   no hover choreography. This is a working screen, so it optimises for reading
+   numbers quickly — tabular figures, a fixed row rhythm, and one accent colour
+   used only for money that has actually landed.
+   --------------------------------------------------------------------------- */
+
+#wrap.admin {
+  min-height: 100vh;
+  background: #f6f6f5;
+  /* the storefront is deliberately fixed at --band-min to match the reference;
+     a staff screen is used on whatever is to hand, so it reflows instead */
+  min-width: 0;
+}
+
+body:has(#wrap.admin) {
+  min-width: 0;
+}
+
+/* #contents carries the storefront's fixed band width; staff screens reflow */
+#wrap.admin #contents {
+  min-width: 0;
+}
+
+#wrap.admin .main {
+  padding: 0;
+}
+
+.admin_wrap {
+  max-width: 460px;
+  margin: 0 auto;
+  padding: 60px 20px 90px;
+  font-family: var(--font-body, sans-serif);
+  color: #1d1d1d;
+}
+
+.admin_wrap.wide {
+  max-width: 1280px;
+}
+
+.admin_head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 26px;
+}
+
+.admin_head h1 {
+  font-size: 22px;
+  letter-spacing: 0.5px;
+  font-weight: 600;
+}
+
+.admin_who {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 12px;
+  color: #6b6b6b;
+}
+
+.admin_who button {
+  border: 1px solid #d5d5d3;
+  background: #fff;
+  padding: 6px 12px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.admin_who button:hover {
+  border-color: #1d1d1d;
+}
+
+.admin_lead {
+  font-size: 13px;
+  color: #6b6b6b;
+  line-height: 1.7;
+  margin-bottom: 18px;
+}
+
+.admin_error {
+  margin: 14px 0;
+  padding: 12px 14px;
+  background: #fff4f4;
+  border: 1px solid #e7c3c3;
+  color: #9d2a2a;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.admin_error code {
+  font-family: ui-monospace, Menlo, Consolas, monospace;
+}
+
+/* ---- sign in ------------------------------------------------------------ */
+.admin_login {
+  background: #fff;
+  border: 1px solid #e3e3e1;
+  padding: 34px 30px 30px;
+}
+
+.admin_login h1 {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.admin_login label,
+.admin_detail label {
+  display: block;
+  margin-bottom: 14px;
+}
+
+.admin_login label span,
+.admin_detail label span {
+  display: block;
+  font-size: 11px;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  color: #8a8a8a;
+  margin-bottom: 6px;
+}
+
+.admin_login input,
+.admin_detail input,
+.admin_detail select,
+.admin_detail textarea {
+  width: 100%;
+  border: 1px solid #dcdcdc;
+  background: #fff;
+  padding: 0 12px;
+  height: 42px;
+  font-size: 13px;
+  color: #1d1d1d;
+}
+
+.admin_detail textarea {
+  height: auto;
+  padding: 10px 12px;
+  line-height: 1.6;
+  resize: vertical;
+}
+
+.admin_login input:focus,
+.admin_detail input:focus,
+.admin_detail select:focus,
+.admin_detail textarea:focus {
+  outline: none;
+  border-color: #1d1d1d;
+}
+
+.admin_wrap .btn_dark {
+  width: 100%;
+  height: 46px;
+  background: #1d1d1d;
+  color: #fff;
+  border: 0;
+  font-size: 13px;
+  letter-spacing: 1px;
+  cursor: pointer;
+}
+
+.admin_wrap .btn_dark:disabled {
+  background: #bdbdbd;
+  cursor: default;
+}
+
+.admin_back {
+  display: block;
+  margin-top: 16px;
+  font-size: 12px;
+  color: #6b6b6b;
+}
+
+/* ---- the money line ----------------------------------------------------- */
+.admin_tiles {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.admin_tiles > div {
+  background: #fff;
+  border: 1px solid #e3e3e1;
+  padding: 14px 16px;
+}
+
+.admin_tiles span {
+  display: block;
+  font-size: 11px;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  color: #8a8a8a;
+  margin-bottom: 6px;
+}
+
+.admin_tiles strong {
+  font-size: 18px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.admin_tiles .net strong {
+  color: #1f7a4d;
+}
+
+.admin_tiles .warn strong {
+  color: #b2671a;
+}
+
+/* ---- filters ------------------------------------------------------------ */
+.admin_filters {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+
+.admin_status {
+  display: flex;
+  gap: 4px;
+}
+
+.admin_status button {
+  border: 1px solid #e3e3e1;
+  background: #fff;
+  padding: 8px 12px;
+  font-size: 12px;
+  text-transform: capitalize;
+  cursor: pointer;
+}
+
+.admin_status button em {
+  font-style: normal;
+  color: #a0a0a0;
+  margin-left: 4px;
+  font-variant-numeric: tabular-nums;
+}
+
+.admin_status button.is-active {
+  background: #1d1d1d;
+  border-color: #1d1d1d;
+  color: #fff;
+}
+
+.admin_status button.is-active em {
+  color: #c9c9c9;
+}
+
+.admin_search {
+  flex: 1 1 240px;
+  height: 36px;
+  border: 1px solid #e3e3e1;
+  padding: 0 12px;
+  font-size: 13px;
+}
+
+.admin_refresh {
+  height: 36px;
+  border: 1px solid #e3e3e1;
+  background: #fff;
+  padding: 0 14px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+/* ---- the table ---------------------------------------------------------- */
+.admin_table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border: 1px solid #e3e3e1;
+  font-size: 13px;
+}
+
+.admin_table th {
+  text-align: left;
+  font-size: 11px;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  color: #8a8a8a;
+  font-weight: 500;
+  padding: 12px 14px;
+  border-bottom: 1px solid #e3e3e1;
+  white-space: nowrap;
+}
+
+.admin_table td {
+  padding: 12px 14px;
+  border-bottom: 1px solid #f0f0ee;
+  vertical-align: top;
+}
+
+.admin_table .num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.admin_table .mono {
+  font-family: ui-monospace, Menlo, Consolas, monospace;
+  font-size: 12px;
+}
+
+.admin_row {
+  cursor: pointer;
+}
+
+.admin_row:hover {
+  background: #fafaf9;
+}
+
+.admin_row.is-open {
+  background: #f4f4f2;
+}
+
+.admin_row td em {
+  display: block;
+  font-style: normal;
+  font-size: 11px;
+  color: #9a9a9a;
+  margin-top: 2px;
+}
+
+.admin_empty {
+  padding: 40px 14px;
+  text-align: center;
+  color: #8a8a8a;
+}
+
+.pill {
+  display: inline-block;
+  padding: 3px 9px;
+  border-radius: 999px;
+  font-size: 11px;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  background: #eee;
+  color: #555;
+}
+
+.pill_paid {
+  background: #e4f3ea;
+  color: #1f7a4d;
+}
+
+.pill_pending {
+  background: #fdf1de;
+  color: #a3701f;
+}
+
+.pill_failed,
+.pill_cancelled {
+  background: #fbe9e9;
+  color: #a33a3a;
+}
+
+.pill_review {
+  background: #e9eefb;
+  color: #3a53a3;
+}
+
+/* ---- one order, expanded ------------------------------------------------ */
+.admin_detail td {
+  background: #fbfbfa;
+  padding: 22px 18px 26px;
+}
+
+.admin_detail_grid {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr 1fr;
+  gap: 28px;
+}
+
+.admin_detail h4 {
+  font-size: 11px;
+  letter-spacing: 0.7px;
+  text-transform: uppercase;
+  color: #8a8a8a;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+
+.admin_items {
+  margin-bottom: 14px;
+}
+
+.admin_items li {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  gap: 12px;
+  padding: 7px 0;
+  border-bottom: 1px solid #efefed;
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+}
+
+.admin_item_name em {
+  font-style: normal;
+  color: #9a9a9a;
+}
+
+.admin_totals div {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 0;
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+}
+
+.admin_totals dt {
+  color: #6b6b6b;
+}
+
+.admin_totals .net {
+  border-top: 1px solid #e3e3e1;
+  margin-top: 5px;
+  padding-top: 9px;
+  font-weight: 600;
+  color: #1f7a4d;
+}
+
+.admin_address,
+.admin_meta {
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+.admin_meta {
+  margin-top: 14px;
+  color: #8a8a8a;
+  font-size: 12px;
+}
+
+@media (max-width: 1100px) {
+  .admin_tiles {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .admin_detail_grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---- tabs, and the two tables behind them -------------------------------- */
+.admin_nav {
+  display: flex;
+  gap: 4px;
+}
+
+.admin_nav button {
+  border: 1px solid #e3e3e1;
+  background: #fff;
+  padding: 9px 16px;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.admin_nav button.is-active {
+  background: #1d1d1d;
+  border-color: #1d1d1d;
+  color: #fff;
+}
+
+.admin_review_body {
+  max-width: 460px;
+  line-height: 1.6;
+}
+
+.admin_review_body strong {
+  display: block;
+  margin-bottom: 3px;
+}
+
+.admin_actions {
+  white-space: nowrap;
+}
+
+.admin_actions button {
+  border: 1px solid #d5d5d3;
+  background: #fff;
+  padding: 5px 10px;
+  margin-right: 5px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.admin_actions button:hover {
+  border-color: #1d1d1d;
+}

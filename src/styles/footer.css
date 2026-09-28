@@ -1,0 +1,289 @@
+/* SECTION 8.1 — footer shell. White, separated only by the 2px dark rule. */
+#footer {
+  border-top: 2px solid var(--ink-2);
+  margin-top: 170px;
+  min-width: var(--band-min);
+  font-family: var(--font-kr);
+}
+
+#footer .footer_all {
+  padding: 68px 50px 80px;
+  max-width: var(--band-max);
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+#footer .footer_all::after {
+  content: '';
+  display: block;
+  clear: both;
+}
+
+/* 8.2 — column 1, brand mark */
+#footer .f_logo {
+  float: left;
+  width: 285px;
+}
+
+#footer .f_logo .slot {
+  max-width: 195px;
+}
+
+#footer .f_logo .slot__img {
+  width: 100%;
+}
+
+/* 8.3 — column 2, company information */
+#footer .f_info {
+  float: left;
+  width: 550px;
+}
+
+#footer .f_info p {
+  padding-bottom: 10px;
+  color: var(--mute-3);
+}
+
+#footer .f_info p span {
+  position: relative;
+  display: inline-block;
+  font-size: 14px;
+  padding: 0 10px;
+  color: var(--mute-3);
+}
+
+#footer .f_info p span:first-child {
+  padding-left: 0;
+}
+
+/* the "A | B" separator */
+#footer .f_info p span::after {
+  content: '';
+  display: block;
+  width: 1px;
+  height: 10px;
+  background: var(--line-4);
+  position: absolute;
+  right: 0;
+  top: 4px;
+}
+
+#footer .f_info p span:last-child::after {
+  display: none;
+}
+
+#footer .f_info p span a {
+  padding-right: 0;
+  color: var(--mute-3);
+}
+
+#footer .f_info p.copy {
+  padding-top: 12px;
+  font-size: 14px;
+  color: var(--mute-4);
+  padding-bottom: 60px;
+  line-height: 1.5;
+}
+
+#footer .sns {
+  font-size: 0;
+}
+
+#footer .sns li {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 15px;
+}
+
+#footer .sns li .slot,
+#footer .sns li .slot__img {
+  width: 22px;
+  height: 22px;
+}
+
+/* the fourth li is the pipe-separated policy row, on the icons' baseline */
+#footer .sns li.policy {
+  display: inline;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+#footer .sns li.policy a {
+  color: var(--mute-3);
+}
+
+#footer .sns li.policy .divider {
+  color: var(--line-4);
+  padding: 0 6px;
+}
+
+/* 8.4 — column 3, CS CENTER */
+#footer .f_cs {
+  float: left;
+  width: 330px;
+  margin-top: -5px;
+}
+
+#footer .f_cs h6.tit {
+  font-family: var(--font-display);
+  font-size: 24px;
+  letter-spacing: -1px;
+  font-weight: 700;
+}
+
+#footer .f_cs h6.tit img {
+  margin-left: 10px;
+}
+
+#footer .f_cs h2 {
+  font-size: 15px;
+  font-weight: 700;
+  margin: 5px 0;
+}
+
+#footer .f_cs .txt_01 {
+  font-family: var(--font-display);
+  font-size: 25px;
+  letter-spacing: 0.5px;
+  padding: 5px 0 2px;
+  color: var(--ink-2);
+  display: flex;
+  align-items: center;
+}
+
+#footer .f_cs .txt_01 span {
+  font-family: var(--font-kr);
+  font-size: 16px;
+  color: var(--mute-2);
+  padding-left: 10px;
+}
+
+#footer .f_cs .txt_01 i {
+  font-size: 25px;
+  color: var(--mute-2);
+  padding-top: 9px;
+  font-style: normal;
+  padding-left: 6px;
+}
+
+#footer .f_cs p {
+  font-size: 15px;
+  color: var(--mute);
+  padding-bottom: 6px;
+}
+
+#footer .f_cs p:last-child {
+  padding-bottom: 0;
+}
+
+/* 8.5 — column 4, BANK INFO and BUSINESS */
+/* the reference's fourth column measures 285px at 1920, not the spec's 280 */
+#footer .f_bank {
+  float: left;
+  width: 285px;
+  padding-left: 5px;
+  margin-top: -5px;
+  box-sizing: border-box;
+}
+
+#footer .f_bank li {
+  font-size: 13px;
+}
+
+#footer .f_bank .txt01 {
+  font-family: var(--font-display);
+  font-size: 24px;
+  margin-top: 1px;
+}
+
+#footer .f_bank .txt02 {
+  color: var(--mute-2);
+}
+
+#footer .f_bank .txt03 {
+  font-family: var(--font-display);
+  font-size: 22px;
+  color: #000;
+  margin: 8px 0;
+  letter-spacing: 1px;
+}
+
+#footer .f_bank .txt03 span {
+  font-family: var(--font-kr);
+  font-size: 15px;
+  padding-right: 6px;
+}
+
+#footer .f_bank li a {
+  font-size: 16px;
+  color: var(--mute);
+}
+
+/* closing two-line notice, repeating the 285px / 550px column widths */
+#footer .info02 {
+  width: 100%;
+  margin-top: 6px;
+  clear: both;
+}
+
+#footer .info02::after {
+  content: '';
+  display: block;
+  clear: both;
+}
+
+#footer .info02 .col_a {
+  float: left;
+  width: 285px;
+}
+
+#footer .info02 .col_b {
+  float: left;
+  width: 550px;
+  font-size: 14px;
+  font-weight: 500;
+  font-family: var(--font-kr);
+  color: var(--mute-3);
+  line-height: 1.6;
+}
+
+/* 8.6 — footer responsive width fallbacks */
+@media (max-width: 1567px) {
+  #footer .f_logo {
+    width: 18%;
+  }
+  #footer .f_cs {
+    width: 20%;
+  }
+  #footer .f_bank {
+    width: 20%;
+  }
+}
+
+@media (max-width: 1443px) {
+  #footer .f_logo {
+    width: 15%;
+  }
+  #footer .f_logo .slot {
+    width: 80%;
+  }
+  #footer .f_info {
+    width: 37%;
+  }
+  #footer .f_cs {
+    width: 21%;
+  }
+  #footer .f_bank {
+    width: 16%;
+  }
+}
+
+@media (max-width: 1280px) {
+  .wide-container {
+    margin: 0 50px;
+    width: 1163px;
+  }
+  .toway-container {
+    width: 1163px;
+  }
+}

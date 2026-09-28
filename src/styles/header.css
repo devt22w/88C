@@ -1,0 +1,399 @@
+/* SECTION 3.1 — promo strip */
+.header_banner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 40px;
+  z-index: 9;
+  background: var(--taupe);
+  background-size: 100% 40px;
+}
+
+.header_banner .header_con {
+  width: 1200px;
+  height: 40px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.header_banner .header_con > a {
+  display: block;
+  width: 1200px;
+  height: 40px;
+  line-height: 40px;
+  font-size: 15px;
+  color: #000;
+  text-align: center;
+  white-space: nowrap;
+}
+
+/* the only real underline on the site */
+.header_banner .header_con > a:hover {
+  text-decoration: underline;
+}
+
+.header_close {
+  position: absolute;
+  top: 39px;
+  right: 0;
+  z-index: 999;
+  width: 44px;
+  height: 24px;
+  font-family: var(--font-display);
+  font-size: 12px;
+  letter-spacing: 1px;
+  color: var(--taupe-ink);
+  background: var(--taupe);
+}
+
+/* SECTION 3.2 — header shell. Static behaviour: it never shrinks, hides,
+   changes colour or gains a shadow on scroll. */
+.header_new {
+  position: fixed;
+  top: 40px;
+  left: 0;
+  width: 100%;
+  z-index: 9;
+  background: #fff;
+  border-bottom: 1px solid var(--line);
+}
+
+.header_new.no_banner {
+  top: 0;
+}
+
+/* SECTION 2 (3) — the spacer div that pushes content below the fixed header */
+.header_dummy {
+  height: 225px;
+}
+
+.header_dummy.no_banner {
+  height: 185px;
+}
+
+/* SECTION 3.3 — top row */
+.head_top {
+  background: #fff;
+}
+
+.head_top .logo {
+  float: left;
+}
+
+.head_top .logo > a {
+  display: block;
+  padding: 38px 0;
+  max-width: 240px;
+}
+
+/* the negative right margin pulls the utility cluster past the 50px gutter */
+.top_right {
+  float: right;
+  padding: 30px 0;
+  margin-right: -120px;
+}
+
+.top_menu {
+  float: left;
+}
+
+.top_menu li {
+  float: left;
+  margin-right: 15px;
+}
+
+.top_menu li:last-child {
+  margin-right: 0;
+}
+
+/* LOGOUT is a button, not a link — it has to sit on the same 42px line as
+   its neighbours and carry the same display face, or it rides high and reads
+   as a different kind of control */
+.top_menu a,
+.top_menu button {
+  font-family: var(--font-display);
+  font-size: 14px;
+  color: var(--taupe-ink);
+  line-height: 42px;
+  text-transform: uppercase;
+}
+
+.top_menu button {
+  border: 0;
+  background: none;
+  padding: 0;
+  height: 42px;
+  letter-spacing: inherit;
+  cursor: pointer;
+}
+
+/* click-to-translate, riding the utility row's own type treatment */
+.lang_switch {
+  float: left;
+  margin-left: 15px;
+  font-size: 0;
+}
+
+.lang_switch li {
+  float: left;
+  margin-right: 10px;
+  position: relative;
+}
+
+.lang_switch li:last-child {
+  margin-right: 0;
+}
+
+.lang_switch li + li::before {
+  content: '';
+  position: absolute;
+  left: -6px;
+  top: 16px;
+  width: 1px;
+  height: 10px;
+  background: var(--line-4);
+}
+
+.lang_switch a {
+  font-family: var(--font-display);
+  font-size: 14px;
+  color: var(--taupe-ink);
+  line-height: 42px;
+  letter-spacing: 0.5px;
+  transition: var(--easing-one);
+}
+
+/* the chosen language keeps its underline drawn (see .hover-line in base.css) */
+.lang_switch a.active {
+  color: var(--ink-2);
+}
+
+.top_cart {
+  float: left;
+  height: 31px;
+  margin-left: 15px;
+  position: relative;
+}
+
+.top_cart > a {
+  display: block;
+  height: 31px;
+}
+
+.top_cart .cart_icon {
+  position: absolute;
+  left: 2px;
+  top: 7px;
+  width: 27px;
+  height: 28px;
+}
+
+.top_cart .cart_label {
+  padding-left: 32px;
+  color: var(--taupe-ink);
+  font-family: var(--font-display);
+  letter-spacing: 0;
+  line-height: 42px;
+  display: inline-block;
+}
+
+/* brackets around the count are pure CSS */
+.top_cart .cart_label::before {
+  content: '(';
+  font-size: 14px;
+  color: var(--taupe-ink);
+}
+
+.top_cart .cart_label::after {
+  content: ')';
+  font-size: 14px;
+  color: var(--taupe-ink);
+}
+
+/* Measured on the reference at 1920px: the cart ends 34px before the search
+   field (the spec's 15px left padding lands 19px short of that). */
+.searchBarForm {
+  float: left;
+  padding: 0 20px 0 34px;
+}
+
+/* 220 x 40 of content inside a 1px border, so the field paints 222 x 42 —
+   the size the reference actually renders. */
+.searchBarForm .keyword {
+  width: 220px;
+  height: 40px;
+  text-indent: 20px;
+  border: 1px solid var(--field);
+  border-radius: 2px;
+  color: var(--taupe-ink);
+  font-size: 14px;
+  padding: 0;
+  margin: 0;
+  box-sizing: content-box;
+  background: #fff;
+}
+
+.searchBarForm .keyword::placeholder {
+  color: #666;
+}
+
+.searchBarForm .keyword:focus {
+  outline: none;
+}
+
+/* SECTION 9.3 — burger button, three bars morphing into an arrow on hover */
+.menu_btn {
+  float: left;
+  width: 20px;
+  height: 14px;
+  cursor: pointer;
+  position: relative;
+  z-index: 10;
+  margin: 14px 0;
+  padding: 0;
+}
+
+.menu_btn span {
+  display: inline-block;
+  width: 100%;
+  height: 2px;
+  background: var(--taupe-ink);
+  position: absolute;
+  left: 0;
+  transition: var(--easing-one);
+}
+
+.menu_btn span:nth-child(1) {
+  top: 0;
+}
+
+.menu_btn span:nth-child(2) {
+  top: 6px;
+}
+
+.menu_btn span:nth-child(3) {
+  top: 12px;
+}
+
+.menu_btn:hover span {
+  transition: var(--easing-two);
+  border-radius: 1px;
+}
+
+.menu_btn:hover span:nth-child(1) {
+  width: 50%;
+  transform: translate(-1px, 5px) rotate(-45deg);
+  top: -2px;
+  left: -1px;
+  float: left;
+}
+
+.menu_btn:hover span:nth-child(2) {
+  width: 100%;
+}
+
+.menu_btn:hover span:nth-child(3) {
+  width: 50%;
+  transform: translate(-1px, 5px) rotate(45deg);
+  top: 5px;
+  left: -1px;
+  float: left;
+}
+
+/* SECTION 3.4 — category row. Row height comes purely from the 80px line-height. */
+.head_bottom_category {
+  float: left;
+}
+
+/* The spec says 45px, and that is the margin the reference declares — but its
+   items are inline-blocks, so the whitespace between them adds a further
+   ~2.5px. Floated items have no whitespace, so the gap carries it explicitly. */
+.head_bottom_category li {
+  float: left;
+  margin-right: 47.5px;
+}
+
+.head_bottom_category li:last-child {
+  margin-right: 0;
+}
+
+/* The reference sets the category row in the condensed display face. Hangul
+   labels (행사알림이) have no glyphs in Fjalla One and fall through to Noto
+   Sans KR, exactly as they do on the reference. */
+.head_bottom_category a {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 16px;
+  color: #000;
+  letter-spacing: 0;
+  line-height: 80px;
+  transition: var(--easing-one);
+}
+
+.head_bottom_category a:hover {
+  color: var(--sale);
+}
+
+.head_bottom_category.pull-right {
+  float: right;
+  margin-right: -120px;
+}
+
+.head_bottom_category.pull-right li {
+  margin: 0 0 0 47.5px;
+}
+
+.head_bottom_category li.alarm {
+  position: relative;
+}
+
+.head_bottom_category li.alarm a {
+  padding-left: 34px;
+  color: var(--sale);
+}
+
+.head_bottom_category li.alarm .alarm_icon {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 24px;
+  height: 24px;
+}
+
+/* SECTION 9.6 — fixed left/right rails: present in the markup, disabled on this theme */
+.header_new .head_left,
+.header_new .head_right {
+  position: fixed;
+  top: 50%;
+  z-index: 8;
+  display: none;
+}
+
+.header_new .head_left {
+  left: 50px;
+  transform: translateY(-50%);
+}
+
+.header_new .head_right {
+  right: 50px;
+  transform: translateY(-50%);
+}
+
+.header_new .head_left li {
+  padding-bottom: 20px;
+}
+
+.header_new .head_left a {
+  font-size: 17px;
+  letter-spacing: 2px;
+}
+
+.header_new .head_left a:hover {
+  color: var(--sale-3);
+}
+
+.header_new .head_right li {
+  padding-bottom: 39px;
+}

@@ -1,0 +1,215 @@
+/* SECTION 1.4 — layout container + the utility classes the markup leans on */
+#wrap {
+  position: relative;
+  border-top: 1px solid var(--line);
+}
+
+.container,
+#contents,
+.cut_layout {
+  max-width: var(--band-max);
+  min-width: var(--band-min);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+  box-sizing: border-box;
+}
+
+/* home page override: each home section manages its own band width */
+.home #contents {
+  max-width: 100%;
+  padding: 0;
+}
+
+.clearfix::after,
+.cf::after {
+  content: '';
+  display: block;
+  clear: both;
+}
+
+.pull-left {
+  float: left;
+}
+
+.pull-right {
+  float: right;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.inline {
+  font-size: 0;
+}
+
+.inline > * {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.relative {
+  position: relative;
+}
+
+.text-one-line {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.blind {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+}
+
+/* SECTION 3.5 — site-wide animated underline, the replacement for text-decoration.
+   Resting state anchored right, active state anchored left, so the line wipes in
+   from the left over half a second. */
+.hover-line > a,
+.hover-line > button {
+  position: relative;
+}
+
+.hover-line > a::after,
+.hover-line > button::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  bottom: -2px;
+  width: 0;
+  height: 1px;
+  background: var(--ink-4);
+  transition: var(--easing-three);
+}
+
+.hover-line > a:hover::after,
+.hover-line > a.active::after,
+.hover-line > button:hover::after {
+  width: 100%;
+  left: 0;
+}
+
+/* SECTION 10.1 — the three easing utilities, exposed as classes too */
+.easing-one {
+  transition: var(--easing-one);
+}
+
+.easing-two {
+  transition: var(--easing-two);
+}
+
+.easing-three {
+  transition: var(--easing-three);
+}
+
+/* SECTION 10.4 — restrained AOS-style scroll reveal: fade-up 40px, ~800ms, once */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+  will-change: opacity, transform;
+}
+
+[data-reveal].is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* SECTION 11 — image slots. A slot never defines layout: the box already owns its
+   width / height / ratio and the injected image fills it, so a database URL drops
+   in with zero layout shift. */
+.slot {
+  display: block;
+  position: relative;
+  overflow: hidden;
+}
+
+/* An injected image always fits the box the layout already owns. Without this
+   an upload renders at its natural size and `overflow: hidden` crops whatever
+   sticks out — the end of a wordmark, usually. `contain` keeps the whole image
+   visible and its aspect ratio intact; slots that want a photographic crop
+   (hero, product thumbnails) override this with `cover`. */
+.slot__img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* The drawn glyph defaults paint in `currentColor`, so each slot is told what
+   colour its row uses. A real PNG dropped into the same slot ignores all of
+   this and simply fills the box. */
+.top_cart .cart_icon {
+  color: var(--taupe-ink);
+}
+
+.head_bottom_category li.alarm .alarm_icon {
+  color: var(--sale);
+}
+
+.pd .price_wrap .cart_btn .slot {
+  color: #f1ece8;
+}
+
+.btn-top .slot {
+  color: var(--mute-5);
+}
+
+.menu_wrap .close .slot,
+.sch_wrap .close .slot,
+#recent .close .slot {
+  color: var(--ink-2);
+}
+
+.sch_wrap .search_btn .slot {
+  color: var(--ink);
+}
+
+/* a wordmark reads from the left, so it hugs the gutter rather than centring
+   in its box when the asset's ratio does not match the slot's */
+.slot[data-slot='logo_header'] .slot__img,
+.slot[data-slot='logo_footer'] .slot__img {
+  object-position: left center;
+}
+
+.slot__placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  min-height: inherit;
+  background: var(--soft-3);
+  color: #c4bcb8;
+  font-family: var(--font-display);
+  font-size: 11px;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 1.35;
+  box-sizing: border-box;
+  padding: 4px;
+  word-break: break-word;
+}
