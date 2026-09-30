@@ -18,7 +18,16 @@ import { signOut, useAdminSession } from '../admin/useAdmin';
 const STATUSES = ['all', 'paid', 'pending', 'review', 'failed', 'cancelled'] as const;
 type StatusFilter = (typeof STATUSES)[number];
 
-const FULFILMENTS = ['unfulfilled', 'packing', 'shipped', 'delivered', 'returned'] as const;
+/* The value is what the database stores; the label is what the shop floor
+   calls it. 'unfulfilled' reads to a customer as 'Preparing', so the dropdown
+   says the same thing rather than making staff translate in their heads. */
+const FULFILMENTS = [
+  { value: 'unfulfilled', label: 'Preparing — not packed yet' },
+  { value: 'packing', label: 'Packing' },
+  { value: 'shipped', label: 'Shipped' },
+  { value: 'delivered', label: 'Delivered' },
+  { value: 'returned', label: 'Returned' }
+] as const;
 
 interface OrderItem {
   line: number;
@@ -253,9 +262,9 @@ function OrderDetail({ order, onSaved }: { order: Order; onSaved: (next: Order) 
             <label>
               <span>Stage</span>
               <select value={fulfilment} onChange={(event) => setFulfilment(event.target.value)}>
-                {FULFILMENTS.map((value) => (
-                  <option key={value} value={value}>
-                    {value}
+                {FULFILMENTS.map((stage) => (
+                  <option key={stage.value} value={stage.value}>
+                    {stage.label}
                   </option>
                 ))}
               </select>
