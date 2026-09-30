@@ -292,6 +292,37 @@ export const ko: Messages = {
       }
     }
   },
+  recover: {
+    findIdTitle: '아이디 찾기',
+    findIdLead: '아이디는 가입하신 이메일 주소입니다. 비밀번호를 잊으셨다면 아래에서 재설정해 주세요.',
+    title: '비밀번호 재설정',
+    lead: '이메일을 입력하시면 새 비밀번호를 설정할 수 있는 링크를 보내드립니다.',
+    email: '이메일',
+    submit: '재설정 링크 보내기',
+    sending: '보내는 중…',
+    sent: '해당 이메일로 가입된 계정이 있다면 재설정 링크를 보냈습니다. 메일함과 스팸함을 확인해 주세요.',
+    newPassword: '새 비밀번호',
+    confirmPassword: '새 비밀번호 확인',
+    save: '비밀번호 저장',
+    saved: '비밀번호가 변경되었습니다. 로그인되었습니다.',
+    expired: '재설정 링크가 만료되었거나 이미 사용되었습니다. 다시 요청해 주세요.',
+    backToLogin: '로그인으로 돌아가기'
+  },
+  notifications: {
+    title: '알림',
+    empty: '알림이 없습니다.',
+    markAll: '모두 읽음 처리',
+    viewOrder: '주문 보기',
+    kinds: {
+      order_paid: '{order} 주문의 결제가 완료되었습니다.',
+      order_packing: '{order} 주문을 포장하고 있습니다.',
+      order_shipped: '{order} 주문이 발송되었습니다. {tracking}',
+      order_delivered: '{order} 주문이 배송 완료되었습니다.',
+      order_returned: '{order} 주문이 반품되었습니다.',
+      order_failed: '{order} 주문의 결제가 실패했습니다.',
+      review_published: '작성하신 후기가 게시되었습니다.'
+    }
+  },
   missing: {
     title: '준비 중인 페이지입니다',
     lead: '메뉴에는 있지만 아직 만들어지지 않은 페이지입니다.',

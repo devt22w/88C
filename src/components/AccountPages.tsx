@@ -101,11 +101,11 @@ export function LoginPage() {
           </label>
           <span className="find_links">
             <span className="hover-line">
-              <a href="/member/find-id">{copy.findId}</a>
+              <Link to="/member/find-id">{copy.findId}</Link>
             </span>
             <span className="divider">|</span>
             <span className="hover-line">
-              <a href="/member/find-password">{copy.findPassword}</a>
+              <Link to="/member/find-password">{copy.findPassword}</Link>
             </span>
           </span>
         </div>

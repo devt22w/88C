@@ -10,6 +10,8 @@
 @import './cart.css';
 @import './overlays.css';
 @import './admin.css';
+/* last: it is the only file allowed to release the fixed desktop band */
+@import './mobile.css';
 
 /* demo-only affordance for opening the recently-viewed panel */
 .recent_toggle {

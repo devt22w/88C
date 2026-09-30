@@ -307,6 +307,37 @@ export const id: Messages = {
       }
     }
   },
+  recover: {
+    findIdTitle: 'CARI ID',
+    findIdLead: 'ID Anda adalah alamat email yang dipakai saat mendaftar. Jika lupa kata sandi, atur ulang di bawah.',
+    title: 'ATUR ULANG KATA SANDI',
+    lead: 'Masukkan email Anda dan kami kirimkan tautan untuk membuat kata sandi baru.',
+    email: 'Email',
+    submit: 'KIRIM TAUTAN',
+    sending: 'Mengirim…',
+    sent: 'Jika email itu terdaftar, tautan pengaturan ulang sedang dikirim. Periksa kotak masuk dan folder spam.',
+    newPassword: 'Kata sandi baru',
+    confirmPassword: 'Ulangi kata sandi baru',
+    save: 'SIMPAN KATA SANDI',
+    saved: 'Kata sandi diubah. Anda sudah masuk.',
+    expired: 'Tautan ini sudah kedaluwarsa atau telah dipakai. Silakan minta yang baru.',
+    backToLogin: 'Kembali ke halaman masuk'
+  },
+  notifications: {
+    title: 'PEMBERITAHUAN',
+    empty: 'Belum ada apa-apa.',
+    markAll: 'Tandai semua dibaca',
+    viewOrder: 'Lihat pesanan',
+    kinds: {
+      order_paid: 'Pembayaran pesanan {order} diterima.',
+      order_packing: 'Pesanan {order} sedang dikemas.',
+      order_shipped: 'Pesanan {order} telah dikirim. {tracking}',
+      order_delivered: 'Pesanan {order} telah diterima.',
+      order_returned: 'Pesanan {order} dikembalikan.',
+      order_failed: 'Pembayaran pesanan {order} gagal.',
+      review_published: 'Ulasan Anda sudah tayang.'
+    }
+  },
   missing: {
     title: 'HALAMAN BELUM DIBUAT',
     lead: 'Tautan ini ada di navigasi, tetapi halamannya belum dibuat.',

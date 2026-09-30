@@ -17,6 +17,7 @@ import {
 } from './components/AccountPages';
 import { CartPage, CheckoutPage, OrderResultPage } from './components/OrderPages';
 import { AdminOrdersPage } from './components/AdminPages';
+import { FindIdPage, FindPasswordPage, ResetPasswordPage } from './components/RecoverPages';
 import { useCart } from './cart/CartProvider';
 import { Footer } from './components/Footer';
 import {
@@ -41,7 +42,10 @@ const STATIC_ROUTES: Record<string, () => JSX.Element> = {
   '/order/result': OrderResultPage,
   '/myshop': MyPage,
   '/myshop/order': MyPage,
-  '/myshop/info': MyPage
+  '/myshop/info': MyPage,
+  '/member/find-id': FindIdPage,
+  '/member/find-password': FindPasswordPage,
+  '/member/reset': ResetPasswordPage
 };
 
 /** the home page body: hero, BEST, mid banner, NEW */

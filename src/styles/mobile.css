@@ -1,0 +1,509 @@
+/* ===========================================================================
+   Mobile and tablet.
+
+   The storefront is drawn to a fixed 1263–1550px band, exactly like the
+   reference. That is right on a desktop and unusable on a phone, where the
+   whole page has to be dragged sideways to read a price.
+
+   This file is the only place that band is released, and it is the LAST
+   import, so nothing above it has to be rewritten: the desktop layout is
+   untouched above 1262px, and below it each section is told, one at a time,
+   how to stack.
+
+   Two breakpoints:
+     ≤ 1262px   tablet — the band goes fluid, the grid drops to two-up
+     ≤ 767px    phone  — the header becomes a two-row bar, everything stacks
+
+   The header stops being fixed on a phone. A 185px fixed header eats half a
+   phone screen, and the spacer that compensates for it is dead weight; letting
+   the page scroll normally is both simpler and what a shopper expects.
+   =========================================================================== */
+
+@media (max-width: 1262px) {
+  /* One line releases the whole band. Every fixed width on the site comes
+     from the same token — the page shell, the hero, the footer, the nav rail
+     all say min-width: var(--band-min) — so redefining it here frees them all
+     at once, and none can be missed the way a list of selectors can. */
+  :root {
+    --band-min: 0px;
+    --gutter: 28px;
+  }
+
+  /* ---- header ----------------------------------------------------------- */
+  .header_banner .header_con,
+  .header_banner .header_con > a {
+    width: 100%;
+  }
+
+  .header_banner .header_con > a {
+    font-size: 13px;
+    padding: 0 44px;
+    white-space: normal;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .searchBarForm {
+    padding: 0 12px 0 18px;
+  }
+
+  .searchBarForm .keyword {
+    width: 150px;
+  }
+
+  /* ---- product grid ------------------------------------------------------ */
+  .pd2 li,
+  .list_grid li {
+    width: 50%;
+  }
+
+  /* ---- product detail ---------------------------------------------------- */
+  .detail_area .image_col,
+  .detail_area .info_col {
+    float: none;
+    width: 100%;
+  }
+
+  .detail_area .info_col {
+    margin-top: 40px;
+    padding-left: 0;
+  }
+
+  .detail_area {
+    max-width: 100%;
+  }
+
+  /* the magnifier is a mouse affordance; a touch screen has no hover */
+  .zoom_panel,
+  .zoom_lens {
+    display: none !important;
+  }
+
+  /* ---- cart and checkout -------------------------------------------------- */
+  .checkout_grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* ---- footer ------------------------------------------------------------- */
+  #footer .f_logo,
+  #footer .f_info,
+  #footer .f_cs,
+  #footer .f_bank {
+    float: none;
+    width: 100%;
+    margin-bottom: 34px;
+  }
+
+  #footer .info02 .col_a {
+    display: none;
+  }
+
+  #footer .info02 .col_b {
+    width: 100%;
+  }
+}
+
+@media (max-width: 767px) {
+  :root {
+    --gutter: 16px;
+  }
+
+  /* ---- header: two rows, and it scrolls with the page -------------------- */
+  .header_banner,
+  .header_new {
+    position: static;
+  }
+
+  .header_dummy {
+    display: none;
+  }
+
+  .header_banner .header_con > a {
+    font-size: 12px;
+    line-height: 1.3;
+    height: auto;
+    padding: 6px 44px;
+  }
+
+  .header_banner,
+  .header_banner .header_con {
+    height: auto;
+    min-height: 40px;
+  }
+
+  .header_close {
+    top: 8px;
+    right: 6px;
+  }
+
+  /* Grid, not flex, and no percentage anywhere. A percentage flex-basis on
+     a row that also holds a text input resolves circularly — the input's
+     intrinsic width wins and the whole header grows past the screen. Grid
+     tracks resolve against the container's own definite width instead. */
+  .head_top .container {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: center;
+    column-gap: 12px;
+  }
+
+  .head_top .logo,
+  .head_top .top_right {
+    float: none;
+    min-width: 0;
+  }
+
+  .head_top .logo > a {
+    padding: 14px 0;
+    max-width: 130px;
+  }
+
+  /* the wordmark is a fixed-width image on desktop; cap the picture itself or
+     it keeps its 240px and slides under the icons */
+  .head_top .logo .slot,
+  .head_top .logo img {
+    display: block;
+    width: 130px;
+    max-width: 100%;
+    height: auto;
+  }
+
+  .head_top .top_right {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+    padding: 10px 0;
+  }
+
+  /* LOGIN / JOIN / DELIVERY / CONTACT all live in the burger menu on a phone,
+     so the bar keeps only what a thumb reaches for: language, bell, cart */
+  .top_menu {
+    display: none;
+  }
+
+  .lang_switch,
+  .top_cart,
+  .bell_wrap,
+  .menu_btn {
+    float: none;
+    margin: 0;
+  }
+
+  /* EN ID KO stay on one line: the floats inside would otherwise stack once
+     the row squeezes them */
+  .lang_switch {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+  }
+
+  .lang_switch li {
+    float: none;
+    margin: 0;
+  }
+
+  /* a definite 90px basis that grows into whatever is left on the row */
+  .searchBarForm {
+    order: 4;
+    flex: 1 1 90px;
+    min-width: 0;
+    padding: 0;
+  }
+
+  .searchBarForm .keyword {
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+    height: 38px;
+    text-indent: 12px;
+    font-size: 13px;
+  }
+
+  /* the category row scrolls sideways instead of wrapping into two lines */
+  .head_bottom .container {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    white-space: nowrap;
+  }
+
+  .head_bottom_category,
+  .head_bottom_category.pull-right {
+    float: none;
+    display: inline-block;
+    white-space: nowrap;
+  }
+
+  .head_bottom_category li {
+    float: none;
+    display: inline-block;
+  }
+
+  .head_bottom_category li a {
+    line-height: 52px;
+    font-size: 13px;
+    padding-right: 18px;
+  }
+
+  /* ---- hero -------------------------------------------------------------- */
+  .main_banner,
+  .main_banner .swiper-slide,
+  .main_banner .swiper-slide .slide_link,
+  .main_banner .slot,
+  .main_banner .slot__img {
+    height: 300px;
+  }
+
+  .main_banner .slide_text {
+    left: var(--gutter);
+    right: var(--gutter);
+    max-width: none;
+  }
+
+  .main_banner .slide_text h1 {
+    font-size: 38px;
+  }
+
+  .main_banner .slide_text p {
+    font-size: 13px;
+  }
+
+  /* the prev/next arrows are a desktop affordance; a phone swipes */
+  .main_banner .main-prev,
+  .main_banner .main-next {
+    display: none;
+  }
+
+  /* ---- sections and cards ------------------------------------------------ */
+  .pd {
+    padding-top: 50px;
+  }
+
+  .pd2 li,
+  .list_grid li {
+    width: 50%;
+    padding-bottom: 20px;
+  }
+
+  .pd .information {
+    padding: 0 10px;
+  }
+
+  .pd .name span,
+  .pd .simple_desc {
+    font-size: 12px;
+  }
+
+  .main_title h2 {
+    font-size: 26px;
+  }
+
+  .list_area .list_title {
+    font-size: 24px;
+  }
+
+  /* the add-to-cart pill is a hover affordance on desktop; on a phone there is
+     no hover, so it stays visible */
+  .pd .price_wrap .cart_btn {
+    opacity: 1;
+    visibility: visible;
+    position: static;
+    transform: none;
+    margin-top: 10px;
+    width: 100%;
+  }
+
+  /* ---- product detail ----------------------------------------------------- */
+  .detail_area .listImg {
+    float: none;
+    width: 100%;
+    margin: 0 0 14px;
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+  }
+
+  .detail_area .listImg li {
+    flex: 0 0 64px;
+    width: 64px;
+    height: 64px;
+    margin-bottom: 0;
+  }
+
+  .detail_area .keyImg {
+    float: none;
+    width: 100%;
+  }
+
+  .detail_area .prd_name {
+    font-size: 22px;
+  }
+
+  .detail_area .buy_row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .detail_area .btn_buy,
+  .detail_area .btn_cart {
+    flex: 1 1 calc(50% - 4px);
+    min-width: 0;
+  }
+
+  .detail_area .btn_share {
+    flex: 0 0 auto;
+  }
+
+  .reviews {
+    margin-top: 60px;
+  }
+
+  /* the bar is a fixed 35px row on desktop; on a phone the five sort links
+     need a line of their own under the count, so it grows instead */
+  .list_area .list_bar {
+    flex-wrap: wrap;
+    height: auto;
+    row-gap: 10px;
+    padding-bottom: 10px;
+    margin-top: 40px;
+  }
+
+  .list_area .list_bar .total {
+    flex: 1 0 100%;
+  }
+
+  .list_area .list_bar .sort {
+    flex-wrap: wrap;
+    gap: 8px 16px;
+    font-size: 13px;
+  }
+
+  .list_area .list_bar .sort button {
+    font-size: 13px;
+  }
+
+  /* ---- cart, checkout, account ------------------------------------------- */
+  .cart_lines .cart_line {
+    grid-template-columns: 64px 1fr;
+    grid-template-areas:
+      'thumb name'
+      'thumb qty'
+      'total total';
+    gap: 10px 14px;
+  }
+
+  .cart_lines .line_thumb {
+    grid-area: thumb;
+    width: 64px;
+  }
+
+  .cart_lines .line_name {
+    grid-area: name;
+  }
+
+  .cart_lines .line_qty {
+    grid-area: qty;
+    justify-self: start;
+  }
+
+  .cart_lines .line_total {
+    grid-area: total;
+    text-align: right;
+  }
+
+  .order_area,
+  .account_area,
+  .account_area.wide {
+    width: 100%;
+    max-width: 100%;
+    padding: 0 var(--gutter);
+    box-sizing: border-box;
+  }
+
+  .account_area .account_columns {
+    grid-template-columns: 1fr;
+  }
+
+  .order_area .order_title,
+  .account_area .account_title {
+    font-size: 22px;
+  }
+
+  /* ---- overlays ----------------------------------------------------------- */
+  /* left and right decide the width, so it can never be wider than the
+     screen whatever the desktop rule says */
+  .sch_wrap {
+    left: 12px;
+    right: 12px;
+    width: auto;
+    max-width: none;
+    height: auto;
+    max-height: 82vh;
+    margin: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 48px 16px 20px;
+    overflow-y: auto;
+  }
+
+  .sch_wrap .hot_keyword {
+    height: 150px;
+  }
+
+  .menu_wrap {
+    width: 300px;
+    max-width: 85vw;
+  }
+
+  #recent {
+    left: 12px;
+    right: 12px;
+    width: auto;
+    max-width: none;
+    top: auto;
+    bottom: 80px;
+    margin: 0;
+  }
+
+  .bell_panel {
+    position: fixed;
+    top: auto;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    max-height: 70vh;
+    overflow-y: auto;
+  }
+
+  .recent_toggle {
+    right: 12px;
+    bottom: 74px;
+    font-size: 11px;
+    padding: 6px 9px;
+  }
+
+  .btn-top {
+    right: 12px;
+    bottom: 16px;
+  }
+
+  /* ---- staff pages -------------------------------------------------------- */
+  .admin_tiles {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .admin_table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  .admin_head {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+}

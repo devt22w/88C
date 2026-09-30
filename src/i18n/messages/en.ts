@@ -303,6 +303,37 @@ export const en: Messages = {
       }
     }
   },
+  recover: {
+    findIdTitle: 'FIND ID',
+    findIdLead: 'Your ID is the email address you signed up with. If you have forgotten the password, reset it below.',
+    title: 'RESET PASSWORD',
+    lead: 'Enter your email and we will send you a link to set a new password.',
+    email: 'Email',
+    submit: 'SEND RESET LINK',
+    sending: 'Sending…',
+    sent: 'If that email has an account, a reset link is on its way. Check your inbox and your spam folder.',
+    newPassword: 'New password',
+    confirmPassword: 'Confirm new password',
+    save: 'SAVE PASSWORD',
+    saved: 'Password changed. You are signed in.',
+    expired: 'This reset link has expired or has already been used. Please ask for a new one.',
+    backToLogin: 'Back to login'
+  },
+  notifications: {
+    title: 'NOTIFICATIONS',
+    empty: 'Nothing yet.',
+    markAll: 'Mark all read',
+    viewOrder: 'View order',
+    kinds: {
+      order_paid: 'Payment received for order {order}.',
+      order_packing: 'Order {order} is being packed.',
+      order_shipped: 'Order {order} has shipped. {tracking}',
+      order_delivered: 'Order {order} was delivered.',
+      order_returned: 'Order {order} was returned.',
+      order_failed: 'Payment for order {order} did not go through.',
+      review_published: 'Your review is now published.'
+    }
+  },
   missing: {
     title: 'PAGE NOT BUILT YET',
     lead: 'This link is in the navigation, but its page has not been built.',

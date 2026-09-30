@@ -7,6 +7,7 @@ import { Link, useRoute } from '../router';
 import { categoriesLeft, categoriesRight, topMenu } from '../data/site';
 import { useT } from '../i18n/LocaleProvider';
 import { useSession, useSignOut } from '../account/useSession';
+import { NotificationBell } from './Notifications';
 
 interface Props {
   bannerVisible: boolean;
@@ -97,6 +98,8 @@ export function Header({ bannerVisible, cartCount, onOpenMenu, onOpenSearch }: P
 
             {/* click-to-translate, on the utility row's own baseline */}
             <LanguageSwitcher />
+
+            <NotificationBell />
 
             <div className="top_cart">
               <Link to="/order/basket" aria-label={t.a11y.cart}>

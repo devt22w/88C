@@ -345,6 +345,39 @@ export interface Messages {
       };
     };
   };
+  /** forgotten password, and the bell in the header */
+  recover: {
+    findIdTitle: string;
+    findIdLead: string;
+    title: string;
+    lead: string;
+    email: string;
+    submit: string;
+    sending: string;
+    sent: string;
+    newPassword: string;
+    confirmPassword: string;
+    save: string;
+    saved: string;
+    expired: string;
+    backToLogin: string;
+  };
+  notifications: {
+    title: string;
+    empty: string;
+    markAll: string;
+    viewOrder: string;
+    /** '{order}' is the short order number, '{tracking}' the consignment note */
+    kinds: {
+      order_paid: string;
+      order_packing: string;
+      order_shipped: string;
+      order_delivered: string;
+      order_returned: string;
+      order_failed: string;
+      review_published: string;
+    };
+  };
   /** a route that exists in the navigation but has no page yet */
   missing: {
     title: string;
