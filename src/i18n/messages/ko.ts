@@ -323,6 +323,60 @@ export const ko: Messages = {
       review_published: '작성하신 후기가 게시되었습니다.'
     }
   },
+  guide: {
+    title: '이용안내',
+    lead: '주문부터 수령까지, 순서대로 안내해 드립니다.',
+    steps: [
+      {
+        heading: '1 · 상품 선택',
+        body: '상품 페이지에서 컬러를 선택한 뒤 장바구니에 담거나 바로 구매하세요. 품절된 컬러는 선택하실 수 없습니다.'
+      },
+      {
+        heading: '2 · 장바구니 확인',
+        body: '장바구니에서 수량을 변경하거나 상품을 삭제하실 수 있습니다. 표시된 금액이 실제 결제 금액이며, 추가되는 비용은 없습니다.'
+      },
+      {
+        heading: '3 · 배송 정보 입력',
+        body: '받으실 분의 이름, 이메일, 휴대전화, 주소를 입력해 주세요. 회원은 저장된 정보가 자동으로 입력됩니다.'
+      },
+      {
+        heading: '4 · 결제',
+        body: '결제사의 보안 페이지로 이동해 결제하신 뒤, 주문 확인 페이지로 돌아오시게 됩니다.'
+      }
+    ],
+    payTitle: '결제 수단',
+    payBody:
+      '카드, GCash, Maya, GrabPay, QR Ph를 이용하실 수 있습니다. 카드 정보는 결제사 페이지에서만 입력되며 본 사이트에는 저장되지 않습니다. 결제는 필리핀 페소로 이루어지며, 다른 통화로 보이는 금액은 참고용 환산 금액입니다.',
+    shipTitle: '배송 안내',
+    shipBody:
+      '배송비는 {fee}이며 {threshold} 이상 구매 시 무료입니다. 출고지는 #9061 National Highway, Bagong Kalsada, Calamba City, 4027 Laguna 입니다.',
+    trackTitle: '주문 조회',
+    trackBody:
+      '주문번호와 주문에 사용하신 이메일로 조회하실 수 있습니다. 회원은 마이페이지에서 전체 주문을 확인하실 수 있으며, 포장·발송·배송 완료 시 알림으로 안내해 드립니다.',
+    memberTitle: '회원 혜택',
+    memberBody:
+      '회원이 되시면 주문 내역과 배송지, 알림을 한곳에서 관리하실 수 있고 상품 후기도 작성하실 수 있습니다.',
+    returnTitle: '문제가 있을 때',
+    returnBody:
+      '상품에 이상이 있으면 주문번호와 사진을 준비하셔서 고객센터로 연락해 주세요. 확인 후 안내해 드리겠습니다.',
+    ctaTrack: '배송 조회',
+    ctaContact: '문의하기'
+  },
+  cs: {
+    title: 'CS CENTER',
+    lead: '상담원과 바로 연결됩니다. 리조트에서 운영하는 번호와 동일합니다.',
+    hoursTitle: '운영 시간',
+    channelsTitle: '문의 채널',
+    phoneLabel: '전화',
+    kakaoLabel: '카카오톡',
+    messengerLabel: '페이스북 메신저',
+    emailLabel: '이메일',
+    addressLabel: '주소',
+    ctaContact: '문의 남기기',
+    ctaTrack: '배송 조회',
+    ctaGuide: '이용안내',
+    note: '운영 시간 외에 남기신 문의는 다음 영업일에 답변드립니다.'
+  },
   missing: {
     title: '준비 중인 페이지입니다',
     lead: '메뉴에는 있지만 아직 만들어지지 않은 페이지입니다.',

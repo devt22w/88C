@@ -378,6 +378,41 @@ export interface Messages {
       review_published: string;
     };
   };
+  /** SHOPPING GUIDE — how buying here actually works */
+  guide: {
+    title: string;
+    lead: string;
+    steps: { heading: string; body: string }[];
+    payTitle: string;
+    payBody: string;
+    shipTitle: string;
+    /** '{fee}' and '{threshold}' are printed in the reader's currency */
+    shipBody: string;
+    trackTitle: string;
+    trackBody: string;
+    memberTitle: string;
+    memberBody: string;
+    returnTitle: string;
+    returnBody: string;
+    ctaTrack: string;
+    ctaContact: string;
+  };
+  /** CS — the customer service page behind the CS link */
+  cs: {
+    title: string;
+    lead: string;
+    hoursTitle: string;
+    channelsTitle: string;
+    phoneLabel: string;
+    kakaoLabel: string;
+    messengerLabel: string;
+    emailLabel: string;
+    addressLabel: string;
+    ctaContact: string;
+    ctaTrack: string;
+    ctaGuide: string;
+    note: string;
+  };
   /** a route that exists in the navigation but has no page yet */
   missing: {
     title: string;

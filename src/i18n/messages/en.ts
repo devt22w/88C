@@ -334,6 +334,60 @@ export const en: Messages = {
       review_published: 'Your review is now published.'
     }
   },
+  guide: {
+    title: 'SHOPPING GUIDE',
+    lead: 'Everything about ordering here, in the order it happens.',
+    steps: [
+      {
+        heading: '1 · Choose',
+        body: 'Open a product, pick a shade if it has one, then ADD TO CART or BUY NOW. A shade that has run out cannot be selected.'
+      },
+      {
+        heading: '2 · Check your cart',
+        body: 'Change quantities or remove a line in the cart. The total shown is the total you pay — nothing is added later.'
+      },
+      {
+        heading: '3 · Your details',
+        body: 'Fill in the name, email, mobile number and address the parcel should reach. Members have theirs filled in already.'
+      },
+      {
+        heading: '4 · Pay',
+        body: 'You move to the payment provider’s own secure page, pay, and come back to an order page that confirms it.'
+      }
+    ],
+    payTitle: 'HOW YOU CAN PAY',
+    payBody:
+      'Card, GCash, Maya, GrabPay and QR Ph. Card details are typed on the payment provider’s page, never on this site. Payment is charged in Philippine pesos; prices shown in other currencies are converted for reference.',
+    shipTitle: 'SHIPPING',
+    shipBody:
+      'Shipping is {fee}, and free on orders over {threshold}. Orders ship from #9061 National Highway, Bagong Kalsada, Calamba City, 4027 Laguna.',
+    trackTitle: 'FOLLOWING YOUR ORDER',
+    trackBody:
+      'Use the order number from your confirmation together with the email you ordered with. Members see every order under MY PAGE, and the bell tells them when an order is packed, shipped or delivered.',
+    memberTitle: 'WHY JOIN',
+    memberBody:
+      'A member keeps their order history, their delivery address and their notifications in one place, and can write a review on a product.',
+    returnTitle: 'IF SOMETHING IS WRONG',
+    returnBody:
+      'Contact customer service with your order number and a photo of the item as soon as you notice. Our team will tell you what to do next.',
+    ctaTrack: 'TRACK AN ORDER',
+    ctaContact: 'CONTACT US'
+  },
+  cs: {
+    title: 'CS CENTER',
+    lead: 'Talk to a person. These are the same lines the resort answers on.',
+    hoursTitle: 'SERVICE HOURS',
+    channelsTitle: 'WAYS TO REACH US',
+    phoneLabel: 'Phone',
+    kakaoLabel: 'KakaoTalk',
+    messengerLabel: 'Facebook Messenger',
+    emailLabel: 'Email',
+    addressLabel: 'Address',
+    ctaContact: 'SEND A MESSAGE',
+    ctaTrack: 'TRACK AN ORDER',
+    ctaGuide: 'SHOPPING GUIDE',
+    note: 'Messages sent outside service hours are answered on the next working day.'
+  },
   missing: {
     title: 'PAGE NOT BUILT YET',
     lead: 'This link is in the navigation, but its page has not been built.',

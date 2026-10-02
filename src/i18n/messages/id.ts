@@ -338,6 +338,60 @@ export const id: Messages = {
       review_published: 'Ulasan Anda sudah tayang.'
     }
   },
+  guide: {
+    title: 'PANDUAN BELANJA',
+    lead: 'Semua tentang cara memesan di sini, sesuai urutannya.',
+    steps: [
+      {
+        heading: '1 · Pilih produk',
+        body: 'Buka produk, pilih warna bila ada, lalu masukkan ke keranjang atau beli langsung. Warna yang habis tidak bisa dipilih.'
+      },
+      {
+        heading: '2 · Periksa keranjang',
+        body: 'Ubah jumlah atau hapus barang di keranjang. Total yang tampil adalah yang Anda bayar — tidak ada tambahan di belakang.'
+      },
+      {
+        heading: '3 · Isi data pengiriman',
+        body: 'Isi nama, email, nomor ponsel, dan alamat tujuan paket. Data member sudah terisi otomatis.'
+      },
+      {
+        heading: '4 · Bayar',
+        body: 'Anda diarahkan ke halaman aman milik penyedia pembayaran, membayar, lalu kembali ke halaman pesanan sebagai bukti.'
+      }
+    ],
+    payTitle: 'CARA PEMBAYARAN',
+    payBody:
+      'Kartu, GCash, Maya, GrabPay, dan QR Ph. Data kartu diketik di halaman penyedia pembayaran, tidak pernah di situs ini. Pembayaran ditagih dalam peso Filipina; harga dalam mata uang lain adalah konversi sebagai acuan.',
+    shipTitle: 'PENGIRIMAN',
+    shipBody:
+      'Ongkos kirim {fee}, gratis untuk belanja di atas {threshold}. Pesanan dikirim dari #9061 National Highway, Bagong Kalsada, Calamba City, 4027 Laguna.',
+    trackTitle: 'MELACAK PESANAN',
+    trackBody:
+      'Gunakan nomor pesanan dari konfirmasi beserta email yang Anda pakai memesan. Member melihat semua pesanan di AKUN SAYA, dan lonceng memberi tahu saat pesanan dikemas, dikirim, atau diterima.',
+    memberTitle: 'KEUNTUNGAN MEMBER',
+    memberBody:
+      'Member menyimpan riwayat pesanan, alamat pengiriman, dan pemberitahuan di satu tempat, serta bisa menulis ulasan produk.',
+    returnTitle: 'JIKA ADA MASALAH',
+    returnBody:
+      'Hubungi layanan pelanggan dengan nomor pesanan dan foto barangnya begitu Anda melihat masalahnya. Tim kami akan memandu langkah berikutnya.',
+    ctaTrack: 'LACAK PESANAN',
+    ctaContact: 'HUBUNGI KAMI'
+  },
+  cs: {
+    title: 'CS CENTER',
+    lead: 'Bicara dengan staf kami. Ini jalur yang sama dengan yang dilayani resor.',
+    hoursTitle: 'JAM LAYANAN',
+    channelsTitle: 'CARA MENGHUBUNGI',
+    phoneLabel: 'Telepon',
+    kakaoLabel: 'KakaoTalk',
+    messengerLabel: 'Facebook Messenger',
+    emailLabel: 'Email',
+    addressLabel: 'Alamat',
+    ctaContact: 'KIRIM PESAN',
+    ctaTrack: 'LACAK PESANAN',
+    ctaGuide: 'PANDUAN BELANJA',
+    note: 'Pesan di luar jam layanan dibalas pada hari kerja berikutnya.'
+  },
   missing: {
     title: 'HALAMAN BELUM DIBUAT',
     lead: 'Tautan ini ada di navigasi, tetapi halamannya belum dibuat.',

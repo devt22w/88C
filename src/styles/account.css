@@ -486,3 +486,90 @@
   line-height: 1.7;
   color: var(--mute);
 }
+
+/* ---------------------------------------------------------------------------
+   SHOPPING GUIDE and CS.
+
+   Both are reading pages, so they drop the 400px form column for a two-column
+   measure that keeps a line around 70 characters — long enough to read, short
+   enough to scan.
+   --------------------------------------------------------------------------- */
+
+.guide_steps {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 22px 40px;
+  text-align: left;
+  margin-bottom: 50px;
+}
+
+.guide_steps li {
+  border-top: 2px solid var(--ink);
+  padding-top: 14px;
+}
+
+.guide_steps h3 {
+  font-family: var(--font-display);
+  font-size: 13px;
+  letter-spacing: 1.4px;
+  color: var(--ink-2);
+  margin-bottom: 8px;
+}
+
+.guide_steps p,
+.guide_blocks p {
+  font-size: 14px;
+  line-height: 1.9;
+  color: var(--mute);
+}
+
+.guide_blocks {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 34px 40px;
+  text-align: left;
+}
+
+.guide_blocks section {
+  border-top: 1px solid var(--line);
+  padding-top: 16px;
+}
+
+.guide_blocks h3 {
+  font-family: var(--font-display);
+  font-size: 12px;
+  letter-spacing: 1.4px;
+  color: var(--ink-2);
+  margin-bottom: 10px;
+}
+
+.guide_blocks .cs_note {
+  margin-top: 12px;
+  font-size: 13px;
+  color: var(--mute-4);
+}
+
+.guide_cta {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 46px;
+}
+
+.guide_cta .btn_outline {
+  width: auto;
+  min-width: 200px;
+  padding: 0 28px;
+}
+
+@media (max-width: 767px) {
+  .guide_steps,
+  .guide_blocks {
+    grid-template-columns: 1fr;
+  }
+
+  .guide_cta .btn_outline {
+    width: 100%;
+  }
+}
