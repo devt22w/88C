@@ -2,7 +2,7 @@ import { ImageSlot, useSlotSource } from './ImageSlot';
 import { Chevron } from './Chevron';
 import { useSlider } from '../hooks/useSlider';
 import { heroSlides } from '../data/site';
-import { useT } from '../i18n/LocaleProvider';
+import { useLocale } from '../i18n/LocaleProvider';
 import type { HeroSlideStructure } from '../data/site';
 import type { SlideCopy } from '../i18n/types';
 
@@ -20,8 +20,13 @@ interface SlideProps {
  * artwork carries its own headline, so once a picture is injected the overlay
  * stands down instead of printing a second headline over the first.
  */
+/** the coupon threshold is one number in won; each language prints it in the
+ *  currency that language shops in, so the copy never contradicts the prices */
+const COUPON_MIN_KRW = 10000;
+
 function HeroSlide({ slide, copy, active, eager }: SlideProps) {
   const hasArtwork = Boolean(useSlotSource(slide.slot, true));
+  const { money } = useLocale();
 
   return (
     <div className={`swiper-slide${active ? ' is-active' : ''}`} aria-hidden={active ? undefined : true}>
@@ -43,7 +48,7 @@ function HeroSlide({ slide, copy, active, eager }: SlideProps) {
               ))}
             </h1>
             {copy.lines.map((line) => (
-              <p key={line}>{line}</p>
+              <p key={line}>{line.replace('{amount}', money(COUPON_MIN_KRW))}</p>
             ))}
           </div>
         )}
@@ -58,7 +63,7 @@ function HeroSlide({ slide, copy, active, eager }: SlideProps) {
  * chevrons overhang the content band by 25px on each side.
  */
 export function HeroSlider() {
-  const t = useT();
+  const { t } = useLocale();
   const { index, goTo, next, prev, pause, resume } = useSlider(heroSlides.length);
 
   return (

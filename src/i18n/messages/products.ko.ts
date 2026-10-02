@@ -38,7 +38,7 @@ export const productsKo: Record<ProductId, ProductCopy> = {
     desc: ['#워터틴트 #글로우', '물빛처럼 맑게 빛나는 틴트']
   },
   b8: {
-    name: '프랑스산100% 콜라겐 비타 링클 멀티밤',
+    name: '프랑스산 100% 콜라겐 비타 링클 멀티밤',
     desc: ['#주름케어 #밤스틱', '탄력을 집중 케어하는 콜라겐 스틱']
   },
   b9: {
@@ -130,7 +130,7 @@ export const productsKo: Record<ProductId, ProductCopy> = {
     desc: ['#파우더팩트 #보송', '들뜸 없이 곱게 마무리되는 파우더']
   },
   f4: {
-    name: '맥퀸뉴욕 유자 비타C 클리어 토너 패드 100매 / 대용량 닦토',
+    name: '유자 비타C 클리어 토너 패드 100매',
     desc: ['#토너패드 #비타C', '매일 쓰는 대용량 닦토 100매']
   },
   f5: {

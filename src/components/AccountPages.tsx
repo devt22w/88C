@@ -5,6 +5,10 @@ import { LockIcon } from './Icons';
 import { Link, useRoute } from '../router';
 import { contactDetails, csPhone } from '../data/site';
 import { useLocale, useT } from '../i18n/LocaleProvider';
+import {
+  FREE_SHIPPING_OVER_KRW,
+  SHIPPING_FEE_KRW
+} from '../../supabase/functions/_shared/pricing.ts';
 import { supabase } from '../lib/supabase';
 import { classifyAuthError, useSession, useSignOut } from '../account/useSession';
 import { formatCentavosPhp } from '../i18n/money';
@@ -517,7 +521,7 @@ interface TrackedOrder {
 export function DeliveryPage() {
   const t = useT();
   const copy = t.support.delivery;
-  const { locale } = useLocale();
+  const { locale, money } = useLocale();
 
   const [orderId, setOrderId] = useState('');
   const [email, setEmail] = useState('');
@@ -626,7 +630,13 @@ export function DeliveryPage() {
       <div className="info_block">
         <h3>{copy.shippingTitle}</h3>
         {copy.shippingLines.map((line) => (
-          <p key={line}>{line}</p>
+          <p key={line}>
+            {/* the rule is defined once in won; it is printed in whichever
+                currency this reader is being charged in */}
+            {line
+              .replace('{fee}', money(SHIPPING_FEE_KRW))
+              .replace('{threshold}', money(FREE_SHIPPING_OVER_KRW))}
+          </p>
         ))}
       </div>
 

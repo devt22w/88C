@@ -31,7 +31,7 @@ export const productsEn: Record<ProductId, ProductCopy> = {
     desc: ['#MatteLip #Airy', 'Soft blur matte, weightless on lips.']
   },
   b6: {
-    name: '1001 Tone on Tone Shadow Palette Pro 9',
+    name: '1001 Tone on Tone Shadow Palette Pro 9 #Nude Mood',
     desc: ['#EyePalette #NudeMood', 'Nine nude tones in one palette.']
   },
   b7: {
@@ -39,7 +39,7 @@ export const productsEn: Record<ProductId, ProductCopy> = {
     desc: ['#WaterTint #GlassyGlow', 'Water-light tint with a glassy shine.']
   },
   b8: {
-    name: 'Collagen Vita Wrinkle Multi Balm',
+    name: '100% French Collagen Vita Wrinkle Multi Balm',
     desc: ['#WrinkleCare #BalmStick', 'A collagen stick for firmer-looking skin.']
   },
   b9: {
@@ -147,11 +147,11 @@ export const productsEn: Record<ProductId, ProductCopy> = {
     desc: ['#Set #ContourBrush', 'The contour pan with its own brush.']
   },
   f8: {
-    name: 'UV Daily Moisture Sun Stick SPF50+',
+    name: 'UV Daily Moisture Sun Stick SPF50+ PA++++',
     desc: ['#SunStick #Moisture', 'Moist finish, reapply over makeup.']
   },
   f9: {
-    name: 'UV Daily Airy Sun Stick SPF50+',
+    name: 'UV Daily Airy Sun Stick SPF50+ PA++++',
     desc: ['#SunStick #Airy', 'Dry-touch finish, never sticky.']
   },
   f10: {

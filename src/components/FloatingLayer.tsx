@@ -8,6 +8,7 @@ import { useMostVisited, useRecentProducts } from '../data/useVisits';
 import { buildIndex, searchProducts } from '../data/search';
 import { useProductKeywords } from '../data/useProductKeywords';
 import { useLocale, useT } from '../i18n/LocaleProvider';
+import { useSession, useSignOut } from '../account/useSession';
 import { useRoute } from '../router';
 
 /** SECTION 9.1 — TOP button: fixed right 50px / bottom 30px, revealed on scroll */
@@ -30,9 +31,24 @@ export function TopButton() {
   );
 }
 
-/** SECTION 9.2 — 345px slide-in side menu, right -345px → 0 over 0.3s */
+/**
+ * SECTION 9.2 — 345px slide-in side menu, right -345px → 0 over 0.3s.
+ *
+ * The top block answers "who is this": an invitation to sign in for a guest,
+ * and the account's own address with a way out for a member. Asking someone
+ * who is already signed in to LOGIN again is the panel contradicting the
+ * header three centimetres away.
+ */
 export function SideMenu({ open, onClose }: { open: boolean; onClose: () => void }) {
   const t = useT();
+  const { session, email } = useSession();
+  const signOut = useSignOut();
+  const { navigate } = useRoute();
+
+  const go = (to: string) => {
+    onClose();
+    navigate(to);
+  };
 
   return (
     <div className={`menu_wrap${open ? ' open' : ''}`} aria-hidden={open ? undefined : true}>
@@ -41,15 +57,45 @@ export function SideMenu({ open, onClose }: { open: boolean; onClose: () => void
       </button>
 
       <div className="login">
-        <p>{t.sideMenu.loginPrompt}</p>
-        <ul>
-          <li className="hover-line">
-            <a href="/member/login">{t.sideMenu.login}</a>
-          </li>
-          <li className="hover-line">
-            <a href="/member/join">{t.sideMenu.join}</a>
-          </li>
-        </ul>
+        {session ? (
+          <>
+            <p className="menu_email">{email}</p>
+            <ul>
+              <li className="hover-line">
+                <button type="button" onClick={() => go('/myshop')}>
+                  {t.auth.myPage}
+                </button>
+              </li>
+              <li className="hover-line">
+                <button
+                  type="button"
+                  onClick={async () => {
+                    await signOut();
+                    go('/');
+                  }}
+                >
+                  {t.auth.signOut}
+                </button>
+              </li>
+            </ul>
+          </>
+        ) : (
+          <>
+            <p>{t.sideMenu.loginPrompt}</p>
+            <ul>
+              <li className="hover-line">
+                <button type="button" onClick={() => go('/member/login')}>
+                  {t.sideMenu.login}
+                </button>
+              </li>
+              <li className="hover-line">
+                <button type="button" onClick={() => go('/member/join')}>
+                  {t.sideMenu.join}
+                </button>
+              </li>
+            </ul>
+          </>
+        )}
       </div>
 
       <ul className="my_menu">

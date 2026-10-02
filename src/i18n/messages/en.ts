@@ -40,7 +40,7 @@ export const en: Messages = {
     slides: [
       {
         headline: ['JOIN AND', 'SAVE 5%'],
-        lines: ['Members get a 5% discount coupon.', 'Valid on orders over ₩10,000.'],
+        lines: ['Members get a 5% discount coupon.', 'Valid on orders over {amount}.'],
         alt: 'Membership coupon'
       },
       {
@@ -246,7 +246,7 @@ export const en: Messages = {
       submit: 'SEND ENQUIRY',
       shippingTitle: 'SHIPPING',
       shippingLines: [
-        'Shipping is ₩3,000 (about ₱127) and free over ₩20,000.',
+        'Shipping is {fee}, and free on orders over {threshold}.',
         'Orders ship from #9061 National Highway, Bagong Kalsada, Calamba City, 4027 Laguna.'
       ]
     }

@@ -43,7 +43,7 @@ export const id: Messages = {
     slides: [
       {
         headline: ['DAFTAR,', 'HEMAT 5%'],
-        lines: ['Member mendapat kupon diskon 5%.', 'Berlaku untuk belanja di atas ₩10.000.'],
+        lines: ['Member mendapat kupon diskon 5%.', 'Berlaku untuk belanja di atas {amount}.'],
         alt: 'Kupon member'
       },
       {
@@ -206,7 +206,7 @@ export const id: Messages = {
     contact: {
       title: 'KONTAK',
       lead: 'Kirim pertanyaan Anda, kami balas pada jam layanan.',
-      subject: 'Judul',
+      subject: 'Subjek',
       email: 'Email Anda',
       message: 'Pesan',
       submit: 'KIRIM',
@@ -250,7 +250,7 @@ export const id: Messages = {
       submit: 'KIRIM PERTANYAAN',
       shippingTitle: 'PENGIRIMAN',
       shippingLines: [
-        'Ongkos kirim ₩3.000 (sekitar ₱127), gratis di atas ₩20.000.',
+        'Ongkos kirim {fee}, gratis untuk belanja di atas {threshold}.',
         'Pesanan dikirim dari #9061 National Highway, Bagong Kalsada, Calamba City, 4027 Laguna.'
       ]
     }
@@ -325,7 +325,7 @@ export const id: Messages = {
   },
   notifications: {
     title: 'PEMBERITAHUAN',
-    empty: 'Belum ada apa-apa.',
+    empty: 'Belum ada pemberitahuan.',
     markAll: 'Tandai semua dibaca',
     viewOrder: 'Lihat pesanan',
     kinds: {

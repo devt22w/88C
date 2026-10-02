@@ -42,7 +42,7 @@ export const ko: Messages = {
     slides: [
       {
         headline: ['가입하고', '5% 할인받기'],
-        lines: ['MQNY 회원이 되시면 5% 할인쿠폰을 드립니다.', '1만원 이상 구매 시 사용 가능합니다.'],
+        lines: ['MQNY 회원이 되시면 5% 할인쿠폰을 드립니다.', '{amount} 이상 구매 시 사용 가능합니다.'],
         alt: '회원 가입 쿠폰'
       },
       {
@@ -235,7 +235,7 @@ export const ko: Messages = {
       submit: '문의 보내기',
       shippingTitle: '배송 안내',
       shippingLines: [
-        '배송비는 3,000원이며 20,000원 이상 구매 시 무료입니다.',
+        '배송비는 {fee}이며 {threshold} 이상 구매 시 무료입니다.',
         '출고지 : #9061 National Highway, Bagong Kalsada, Calamba City, 4027 Laguna'
       ]
     }
@@ -244,7 +244,7 @@ export const ko: Messages = {
     checking: '계정을 확인하고 있습니다…',
     signOut: '로그아웃',
     myPage: '마이페이지',
-    signedInAs: '{email} 로 로그인했습니다',
+    signedInAs: '{email} 계정으로 로그인했습니다',
     errors: {
       badCredentials: '이메일 또는 비밀번호가 일치하지 않습니다.',
       emailTaken: '이미 가입된 이메일입니다. 로그인해 주세요.',
@@ -367,7 +367,7 @@ export const ko: Messages = {
     email: '이메일',
     phone: '휴대전화',
     address: '주소',
-    city: '도시',
+    city: '시 / 군 / 구',
     postal: '우편번호',
     required: '모든 항목을 입력해 주세요.',
     invalidEmail: '올바른 이메일 주소를 입력해 주세요.',
@@ -412,7 +412,7 @@ export const ko: Messages = {
     points: '적립금',
     shipping: '배송비',
     shippingFree: '{amount} 이상 구매 시 무료',
-    selectLabel: '선택',
+    selectLabel: '컬러',
     optionRequired: '[필수] 옵션을 선택해 주세요',
     optionPlaceholder: '컬러를 선택하세요',
     total: '총 상품금액',

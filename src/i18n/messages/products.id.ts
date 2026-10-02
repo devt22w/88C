@@ -30,15 +30,15 @@ export const productsId: Record<ProductId, ProductCopy> = {
     desc: ['#LipMatte #Ringan', 'Matte blur lembut, terasa ringan.']
   },
   b6: {
-    name: '1001 Tone on Tone Shadow Palette Pro 9',
+    name: '1001 Tone on Tone Shadow Palette Pro 9 #Nude Mood',
     desc: ['#PaletMata #NudeMood', 'Sembilan warna nude, satu palet.']
   },
   b7: {
     name: 'Dewy Water Glow Lip Tint',
-    desc: ['#WaterTint #Glossy', 'Tint ringan dengan kilau bening.']
+    desc: ['#WaterTint #GlassyGlow', 'Tint ringan dengan kilau bening.']
   },
   b8: {
-    name: 'Collagen Vita Wrinkle Multi Balm',
+    name: '100% French Collagen Vita Wrinkle Multi Balm',
     desc: ['#PerawatanKerut #Balm', 'Stik kolagen untuk kulit kencang.']
   },
   b9: {
@@ -146,11 +146,11 @@ export const productsId: Record<ProductId, ProductCopy> = {
     desc: ['#Paket #KuasContour', 'Contour lengkap dengan kuasnya.']
   },
   f8: {
-    name: 'UV Daily Moisture Sun Stick SPF50+',
+    name: 'UV Daily Moisture Sun Stick SPF50+ PA++++',
     desc: ['#SunStick #Lembap', 'Hasil lembap, bisa dioles ulang.']
   },
   f9: {
-    name: 'UV Daily Airy Sun Stick SPF50+',
+    name: 'UV Daily Airy Sun Stick SPF50+ PA++++',
     desc: ['#SunStick #Ringan', 'Hasil kering, tidak lengket.']
   },
   f10: {
