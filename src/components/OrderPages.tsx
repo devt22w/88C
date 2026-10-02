@@ -4,7 +4,7 @@ import { ImageSlot } from './ImageSlot';
 import { Link, useRoute } from '../router';
 import { useCart } from '../cart/CartProvider';
 import type { CartLine } from '../cart/CartProvider';
-import { findProduct } from '../data/site';
+import { findProduct, ONLINE_PAYMENT_LIVE } from '../data/site';
 import type { ProductStructure } from '../data/site';
 import { useLocale } from '../i18n/LocaleProvider';
 import { convertFromKrw, formatCentavosPhp, formatConverted } from '../i18n/money';
@@ -253,7 +253,11 @@ export function CheckoutPage() {
 
         <PaymentStatus />
 
-        <div className="checkout_grid">
+        <div className={`checkout_grid${ONLINE_PAYMENT_LIVE ? '' : ' summary_only'}`}>
+          {/* while payment is not live there is nothing for these details to
+              do: the shopper is told to message customer service instead, and
+              asking for an address here would only look like a dead end */}
+          {ONLINE_PAYMENT_LIVE ? (
           <form className="checkout_form" onSubmit={submit} noValidate>
             <h3>{t.cart.customerHeading}</h3>
             {field('name', t.cart.name, 'text', 'name')}
@@ -276,6 +280,7 @@ export function CheckoutPage() {
             </button>
             <p className="checkout_methods">{t.cart.methods}</p>
           </form>
+          ) : null}
 
           <aside className="checkout_summary">
             <h3>{t.cart.summaryHeading}</h3>
@@ -305,7 +310,7 @@ export function CheckoutPage() {
                 <dd>{formatCentavosPhp(priced.totalCentavos)}</dd>
               </div>
             </dl>
-            <p className="checkout_php">{t.cart.chargedInPhp}</p>
+            {ONLINE_PAYMENT_LIVE ? <p className="checkout_php">{t.cart.chargedInPhp}</p> : null}
           </aside>
         </div>
       </div>

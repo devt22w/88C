@@ -464,3 +464,10 @@
     min-width: 0;
   }
 }
+
+/* while online payment is not live the checkout is a summary and a notice:
+   one column, centred, with no empty space where the form used to be */
+.checkout_grid.summary_only {
+  grid-template-columns: minmax(0, 520px);
+  justify-content: center;
+}
