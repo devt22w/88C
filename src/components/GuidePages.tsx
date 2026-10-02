@@ -1,6 +1,7 @@
 import { Link } from '../router';
 import { contactDetails } from '../data/site';
 import { useLocale, useT } from '../i18n/LocaleProvider';
+import { PaymentStatus } from './PaymentStatus';
 import {
   FREE_SHIPPING_OVER_KRW,
   SHIPPING_FEE_KRW
@@ -53,6 +54,7 @@ export function GuidePage() {
         <section>
           <h3>{copy.payTitle}</h3>
           <p>{copy.payBody}</p>
+          <PaymentStatus compact />
         </section>
         <section>
           <h3>{copy.shipTitle}</h3>

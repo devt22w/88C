@@ -378,6 +378,15 @@ export interface Messages {
       review_published: string;
     };
   };
+  /** shown while ONLINE_PAYMENT_LIVE is false */
+  paymentStatus: {
+    badge: string;
+    title: string;
+    body: string;
+    cashTitle: string;
+    cashSteps: string[];
+    cta: string;
+  };
   /** SHOPPING GUIDE — how buying here actually works */
   guide: {
     title: string;

@@ -9,6 +9,7 @@ import type { ProductStructure } from '../data/site';
 import { useLocale } from '../i18n/LocaleProvider';
 import { convertFromKrw, formatCentavosPhp, formatConverted } from '../i18n/money';
 import { supabase } from '../lib/supabase';
+import { PaymentStatus } from './PaymentStatus';
 import { priceOrder, shippingKrw } from '../../supabase/functions/_shared/pricing.ts';
 
 /**
@@ -61,6 +62,8 @@ export function CartPage() {
     <div id="contents" className="order_contents">
       <div className="order_area">
         <h2 className="order_title">{t.cart.title}</h2>
+
+        <PaymentStatus compact />
 
         {lines.length === 0 ? (
           <div className="order_empty">
@@ -247,6 +250,8 @@ export function CheckoutPage() {
     <div id="contents" className="order_contents">
       <div className="order_area checkout">
         <h2 className="order_title">{t.cart.checkoutTitle}</h2>
+
+        <PaymentStatus />
 
         <div className="checkout_grid">
           <form className="checkout_form" onSubmit={submit} noValidate>

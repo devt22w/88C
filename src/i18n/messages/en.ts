@@ -334,6 +334,18 @@ export const en: Messages = {
       review_published: 'Your review is now published.'
     }
   },
+  paymentStatus: {
+    badge: 'COMING SOON',
+    title: 'Online payment is almost ready',
+    body: 'Card, GCash, Maya and QR Ph are being set up with our payment provider. Until that is live, an order is settled in cash.',
+    cashTitle: 'PAYING IN CASH, FOR NOW',
+    cashSteps: [
+      'Send us the items you want through the contact form, Messenger or KakaoTalk.',
+      'Customer service confirms the total, the shipping fee and when it can reach you.',
+      'You pay in cash on delivery or at the counter, and your receipt comes with the parcel.'
+    ],
+    cta: 'MESSAGE CUSTOMER SERVICE'
+  },
   guide: {
     title: 'SHOPPING GUIDE',
     lead: 'Everything about ordering here, in the order it happens.',

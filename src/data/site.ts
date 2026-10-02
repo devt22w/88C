@@ -375,6 +375,17 @@ export const bankAccounts: { key: 'kb' | 'shinhan'; number: string }[] = [
 ];
 
 /**
+ * Is online payment live?
+ *
+ * While this is false the storefront says so plainly — on the cart, on the
+ * checkout and in the shopping guide — and tells the shopper that orders are
+ * settled in cash with customer service instead. Flip it to true on the day
+ * the merchant account goes live and every one of those notices disappears
+ * together; there is no second place to remember.
+ */
+export const ONLINE_PAYMENT_LIVE = false;
+
+/**
  * The operator's real contact details, as published on 88hotspring.com.
  *
  * These are facts, not copy, so they are not translated: a phone number reads

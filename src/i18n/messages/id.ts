@@ -338,6 +338,18 @@ export const id: Messages = {
       review_published: 'Ulasan Anda sudah tayang.'
     }
   },
+  paymentStatus: {
+    badge: 'SEGERA HADIR',
+    title: 'Pembayaran online hampir siap',
+    body: 'Kartu, GCash, Maya, dan QR Ph sedang disiapkan bersama penyedia pembayaran kami. Sebelum itu aktif, pesanan diselesaikan secara tunai.',
+    cashTitle: 'UNTUK SEKARANG, BAYAR TUNAI',
+    cashSteps: [
+      'Kirimkan barang yang Anda inginkan lewat formulir kontak, Messenger, atau KakaoTalk.',
+      'Layanan pelanggan mengonfirmasi total, ongkos kirim, dan perkiraan tibanya.',
+      'Anda bayar tunai saat barang tiba atau di kasir, dan struk ikut bersama paket.'
+    ],
+    cta: 'HUBUNGI LAYANAN PELANGGAN'
+  },
   guide: {
     title: 'PANDUAN BELANJA',
     lead: 'Semua tentang cara memesan di sini, sesuai urutannya.',
