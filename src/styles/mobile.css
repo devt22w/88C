@@ -33,6 +33,10 @@
   .header_banner .header_con,
   .header_banner .header_con > a {
     width: 100%;
+    /* the banner link keeps room for the CLOSE button in its padding; without
+       border-box that padding is added to the 100% and the page gains 88px of
+       sideways scroll */
+    box-sizing: border-box;
   }
 
   .header_banner .header_con > a {
@@ -142,9 +146,12 @@
      tracks resolve against the container's own definite width instead. */
   .head_top .container {
     display: grid;
-    grid-template-columns: auto minmax(0, 1fr);
+    /* both tracks are allowed to shrink: a track sized 'auto' floors at the
+       logo's intrinsic width, which on a 360px phone is already too much */
+    grid-template-columns: minmax(0, auto) minmax(0, 1fr);
     align-items: center;
     column-gap: 12px;
+    overflow: hidden;
   }
 
   .head_top .logo,
@@ -175,6 +182,10 @@
     justify-content: flex-end;
     gap: 10px;
     padding: 10px 0;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
   }
 
   /* LOGIN / JOIN / DELIVERY / CONTACT stay visible, on a line of their own
@@ -182,7 +193,12 @@
      like it had lost half its contents */
   .top_menu {
     order: 5;
-    flex: 1 1 100%;
+    /* 'auto', never a percentage: a percentage basis inside a row whose width
+       is still being decided resolves to the content's own width, and the row
+       then grows past the screen */
+    flex: 1 1 auto;
+    min-width: 0;
+    width: 100%;
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
@@ -357,9 +373,17 @@
     width: 100%;
   }
 
-  .pd .name span,
-  .pd .simple_desc {
+  /* the two-line clamp is a hard 44px built for 16px type; at 12px that box
+     holds three lines and clips the third mid-stroke, so the height goes with
+     the type */
+  .pd .simple_desc,
+  .list_grid .simple_desc {
     font-size: 12px;
+    line-height: 1.5;
+    height: auto;
+    max-height: 36px;
+    padding-top: 8px;
+    padding-right: 0;
   }
 
   .main_title h2 {
@@ -371,14 +395,42 @@
   }
 
   /* the add-to-cart pill is a hover affordance on desktop; on a phone there is
-     no hover, so it stays visible */
-  .pd .price_wrap .cart_btn {
+     no hover, so it sits in the card as an ordinary button. Its desktop width
+     is a fixed 212px, which is wider than half a phone screen — hence the cap
+     and the border-box, or the card pushes the page sideways. */
+  .pd .price_wrap .cart_btn,
+  .list_grid .price_wrap .cart_btn {
     opacity: 1;
     visibility: visible;
     position: static;
     transform: none;
     margin-top: 10px;
     width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+    padding: 0 8px;
+  }
+
+  .pd .price_wrap .cart_btn .cart_btn_label,
+  .list_grid .price_wrap .cart_btn .cart_btn_label {
+    font-size: 12px;
+    letter-spacing: 0.4px;
+  }
+
+  /* the mid banner sets its text 60px in from the left of a 1550px band */
+  .mid_banner .banner_text {
+    left: var(--gutter);
+    right: var(--gutter);
+  }
+
+  .mid_banner .banner_text h3 {
+    font-size: 20px;
+  }
+
+  .mid_banner .banner_text .eyebrow {
+    font-size: 12px;
+    padding-bottom: 8px;
   }
 
   /* ---- product detail ----------------------------------------------------- */
