@@ -7,6 +7,15 @@
    used only for money that has actually landed.
    --------------------------------------------------------------------------- */
 
+/* every control on a staff screen measures its own border and padding, so a
+   width of 100% means 100% of the column it is in and nothing sticks out */
+#wrap.admin input,
+#wrap.admin select,
+#wrap.admin textarea,
+#wrap.admin button {
+  box-sizing: border-box;
+}
+
 #wrap.admin {
   min-height: 100vh;
   background: #f6f6f5;
@@ -128,6 +137,9 @@ body:has(#wrap.admin) {
 .admin_detail select,
 .admin_detail textarea {
   width: 100%;
+  /* a form control is content-box by default: 100% plus 24px of padding and
+     2px of border put every field 26px past the column it sits in */
+  box-sizing: border-box;
   border: 1px solid #dcdcdc;
   background: #fff;
   padding: 0 12px;
@@ -138,8 +150,11 @@ body:has(#wrap.admin) {
 
 .admin_detail textarea {
   height: auto;
+  min-height: 72px;
+  max-width: 100%;
   padding: 10px 12px;
   line-height: 1.6;
+  /* vertical only: dragging it wider would push it out of its column again */
   resize: vertical;
 }
 
@@ -277,6 +292,15 @@ body:has(#wrap.admin) {
   font-size: 13px;
 }
 
+/* 300 orders scroll past the header; it stays put so the columns can still
+   be read halfway down the list */
+.admin_table thead th {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background: #fff;
+}
+
 .admin_table th {
   text-align: left;
   font-size: 11px;
@@ -367,6 +391,8 @@ body:has(#wrap.admin) {
 .admin_detail td {
   background: #fbfbfa;
   padding: 22px 18px 26px;
+  /* ties the opened panel to the row it belongs to */
+  border-left: 2px solid #1d1d1d;
 }
 
 .admin_detail_grid {
