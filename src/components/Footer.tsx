@@ -1,4 +1,5 @@
-import { ImageSlot } from './ImageSlot';
+import { ImageSlot, useSlotSource } from './ImageSlot';
+import { Link } from '../router';
 import { bankAccounts, csPhone, footerLinks } from '../data/site';
 import { useT } from '../i18n/LocaleProvider';
 
@@ -12,13 +13,25 @@ import { useT } from '../i18n/LocaleProvider';
 export function Footer() {
   const t = useT();
   const company = t.footer.company;
+  // one wordmark for the whole site: the footer slot is used when someone has
+  // uploaded a separate lock-up, and the header's artwork otherwise, so the two
+  // can never drift apart by accident
+  const hasFooterMark = Boolean(useSlotSource('logo_footer'));
 
   return (
     <footer id="footer">
       <div className="footer_all">
         {/* 8.2 — column 1, the wordmark */}
         <div className="f_logo">
-          <ImageSlot slot="logo_footer" alt={t.a11y.logo} width={195} height={26} label="logo_footer" />
+          <Link to="/" aria-label={t.a11y.logo}>
+            <ImageSlot
+              slot={hasFooterMark ? 'logo_footer' : 'logo_header'}
+              alt={t.a11y.logo}
+              width={195}
+              height={26}
+              label="logo"
+            />
+          </Link>
         </div>
 
         {/* 8.3 — column 2, company information */}

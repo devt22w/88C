@@ -131,15 +131,22 @@
   padding-top: 100%;
 }
 
-/* NEW ITEM only: slow, subtle 5% zoom, clipped by the thumbnail overflow.
-   BEST ITEM thumbnails deliberately do not zoom. */
-.new_pd ul .thumbnail .slot__img,
-.new_pd ul .thumbnail .slot__placeholder {
+/* Slow, subtle 5% zoom on hover, clipped by the thumbnail's overflow.
+   It used to be NEW ITEM only, following the reference; every card now
+   answers to the cursor the same way, so a shopper gets the same feedback
+   wherever a product appears — home, listing or search. This is the card's
+   own motion and has nothing to do with the magnifier inside a product. */
+.pd ul .thumbnail .slot__img,
+.pd ul .thumbnail .slot__placeholder,
+.list_grid .thumbnail .slot__img,
+.list_grid .thumbnail .slot__placeholder {
   transition: var(--easing-two);
 }
 
-.new_pd ul li:hover .thumbnail .slot__img,
-.new_pd ul li:hover .thumbnail .slot__placeholder {
+.pd ul li:hover .thumbnail .slot__img,
+.pd ul li:hover .thumbnail .slot__placeholder,
+.list_grid li:hover .thumbnail .slot__img,
+.list_grid li:hover .thumbnail .slot__placeholder {
   transform: scale(1.05);
 }
 

@@ -21,7 +21,12 @@ export function RouterProvider({ children }: { children: ReactNode }) {
     // a link may carry a query string — /order/result?order=…&token=… — but the
     // routes are matched on the path alone, so the two are separated here
     const url = new URL(to, window.location.origin);
-    if (url.pathname === window.location.pathname && url.search === window.location.search) return;
+    // same page: there is nothing to route, but the logo is also the way back
+    // to the top, so scrolling is still the right answer
+    if (url.pathname === window.location.pathname && url.search === window.location.search) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
     window.history.pushState({}, '', to);
     setPath(url.pathname);
     window.scrollTo({ top: 0 });
