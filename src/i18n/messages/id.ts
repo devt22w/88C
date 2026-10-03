@@ -1,5 +1,6 @@
 import type { Messages } from '../types';
 import { productsId } from './products.id';
+import { legalId } from './legal.id';
 
 /**
  * Bahasa Indonesia.
@@ -110,6 +111,7 @@ export const id: Messages = {
     policies: {
       brandStory: 'TENTANG BRAND',
       shoppingGuide: 'PANDUAN BELANJA',
+      terms: 'SYARAT PENGGUNAAN',
       privacyPolicy: 'KEBIJAKAN PRIVASI',
       businessCheck: 'CEK IZIN USAHA'
     },
@@ -191,8 +193,10 @@ export const id: Messages = {
       passwordConfirm: 'Ulangi kata sandi',
       email: 'Email',
       phone: 'Nomor ponsel',
-      agreeTerms: 'Saya menyetujui syarat penggunaan',
-      agreePrivacy: 'Saya menyetujui kebijakan privasi',
+      agreeAll: 'Saya menyetujui semua ketentuan berikut',
+      agreeTerms: 'Saya telah membaca dan menyetujui Syarat Penggunaan',
+      agreePrivacy: 'Saya telah membaca dan menyetujui Kebijakan Privasi',
+      agreeHint: 'Centang kedua kotak untuk membuat akun.',
       submit: 'BUAT AKUN'
     },
     delivery: {
@@ -404,6 +408,7 @@ export const id: Messages = {
     ctaGuide: 'PANDUAN BELANJA',
     note: 'Pesan di luar jam layanan dibalas pada hari kerja berikutnya.'
   },
+  legal: legalId,
   missing: {
     title: 'HALAMAN BELUM DIBUAT',
     lead: 'Tautan ini ada di navigasi, tetapi halamannya belum dibuat.',

@@ -48,9 +48,9 @@ export function MidBanner() {
       </div>
 
       {/* optional badge: 7s linear rotation, infinite, never pauses */}
-      <div className="mid_tit" aria-hidden="true">
+      {/* <div className="mid_tit" aria-hidden="true">
         <ImageSlot slot="mid_badge" alt="" label="badge" />
-      </div>
+      </div> */}
     </div>
   );
 }

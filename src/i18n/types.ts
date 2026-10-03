@@ -95,6 +95,25 @@ export interface BannerCopy {
   alt: string;
 }
 
+/**
+ * One block of a legal document: a string is a paragraph, a list of strings is
+ * a bulleted list.
+ *
+ * Placeholders are filled at render time from `legalDetails` and
+ * `contactDetails` in src/data/site.ts, so a phone number or an address is
+ * changed in one place: {operator} {email} {privacyEmail} {phone} {address}
+ * {site}.
+ */
+export type LegalBlock = string | string[];
+
+export interface LegalDocument {
+  title: string;
+  /** one line under the title saying what the document is */
+  lead: string;
+  intro: LegalBlock[];
+  sections: { id: string; heading: string; body: LegalBlock[] }[];
+}
+
 export interface Messages {
   meta: {
     title: string;
@@ -154,6 +173,7 @@ export interface Messages {
     policies: {
       brandStory: string;
       shoppingGuide: string;
+      terms: string;
       privacyPolicy: string;
       businessCheck: string;
     };
@@ -226,8 +246,12 @@ export interface Messages {
       passwordConfirm: string;
       email: string;
       phone: string;
+      /** ticks both boxes below at once */
+      agreeAll: string;
       agreeTerms: string;
       agreePrivacy: string;
+      /** shown under the boxes while either is still unticked */
+      agreeHint: string;
       submit: string;
     };
     delivery: {
@@ -423,6 +447,25 @@ export interface Messages {
     note: string;
   };
   /** a route that exists in the navigation but has no page yet */
+  /** TERMS OF USE and PRIVACY POLICY, behind /policy/terms and /policy/privacy */
+  legal: {
+    /** 'Effective {date}' */
+    effective: string;
+    contents: string;
+    /** which language governs when a translation and the English differ */
+    governingLanguage: string;
+    print: string;
+    /** the modal's button, and the line beside it before and after reading */
+    accept: string;
+    scrollToAccept: string;
+    readDone: string;
+    close: string;
+    /** the cross-link at the foot of each document to the other one */
+    seeTerms: string;
+    seePrivacy: string;
+    terms: LegalDocument;
+    privacy: LegalDocument;
+  };
   missing: {
     title: string;
     lead: string;

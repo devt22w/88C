@@ -1,5 +1,6 @@
 import type { Messages } from '../types';
 import { productsEn } from './products.en';
+import { legalEn } from './legal.en';
 
 /**
  * English — the base catalogue. Every other locale mirrors this shape.
@@ -72,14 +73,14 @@ export const en: Messages = {
   midBanner: {
     panels: [
       {
-        eyebrow: 'Membership',
-        headline: ['A welcome coupon,', 'first order only'],
-        alt: 'Membership coupon'
+        eyebrow: '',
+        headline: ['', ''],
+        alt: ''
       },
       {
-        eyebrow: 'Bundle Deal',
-        headline: ['Add any two and', 'shipping is on us'],
-        alt: 'Bundle deal'
+        eyebrow: '',
+        headline: ['', ''],
+        alt: ''
       }
     ]
   },
@@ -106,6 +107,7 @@ export const en: Messages = {
     policies: {
       brandStory: 'BRAND STORY',
       shoppingGuide: 'SHOPPING GUIDE',
+      terms: 'TERMS OF USE',
       privacyPolicy: 'PRIVACY POLICY',
       businessCheck: 'VERIFY BUSINESS'
     },
@@ -187,8 +189,10 @@ export const en: Messages = {
       passwordConfirm: 'Confirm password',
       email: 'Email',
       phone: 'Mobile number',
-      agreeTerms: 'I agree to the terms of use',
-      agreePrivacy: 'I agree to the privacy policy',
+      agreeAll: 'I agree to all of the following',
+      agreeTerms: 'I have read and agree to the Terms of Use',
+      agreePrivacy: 'I have read and agree to the Privacy Policy',
+      agreeHint: '',
       submit: 'CREATE ACCOUNT'
     },
     delivery: {
@@ -400,8 +404,9 @@ export const en: Messages = {
     ctaGuide: 'SHOPPING GUIDE',
     note: 'Messages sent outside service hours are answered on the next working day.'
   },
+  legal: legalEn,
   missing: {
-    title: 'PAGE NOT BUILT YET',
+    title: ' COMING SOON',
     lead: 'This link is in the navigation, but its page has not been built.',
     back: 'Back to the shop'
   },

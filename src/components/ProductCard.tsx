@@ -3,6 +3,7 @@ import { ImageSlot } from './ImageSlot';
 import { BagIcon } from './Icons';
 import { Link, useRoute } from '../router';
 import { useCart } from '../cart/CartProvider';
+import { useRequireSignIn } from '../account/useSession';
 import { useLocale } from '../i18n/LocaleProvider';
 import { useCatalogueMeta } from '../data/useCatalogueMeta';
 import type { ProductStructure } from '../data/site';
@@ -27,6 +28,7 @@ interface Props {
 export function ProductCard({ product, showRank = false }: Props) {
   const { t, money, percent } = useLocale();
   const { add } = useCart();
+  const requireSignIn = useRequireSignIn();
   const meta = useCatalogueMeta();
   const { navigate } = useRoute();
   const [added, setAdded] = useState(false);
@@ -44,6 +46,8 @@ export function ProductCard({ product, showRank = false }: Props) {
   const onPill = () => {
     if (soldOut) return navigate(product.href);
     if (product.colors.length > 0) return navigate(product.href);
+    // the cart is for members: no session, and this goes to LOGIN instead
+    if (!requireSignIn()) return;
     add(product.id, null, 1);
     setAdded(true);
   };

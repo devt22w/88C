@@ -82,8 +82,7 @@ export interface HeroSlideStructure {
 
 export const heroSlides: HeroSlideStructure[] = [
   { slot: 'hero_slide_1', href: '/member/join' },
-  { slot: 'hero_slide_2', href: '/category/all' },
-  { slot: 'hero_slide_3', href: '/category/lip' }
+  { slot: 'hero_slide_2', href: '/category/all' }
 ];
 
 export interface ProductStructure {
@@ -357,6 +356,7 @@ export const footerLinks = {
   businessCheck: '/company/check',
   brandStory: '/company/story',
   shoppingGuide: '/guide',
+  terms: '/policy/terms',
   privacyPolicy: '/policy/privacy',
   partnership: '/board/partnership',
   bulkOrder: '/board/bulk',
@@ -402,6 +402,25 @@ export const contactDetails = {
   messenger: '88 hotspring resort',
   email: 'info@88hotspring.com',
   address: '#9061 National Highway, Bagong Kalsada, Calamba City, 4027 Laguna'
+};
+
+/**
+ * Who stands behind the TERMS OF USE and the PRIVACY POLICY.
+ *
+ * `version` is the date both documents took effect. It is printed at the top of
+ * each, and it is stamped on every new account as the version that member
+ * agreed to, so after a change you can tell who accepted which text. Bump it
+ * whenever either document changes in substance.
+ *
+ * `operator` should be the registered business name exactly as it appears on
+ * the DTI or SEC registration; `privacyEmail` is where data-subject requests go
+ * and should reach the Data Protection Officer.
+ */
+export const legalDetails = {
+  version: '2026-10-03',
+  operator: '88 Hotspring Resort',
+  privacyEmail: contactDetails.email,
+  site: '88hotspring.com'
 };
 
 /** the line the footer and the CS blocks print */

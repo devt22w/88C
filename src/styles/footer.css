@@ -287,3 +287,8 @@
     width: 1163px;
   }
 }
+
+/* a row that runs out of room wraps between items, never inside one */
+#footer .sns li.policy .hover-line {
+  white-space: nowrap;
+}

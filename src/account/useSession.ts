@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import type { Session } from '@supabase/supabase-js';
 import { supabase } from '../lib/supabase';
+import { useRoute } from '../router';
 
 /**
  * Who is signed in.
@@ -53,10 +54,64 @@ export function useSession(): SessionState {
   };
 }
 
+/**
+ * Signs out and lands on the home page. The page the visitor signed out from
+ * is overwritten in history rather than stacked on, and every members-only
+ * page re-checks the session on its own, so pressing back afterwards loads the
+ * page again — still signed out — and is sent to LOGIN instead of being shown.
+ */
 export function useSignOut() {
+  const { navigate } = useRoute();
   return useCallback(async () => {
     await supabase?.auth.signOut();
-  }, []);
+    navigate('/', { replace: true });
+  }, [navigate]);
+}
+
+/**
+ * Pages that need a signed-in member. The cart and checkout are here because
+ * putting something in the cart already needs an account: a signed-out visitor
+ * holding a cart can only be someone who signed out, or a cart left over on a
+ * shared device. The order result page is not — PayMongo sends the shopper back
+ * there, and the token in its link is what proves the order is theirs.
+ */
+const MEMBERS_ONLY = ['/myshop', '/myshop/order', '/myshop/info', '/order/basket', '/order/checkout'];
+
+export function isMembersOnly(path: string): boolean {
+  return MEMBERS_ONLY.includes(path.replace(/\/$/, ''));
+}
+
+/** LOGIN, remembering where to come back to */
+export function loginPath(next = window.location.pathname + window.location.search): string {
+  return `/member/login?next=${encodeURIComponent(next)}`;
+}
+
+/**
+ * Where LOGIN / JOIN should send the member once signed in: the `next` the
+ * redirect carried, if it is a path on this site, otherwise MY PAGE. Anything
+ * that could leave the site (`//evil.com`, `https://…`) is ignored.
+ */
+export function nextPath(): string {
+  const next = new URLSearchParams(window.location.search).get('next');
+  if (!next || !next.startsWith('/') || next.startsWith('//') || next.startsWith('/\\')) return '/myshop';
+  return next;
+}
+
+/**
+ * The rule in front of ADD TO CART and BUY NOW: with a session the action goes
+ * ahead (`true`); without one the visitor is sent to LOGIN, which brings them
+ * back to this page afterwards. While the first session answer is still
+ * outstanding nothing happens — a click in that instant is neither let through
+ * nor bounced.
+ */
+export function useRequireSignIn() {
+  const { ready, session } = useSession();
+  const { navigate } = useRoute();
+  return useCallback((): boolean => {
+    if (session) return true;
+    if (ready) navigate(loginPath());
+    return false;
+  }, [ready, session, navigate]);
 }
 
 /**

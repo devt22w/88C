@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { PromoStrip } from './components/PromoStrip';
 import { Header } from './components/Header';
 import { HeroSlider } from './components/HeroSlider';
@@ -19,7 +19,9 @@ import { CartPage, CheckoutPage, OrderResultPage } from './components/OrderPages
 import { AdminOrdersPage } from './components/AdminPages';
 import { FindIdPage, FindPasswordPage, ResetPasswordPage } from './components/RecoverPages';
 import { CsPage, GuidePage } from './components/GuidePages';
+import { PrivacyPage, TermsPage } from './components/PolicyPages';
 import { useCart } from './cart/CartProvider';
+import { isMembersOnly, loginPath, useSession } from './account/useSession';
 import { Footer } from './components/Footer';
 import {
   RecentPanel,
@@ -48,7 +50,9 @@ const STATIC_ROUTES: Record<string, () => JSX.Element> = {
   '/member/find-password': FindPasswordPage,
   '/member/reset': ResetPasswordPage,
   '/guide': GuidePage,
-  '/board/cs': CsPage
+  '/board/cs': CsPage,
+  '/policy/terms': TermsPage,
+  '/policy/privacy': PrivacyPage
 };
 
 /** the home page body: hero, BEST, mid banner, NEW */
@@ -88,7 +92,8 @@ function HomeSections() {
 export default function App() {
   const t = useT();
   const { count: cartCount } = useCart();
-  const { path } = useRoute();
+  const { path, navigate } = useRoute();
+  const { ready, session } = useSession();
   const productId = matchProduct(path);
   const categorySlug = matchCategory(path);
   const category = categorySlug ? CATEGORY_SLUGS[categorySlug] : undefined;
@@ -101,6 +106,16 @@ export default function App() {
   const StaticPage =
     STATIC_ROUTES[normalised] ?? (productId || category || isHome ? undefined : MissingPage);
   const isSub = Boolean(productId || category || StaticPage);
+  // members-only pages are checked on every arrival — a click, a refresh, or
+  // the back button after signing out — and never render without a session
+  const membersOnly = isMembersOnly(normalised);
+  const locked = membersOnly && !session;
+
+  useEffect(() => {
+    // replace, not push: back from LOGIN goes to the page before this one,
+    // not to this one again (which would only bounce straight back)
+    if (membersOnly && ready && !session) navigate(loginPath(), { replace: true });
+  }, [membersOnly, ready, session, navigate]);
 
   const [bannerVisible, setBannerVisible] = useState(true);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -151,6 +166,12 @@ export default function App() {
           <ProductPage id={productId} />
         ) : category ? (
           <CategoryPage category={category} />
+        ) : locked ? (
+          <div id="contents">
+            <div className="account_area">
+              <p className="account_lead">{t.auth.checking}</p>
+            </div>
+          </div>
         ) : StaticPage ? (
           <StaticPage />
         ) : (

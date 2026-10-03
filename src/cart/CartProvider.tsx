@@ -1,6 +1,7 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react';
 import type { ReactNode } from 'react';
 import { findProduct } from '../data/site';
+import { supabase } from '../lib/supabase';
 import type { ProductId } from '../i18n/types';
 import { MAX_QUANTITY, isValidQuantity } from '../../supabase/functions/_shared/pricing.ts';
 
@@ -64,6 +65,16 @@ export function CartProvider({ children }: { children: ReactNode }) {
       // storage blocked — the cart still works for this visit
     }
   }, [lines]);
+
+  // the cart belongs to the signed-in member: signing out — here or in another
+  // tab — empties it, so the next person on a shared device does not inherit it
+  useEffect(() => {
+    if (!supabase) return;
+    const { data: listener } = supabase.auth.onAuthStateChange((event) => {
+      if (event === 'SIGNED_OUT') setLines([]);
+    });
+    return () => listener.subscription.unsubscribe();
+  }, []);
 
   const add = useCallback((productId: ProductId, shade: string | null, quantity = 1) => {
     setLines((current) => {

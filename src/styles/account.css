@@ -573,3 +573,353 @@
     width: 100%;
   }
 }
+
+/* ---------------------------------------------------------------------------
+   JOIN — the consent box. "Agree to all" on top, then one row per required
+   document with a link that opens it in a new tab, so nothing typed into the
+   form above is lost by reading it.
+   --------------------------------------------------------------------------- */
+.account_area .agree_box {
+  padding: 0;
+  min-width: 0;
+  border: 1px solid var(--line-3);
+  margin: 10px 0 20px;
+}
+
+.account_area .agree_box .agree {
+  padding: 0;
+}
+
+.account_area .agree_box .agree input {
+  flex: 0 0 auto;
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  accent-color: var(--ink);
+}
+
+.account_area .agree_all {
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--line-3);
+  background: var(--soft-2);
+}
+
+.account_area .agree_all .agree {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--ink-2);
+}
+
+.account_area .agree_row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 11px 16px;
+}
+
+.account_area .agree_row + .agree_row {
+  padding-top: 0;
+}
+
+.account_area .agree_row .agree span {
+  line-height: 1.45;
+}
+
+.account_area .agree_hint {
+  font-size: 12px;
+  color: var(--mute);
+  margin: -8px 0 14px;
+}
+
+.account_area .btn_dark:disabled {
+  background: var(--mute-3);
+  border-color: var(--mute-3);
+  cursor: not-allowed;
+}
+
+/* ---------------------------------------------------------------------------
+   TERMS OF USE / PRIVACY POLICY — a contents column beside the text on a wide
+   screen, one column on a phone. The text column is held to ~70 characters a
+   line, the comfortable measure for reading a long document.
+   --------------------------------------------------------------------------- */
+.policy_area .policy_tabs {
+  max-width: 440px;
+  margin: 0 auto 40px;
+}
+
+.policy_area .policy_meta {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  font-size: 13px;
+  color: var(--mute);
+}
+
+.policy_layout {
+  display: grid;
+  grid-template-columns: 240px minmax(0, 1fr);
+  gap: 60px;
+  text-align: left;
+}
+
+.policy_toc {
+  position: sticky;
+  top: 240px;
+  align-self: start;
+  border-top: 2px solid var(--ink);
+  padding-top: 14px;
+}
+
+.policy_toc h3,
+.policy_body h3 {
+  font-family: var(--font-display);
+  font-size: 13px;
+  letter-spacing: 1.2px;
+  color: var(--ink-2);
+}
+
+.policy_toc h3 {
+  margin-bottom: 10px;
+}
+
+.policy_toc li {
+  font-size: 13px;
+  line-height: 1.5;
+  padding: 4px 0;
+}
+
+.policy_toc a {
+  color: var(--mute);
+}
+
+.policy_toc a:hover {
+  color: var(--ink-2);
+}
+
+.policy_body {
+  max-width: 680px;
+  font-size: 14px;
+  line-height: 1.85;
+  color: var(--mute-6);
+}
+
+.policy_body section {
+  border-top: 1px solid var(--line);
+  padding-top: 18px;
+  margin-top: 28px;
+  /* clear the fixed header when a contents link jumps here */
+  scroll-margin-top: 240px;
+}
+
+.policy_body h3 {
+  margin-bottom: 10px;
+}
+
+.policy_body p + p,
+.policy_body p + ul,
+.policy_body ul + p {
+  margin-top: 10px;
+}
+
+.policy_body ul {
+  padding-left: 18px;
+}
+
+.policy_body ul li {
+  list-style: disc;
+  padding: 2px 0;
+}
+
+.policy_body .policy_note {
+  margin-top: 36px;
+  padding: 12px 14px;
+  background: var(--soft-3);
+  font-size: 13px;
+}
+
+.policy_body .policy_other {
+  margin-top: 40px;
+}
+
+.policy_body .policy_other .btn_outline {
+  max-width: 320px;
+}
+
+@media print {
+  #header,
+  .header_banner,
+  .header_dummy,
+  #footer,
+  .policy_tabs,
+  .policy_toc,
+  .policy_meta .btn_text,
+  .policy_other,
+  .btn-top,
+  .recent_toggle {
+    display: none !important;
+  }
+
+  .policy_layout {
+    display: block;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   JOIN — the document modal. A fixed header and footer around a scrolling
+   body, so the title and ACCEPT never leave the screen while reading. It is
+   portalled to <body>, outside .account_area, so it carries its own button.
+   --------------------------------------------------------------------------- */
+.policy_modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.policy_dialog {
+  display: flex;
+  flex-direction: column;
+  width: 720px;
+  max-width: 100%;
+  max-height: min(820px, 100%);
+  background: #fff;
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.25);
+}
+
+.policy_dialog_head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 24px 28px 18px;
+  border-bottom: 1px solid var(--line-3);
+}
+
+.policy_dialog_head h2 {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: normal;
+  letter-spacing: 2px;
+  color: var(--ink-2);
+}
+
+.policy_dialog_head p {
+  margin-top: 4px;
+  font-size: 13px;
+  color: var(--mute);
+}
+
+.policy_dialog_close {
+  flex: 0 0 auto;
+  width: 36px;
+  height: 36px;
+  margin: -6px -8px 0 0;
+  border: 0;
+  background: none;
+  font-size: 28px;
+  line-height: 1;
+  color: var(--mute);
+  cursor: pointer;
+}
+
+.policy_dialog_close:hover {
+  color: var(--ink-2);
+}
+
+/* the shared .policy_body type, without the page's 680px measure */
+.policy_dialog_body.policy_body {
+  flex: 1 1 auto;
+  min-height: 0;
+  max-width: none;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 6px 28px 28px;
+}
+
+.policy_dialog_body.policy_body section {
+  scroll-margin-top: 0;
+}
+
+.policy_dialog_foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px 28px;
+  border-top: 1px solid var(--line-3);
+}
+
+.policy_dialog_foot p {
+  font-size: 13px;
+  color: var(--mute);
+}
+
+.policy_dialog_foot p.is-done {
+  color: #2c6b41;
+}
+
+.policy_accept {
+  flex: 0 0 auto;
+  min-width: 180px;
+  height: 50px;
+  padding: 0 24px;
+  border: 0;
+  background: #191919;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: var(--easing-one);
+}
+
+.policy_accept:hover:not(:disabled) {
+  background: var(--ink-3);
+}
+
+.policy_accept:disabled {
+  background: var(--mute-3);
+  cursor: not-allowed;
+}
+
+/* phone: a sheet rising from the bottom, the button full width */
+@media (max-width: 767px) {
+  .policy_modal {
+    align-items: flex-end;
+    padding: 0;
+  }
+
+  .policy_dialog {
+    width: 100%;
+    max-height: 92vh;
+    max-height: 92dvh;
+  }
+
+  .policy_dialog_head {
+    padding: 18px 16px 14px;
+  }
+
+  .policy_dialog_body.policy_body {
+    padding: 4px 16px 22px;
+  }
+
+  .policy_dialog_foot {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+    padding: 12px 16px calc(12px + env(safe-area-inset-bottom));
+  }
+
+  .policy_dialog_foot p {
+    text-align: center;
+  }
+
+  .policy_accept {
+    width: 100%;
+  }
+}

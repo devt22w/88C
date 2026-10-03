@@ -70,8 +70,8 @@ export function SideMenu({ open, onClose }: { open: boolean; onClose: () => void
                 <button
                   type="button"
                   onClick={async () => {
+                    onClose();
                     await signOut();
-                    go('/');
                   }}
                 >
                   {t.auth.signOut}

@@ -1,5 +1,6 @@
 import type { Messages } from '../types';
 import { productsKo } from './products.ko';
+import { legalKo } from './legal.ko';
 
 /**
  * Korean.
@@ -107,6 +108,7 @@ export const ko: Messages = {
     policies: {
       brandStory: '브랜드스토리',
       shoppingGuide: '이용안내',
+      terms: '이용약관',
       privacyPolicy: '개인정보처리방침',
       businessCheck: '사업자정보확인'
     },
@@ -176,8 +178,10 @@ export const ko: Messages = {
       passwordConfirm: '비밀번호 확인',
       email: '이메일',
       phone: '휴대전화',
-      agreeTerms: '이용약관에 동의합니다',
-      agreePrivacy: '개인정보처리방침에 동의합니다',
+      agreeAll: '아래 약관에 모두 동의합니다',
+      agreeTerms: '이용약관을 읽었으며 이에 동의합니다',
+      agreePrivacy: '개인정보처리방침을 읽었으며 이에 동의합니다',
+      agreeHint: '회원가입을 하려면 두 항목에 모두 동의해 주세요.',
       submit: '가입하기'
     },
     delivery: {
@@ -389,6 +393,7 @@ export const ko: Messages = {
     ctaGuide: '이용안내',
     note: '운영 시간 외에 남기신 문의는 다음 영업일에 답변드립니다.'
   },
+  legal: legalKo,
   missing: {
     title: '준비 중인 페이지입니다',
     lead: '메뉴에는 있지만 아직 만들어지지 않은 페이지입니다.',

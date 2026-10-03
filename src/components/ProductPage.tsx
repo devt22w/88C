@@ -3,6 +3,7 @@ import type { MouseEvent } from 'react';
 import { ImageSlot, useSlotSource, useSlotSources } from './ImageSlot';
 import { Link, useRoute } from '../router';
 import { useCart } from '../cart/CartProvider';
+import { useRequireSignIn } from '../account/useSession';
 import { findProduct } from '../data/site';
 import { recordVisit } from '../data/useVisits';
 import { shadeAvailable, shadeName, useCatalogueMeta } from '../data/useCatalogueMeta';
@@ -128,6 +129,7 @@ export function ProductPage({ id }: { id: string }) {
   const [warn, setWarn] = useState(false);
   const [added, setAdded] = useState(false);
   const { add } = useCart();
+  const requireSignIn = useRequireSignIn();
   const { navigate } = useRoute();
   const meta = useCatalogueMeta();
 
@@ -190,6 +192,9 @@ export function ProductPage({ id }: { id: string }) {
   /** a product with shades cannot go in the cart until an available one is chosen */
   const putInCart = (): boolean => {
     if (soldOut) return false;
+    // the cart is for members: no session, and both buttons go to LOGIN, which
+    // brings the shopper back to this product afterwards
+    if (!requireSignIn()) return false;
     if (needsShade && (!shade || !buyable(shade))) {
       setWarn(true);
       return false;

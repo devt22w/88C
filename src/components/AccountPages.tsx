@@ -1,16 +1,18 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import type { FormEvent, ReactNode } from 'react';
 import { ImageSlot } from './ImageSlot';
 import { LockIcon } from './Icons';
 import { Link, useRoute } from '../router';
-import { contactDetails, csPhone } from '../data/site';
+import { contactDetails, csPhone, legalDetails } from '../data/site';
+import { PolicyModal } from './PolicyPages';
+import type { PolicyKind } from './PolicyPages';
 import { useLocale, useT } from '../i18n/LocaleProvider';
 import {
   FREE_SHIPPING_OVER_KRW,
   SHIPPING_FEE_KRW
 } from '../../supabase/functions/_shared/pricing.ts';
 import { supabase } from '../lib/supabase';
-import { classifyAuthError, useSession, useSignOut } from '../account/useSession';
+import { classifyAuthError, nextPath, useSession, useSignOut } from '../account/useSession';
 import { formatCentavosPhp } from '../i18n/money';
 
 /**
@@ -45,7 +47,7 @@ export function LoginPage() {
 
   // already signed in — there is nothing to do on this page
   useEffect(() => {
-    if (session) navigate('/myshop');
+    if (session) navigate(nextPath(), { replace: true });
   }, [session, navigate]);
 
   const submit = async (event: FormEvent) => {
@@ -59,7 +61,7 @@ export function LoginPage() {
     });
     setBusy(false);
     if (authError) return setError(t.auth.errors[classifyAuthError(authError.message)]);
-    navigate('/myshop');
+    navigate(nextPath(), { replace: true });
   };
 
   return (
@@ -138,7 +140,7 @@ export function LoginPage() {
             <p key={line}>{line}</p>
           ))}
         </div>
-        <Link className="btn_outline" to="/member/join">
+        <Link className="btn_outline" to={`/member/join${window.location.search}`}>
           {copy.joinButton}
         </Link>
       </div>
@@ -150,6 +152,12 @@ export function JoinPage() {
   const t = useT();
   const copy = t.account.join;
   const { navigate } = useRoute();
+  const { session } = useSession();
+
+  // already signed in — the same as LOGIN: carry on to where they were going
+  useEffect(() => {
+    if (session) navigate(nextPath(), { replace: true });
+  }, [session, navigate]);
   const [form, setForm] = useState({
     name: '',
     email: '',
@@ -159,9 +167,31 @@ export function JoinPage() {
   });
   const [agreeTerms, setAgreeTerms] = useState(false);
   const [agreePrivacy, setAgreePrivacy] = useState(false);
+  const agreedToAll = agreeTerms && agreePrivacy;
+  // the documents still to be read, in order: ticking one box queues that
+  // document, "agree to all" queues every one not yet accepted. A box is only
+  // ticked by ACCEPT at the end of its document, never by the click itself.
+  const [reading, setReading] = useState<PolicyKind[]>([]);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [notice, setNotice] = useState<string | null>(null);
+
+  const accepted = { terms: agreeTerms, privacy: agreePrivacy };
+  const setAccepted = { terms: setAgreeTerms, privacy: setAgreePrivacy };
+
+  // unticking needs no reading, so it happens straight away
+  const toggle = (kinds: PolicyKind[], checked: boolean) => {
+    if (!checked) return kinds.forEach((kind) => setAccepted[kind](false));
+    setReading(kinds.filter((kind) => !accepted[kind]));
+  };
+
+  const acceptCurrent = () => {
+    setAccepted[reading[0]](true);
+    setReading((queue) => queue.slice(1));
+  };
+
+  // stable, so the modal's Esc listener is not re-bound on every render
+  const stopReading = useCallback(() => setReading([]), []);
 
   const set = (key: keyof typeof form) => (event: { target: { value: string } }) =>
     setForm((current) => ({ ...current, [key]: event.target.value }));
@@ -169,24 +199,36 @@ export function JoinPage() {
   const submit = async (event: FormEvent) => {
     event.preventDefault();
     setNotice(null);
+    if (!agreedToAll) return setError(t.auth.errors.agreeRequired);
     if (form.password !== form.confirm) return setError(t.auth.errors.mismatch);
     if (form.password.length < 8) return setError(t.auth.errors.weakPassword);
-    if (!agreeTerms || !agreePrivacy) return setError(t.auth.errors.agreeRequired);
     if (!supabase) return setError(t.auth.errors.unavailable);
 
     setBusy(true);
     setError(null);
+    const agreedAt = new Date().toISOString();
     const { data, error: authError } = await supabase.auth.signUp({
       email: form.email.trim(),
       password: form.password,
-      // the trigger on auth.users copies these into public.profiles
-      options: { data: { full_name: form.name.trim(), phone: form.phone.trim() } }
+      options: {
+        data: {
+          // the trigger on auth.users copies these two into public.profiles
+          full_name: form.name.trim(),
+          phone: form.phone.trim(),
+          // the consent record: which version of each document this member
+          // accepted, and when — kept on the account in auth.users
+          terms_version: legalDetails.version,
+          terms_accepted_at: agreedAt,
+          privacy_version: legalDetails.version,
+          privacy_accepted_at: agreedAt
+        }
+      }
     });
     setBusy(false);
 
     if (authError) return setError(t.auth.errors[classifyAuthError(authError.message)]);
     // a session means the project does not ask for email confirmation
-    if (data.session) return navigate('/myshop');
+    if (data.session) return navigate(nextPath(), { replace: true });
     setNotice(t.auth.confirmEmail);
   };
 
@@ -246,27 +288,50 @@ export function JoinPage() {
           required
         />
 
-        <label className="agree">
-          <input
-            type="checkbox"
-            checked={agreeTerms}
-            onChange={(event) => setAgreeTerms(event.target.checked)}
-          />
-          <span>{copy.agreeTerms}</span>
-        </label>
-        <label className="agree">
-          <input
-            type="checkbox"
-            checked={agreePrivacy}
-            onChange={(event) => setAgreePrivacy(event.target.checked)}
-          />
-          <span>{copy.agreePrivacy}</span>
-        </label>
+        {/* both documents are required: the button stays disabled until both
+            boxes are ticked, and submit() checks again in case it is forced */}
+        <fieldset className="agree_box">
+          <div className="agree_all">
+            <label className="agree">
+              <input
+                type="checkbox"
+                checked={agreedToAll}
+                onChange={(event) => toggle(['terms', 'privacy'], event.target.checked)}
+              />
+              <span>{copy.agreeAll}</span>
+            </label>
+          </div>
+          <div className="agree_row">
+            <label className="agree">
+              <input
+                type="checkbox"
+                checked={agreeTerms}
+                onChange={(event) => toggle(['terms'], event.target.checked)}
+              />
+              <span>{copy.agreeTerms}</span>
+            </label>
+          </div>
+          <div className="agree_row">
+            <label className="agree">
+              <input
+                type="checkbox"
+                checked={agreePrivacy}
+                onChange={(event) => toggle(['privacy'], event.target.checked)}
+              />
+              <span>{copy.agreePrivacy}</span>
+            </label>
+          </div>
+        </fieldset>
 
+        {reading.length > 0 ? (
+          <PolicyModal kind={reading[0]} onAccept={acceptCurrent} onClose={stopReading} />
+        ) : null}
+
+        {!agreedToAll ? <p className="agree_hint">{copy.agreeHint}</p> : null}
         {error ? <p className="form_error">{error}</p> : null}
         {notice ? <p className="form_notice">{notice}</p> : null}
 
-        <button type="submit" className="btn_dark" disabled={busy}>
+        <button type="submit" className="btn_dark" disabled={busy || !agreedToAll}>
           {busy ? t.auth.checking : copy.submit}
         </button>
       </form>
@@ -296,8 +361,8 @@ interface MyOrder {
 export function MyPage() {
   const t = useT();
   const copy = t.auth.account;
+  // signed-out visitors never get this far: App sends them to LOGIN
   const { ready, session, userId, email } = useSession();
-  const { navigate } = useRoute();
   const signOut = useSignOut();
 
   const [profile, setProfile] = useState({
@@ -313,9 +378,6 @@ export function MyPage() {
   const [saved, setSaved] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
-    if (ready && !session) navigate('/member/login');
-  }, [ready, session, navigate]);
 
   useEffect(() => {
     if (!supabase || !userId) return;
@@ -393,10 +455,7 @@ export function MyPage() {
           <button
             type="button"
             className="btn_text"
-            onClick={async () => {
-              await signOut();
-              navigate('/');
-            }}
+            onClick={signOut}
           >
             {t.auth.signOut}
           </button>

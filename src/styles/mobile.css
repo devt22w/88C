@@ -545,6 +545,25 @@
     grid-template-columns: 1fr;
   }
 
+  /* legal pages: contents above the text, no longer pinned beside it */
+  .policy_layout {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .policy_toc {
+    position: static;
+  }
+
+  .policy_body section {
+    scroll-margin-top: 80px;
+  }
+
+  .policy_area .policy_tabs .tab {
+    margin: 0 6px;
+    font-size: 14px;
+  }
+
   .order_area .order_title,
   .account_area .account_title {
     font-size: 22px;

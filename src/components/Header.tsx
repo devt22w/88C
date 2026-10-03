@@ -3,7 +3,7 @@ import type { FormEvent } from 'react';
 import { ImageSlot } from './ImageSlot';
 import { LanguageSwitcher } from './LanguageSwitcher';
 import { BagIcon, BellIcon } from './Icons';
-import { Link, useRoute } from '../router';
+import { Link } from '../router';
 import { categoriesLeft, categoriesRight, topMenu } from '../data/site';
 import { useT } from '../i18n/LocaleProvider';
 import { useSession, useSignOut } from '../account/useSession';
@@ -26,7 +26,6 @@ export function Header({ bannerVisible, cartCount, onOpenMenu, onOpenSearch }: P
   const t = useT();
   const { session } = useSession();
   const signOut = useSignOut();
-  const { navigate } = useRoute();
 
   // signed in, LOGIN and JOIN are meaningless; the row keeps its four slots so
   // nothing to the right of it shifts when the session resolves
@@ -78,10 +77,7 @@ export function Header({ bannerVisible, cartCount, onOpenMenu, onOpenSearch }: P
                     <button
                       type="button"
                       className="top_menu_button"
-                      onClick={async () => {
-                        await signOut();
-                        navigate('/');
-                      }}
+                      onClick={signOut}
                     >
                       {t.auth.signOut}
                     </button>

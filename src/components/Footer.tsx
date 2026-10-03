@@ -99,7 +99,14 @@ export function Footer() {
               </span>
               <span className="hover-line">
                 <span className="divider">|</span>
-                <a href={footerLinks.privacyPolicy}>{t.footer.policies.privacyPolicy}</a>
+                <Link to={footerLinks.terms}>{t.footer.policies.terms}</Link>
+              </span>
+              <span className="hover-line">
+                <span className="divider">|</span>
+                {/* bold, as a privacy policy link conventionally is */}
+                <Link to={footerLinks.privacyPolicy}>
+                  <strong>{t.footer.policies.privacyPolicy}</strong>
+                </Link>
               </span>
               <span className="hover-line">
                 <span className="divider">|</span>

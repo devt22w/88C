@@ -258,12 +258,20 @@
   padding-bottom: 27px;
 }
 
+/* the field takes whatever the button leaves: 428px on the 552px card, less
+   on a phone, where a fixed width pushed the button onto a second line and
+   scrolled the whole modal sideways */
 .sch_wrap fieldset {
+  display: flex;
+  /* a fieldset defaults to min-content, which would keep the 428px */
+  min-width: 0;
   border-bottom: 2px solid var(--ink);
   font-size: 0;
 }
 
 .sch_wrap .keyword {
+  flex: 1 1 auto;
+  min-width: 0;
   width: 428px;
   line-height: 61px;
   height: 61px;
@@ -284,6 +292,7 @@
 }
 
 .sch_wrap .search_btn {
+  flex: 0 0 auto;
   display: inline-block;
   vertical-align: top;
   width: 42px;
@@ -512,14 +521,32 @@ select.form-control {
 .sch_wrap.has_results {
   height: auto;
   max-height: 76vh;
-  padding-bottom: 24px;
+  padding-bottom: 28px;
   display: flex;
   flex-direction: column;
+  /* the -221px margin only centres the 442px card; a list of any height is
+     centred on its own height instead, so it can never run off the bottom */
+  margin-top: 0;
+  transform: translateY(-50%);
 }
 
+/* the list scrolls; SEE EVERY PRODUCT stays pinned under it, always in view */
 .sch_results {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
   margin-top: 22px;
+}
+
+.sch_results ul {
+  min-height: 0;
   overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.sch_results .sch_count,
+.sch_results .sch_all {
+  flex: 0 0 auto;
 }
 
 .sch_count {

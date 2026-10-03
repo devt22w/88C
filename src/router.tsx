@@ -10,32 +10,54 @@ import type { AnchorHTMLAttributes, ReactNode } from 'react';
  * in-app link clicks, and respond to the back button.
  */
 
-const RouteContext = createContext<{ path: string; navigate: (to: string) => void } | null>(null);
+export interface NavigateOptions {
+  /**
+   * Overwrite the current history entry instead of adding one. Redirects use
+   * it, so the back button never lands on a page that only bounces the visitor
+   * forward again.
+   */
+  replace?: boolean;
+}
+
+type Navigate = (to: string, options?: NavigateOptions) => void;
+
+const RouteContext = createContext<{ path: string; navigate: Navigate } | null>(null);
 
 export function RouterProvider({ children }: { children: ReactNode }) {
   const [path, setPath] = useState(() =>
     typeof window === 'undefined' ? '/' : window.location.pathname
   );
 
-  const navigate = useCallback((to: string) => {
+  const navigate = useCallback<Navigate>((to, options) => {
     // a link may carry a query string — /order/result?order=…&token=… — but the
     // routes are matched on the path alone, so the two are separated here
     const url = new URL(to, window.location.origin);
     // same page: there is nothing to route, but the logo is also the way back
     // to the top, so scrolling is still the right answer
     if (url.pathname === window.location.pathname && url.search === window.location.search) {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      if (!options?.replace) window.scrollTo({ top: 0, behavior: 'smooth' });
       return;
     }
-    window.history.pushState({}, '', to);
+    if (options?.replace) window.history.replaceState({}, '', to);
+    else window.history.pushState({}, '', to);
     setPath(url.pathname);
     window.scrollTo({ top: 0 });
   }, []);
 
   useEffect(() => {
     const onPop = () => setPath(window.location.pathname);
+    // a page the browser restores from its back/forward cache is a frozen
+    // snapshot — possibly of an account page from before a sign-out — so it is
+    // loaded again instead of being shown as it was
+    const onShow = (event: PageTransitionEvent) => {
+      if (event.persisted) window.location.reload();
+    };
     window.addEventListener('popstate', onPop);
-    return () => window.removeEventListener('popstate', onPop);
+    window.addEventListener('pageshow', onShow);
+    return () => {
+      window.removeEventListener('popstate', onPop);
+      window.removeEventListener('pageshow', onShow);
+    };
   }, []);
 
   const value = useMemo(() => ({ path, navigate }), [path, navigate]);
