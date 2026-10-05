@@ -1,4 +1,4 @@
-import { ImageSlot } from './ImageSlot';
+import { ImageSlot, useSlotSource } from './ImageSlot';
 import { midBanners } from '../data/site';
 import { useT } from '../i18n/LocaleProvider';
 
@@ -13,38 +13,12 @@ import { useT } from '../i18n/LocaleProvider';
  * normally carry their headline inside the image.
  */
 export function MidBanner() {
-  const t = useT();
-
   return (
     <div className="mid_banner">
       <div className="clearfix">
-        {midBanners.map((panel, i) => {
-          const copy = t.midBanner.panels[i];
-
-          return (
-            <a key={panel.slot} className="banner_item" href={panel.href}>
-              <ImageSlot
-                slot={panel.slot}
-                alt={copy.alt}
-                ratio="25.32%"
-                label={`${panel.slot} · 707 × 179`}
-                localised
-              />
-              <span className="banner_text">
-                <span className="eyebrow" style={{ display: 'block' }}>
-                  {copy.eyebrow}
-                </span>
-                <h3>
-                  {copy.headline.map((line) => (
-                    <span key={line} style={{ display: 'block' }}>
-                      {line}
-                    </span>
-                  ))}
-                </h3>
-              </span>
-            </a>
-          );
-        })}
+        {midBanners.map((panel, i) => (
+          <BannerPanel key={panel.slot} index={i} slot={panel.slot} href={panel.href} />
+        ))}
       </div>
 
       {/* optional badge: 7s linear rotation, infinite, never pauses */}
@@ -52,5 +26,38 @@ export function MidBanner() {
         <ImageSlot slot="mid_badge" alt="" label="badge" />
       </div> */}
     </div>
+  );
+}
+
+/**
+ * One panel. As on the hero, the live text layer only draws while the slot is
+ * still empty: uploaded artwork carries its own headline, so printing the
+ * translated one on top would set two headlines over each other in every
+ * language but the one the artwork was drawn in. The copy still names the
+ * picture through its alt text.
+ */
+function BannerPanel({ index, slot, href }: (typeof midBanners)[number] & { index: number }) {
+  const t = useT();
+  const copy = t.midBanner.panels[index];
+  const hasArtwork = Boolean(useSlotSource(slot, true));
+
+  return (
+    <a className="banner_item" href={href}>
+      <ImageSlot slot={slot} alt={copy.alt} ratio="25.32%" label={`${slot} · 707 × 179`} localised />
+      {hasArtwork ? null : (
+        <span className="banner_text">
+          <span className="eyebrow" style={{ display: 'block' }}>
+            {copy.eyebrow}
+          </span>
+          <h3>
+            {copy.headline.map((line) => (
+              <span key={line} style={{ display: 'block' }}>
+                {line}
+              </span>
+            ))}
+          </h3>
+        </span>
+      )}
+    </a>
   );
 }

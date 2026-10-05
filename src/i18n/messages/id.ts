@@ -20,7 +20,7 @@ export const id: Messages = {
       'Produk terlaris, koleksi baru, dan kupon khusus member, dikirim di hari yang sama.'
   },
   promo: {
-    text: 'Daftar jadi member MQNY dan dapatkan kupon untuk pesanan pertama.',
+    text: '',
     close: 'TUTUP'
   },
   nav: {

@@ -73,14 +73,14 @@ export const en: Messages = {
   midBanner: {
     panels: [
       {
-        eyebrow: '',
-        headline: ['', ''],
-        alt: ''
+        eyebrow: 'Membership',
+        headline: ['A welcome coupon,', 'first order only'],
+        alt: 'Membership coupon'
       },
       {
-        eyebrow: '',
-        headline: ['', ''],
-        alt: ''
+        eyebrow: 'Bundle Deal',
+        headline: ['Add any two and', 'shipping is on us'],
+        alt: 'Bundle deal'
       }
     ]
   },
