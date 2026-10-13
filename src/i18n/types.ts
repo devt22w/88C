@@ -410,6 +410,10 @@ export interface Messages {
     cashTitle: string;
     cashSteps: string[];
     cta: string;
+    /** the same notice on DELIVERY: there are no online orders to track yet */
+    trackTitle: string;
+    trackBody: string;
+    trackSteps: string[];
   };
   /** SHOPPING GUIDE — how buying here actually works */
   guide: {

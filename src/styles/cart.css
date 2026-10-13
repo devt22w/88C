@@ -471,3 +471,13 @@
   grid-template-columns: minmax(0, 520px);
   justify-content: center;
 }
+
+/* the tracking notice lists all three resort lines, each with its label */
+.pay_status_phone {
+  display: block;
+}
+
+.pay_status_phone em {
+  font-style: normal;
+  color: var(--mute-4);
+}

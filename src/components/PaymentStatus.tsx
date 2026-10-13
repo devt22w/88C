@@ -58,3 +58,49 @@ export function PaymentStatus({ compact = false }: { compact?: boolean }) {
     </aside>
   );
 }
+
+/**
+ * The same notice on DELIVERY.
+ *
+ * Tracking follows an online order, and while payment is not live there are no
+ * online orders to follow — the form would have asked for an order number that
+ * cannot exist. Rather than a search that always comes back "not found", the
+ * page says so and hands the shopper the lines customer service answers on.
+ */
+export function TrackingStatus() {
+  const t = useT();
+  const copy = t.paymentStatus;
+
+  if (ONLINE_PAYMENT_LIVE) return null;
+
+  return (
+    <aside className="pay_status">
+      <div className="pay_status_head">
+        <span className="pay_status_badge">{copy.badge}</span>
+        <h3>{copy.trackTitle}</h3>
+      </div>
+
+      <p>{copy.trackBody}</p>
+
+      <ol>
+        {copy.trackSteps.map((step) => (
+          <li key={step}>{step}</li>
+        ))}
+      </ol>
+
+      <p className="pay_status_contact">
+        {contactDetails.phones.map((phone) => (
+          <span key={phone.number} className="pay_status_phone">
+            <a href={'tel:' + phone.number.replace(/-/g, '')}>{phone.number}</a>
+            <em> {phone.note}</em>
+          </span>
+        ))}
+        <a href={'mailto:' + contactDetails.email}>{contactDetails.email}</a>
+      </p>
+
+      <Link className="btn_outline" to="/board/contact">
+        {copy.cta}
+      </Link>
+    </aside>
+  );
+}

@@ -3,7 +3,7 @@ import type { FormEvent, ReactNode } from 'react';
 import { ImageSlot } from './ImageSlot';
 import { LockIcon } from './Icons';
 import { Link, useRoute } from '../router';
-import { contactDetails, csPhone, legalDetails } from '../data/site';
+import { contactDetails, csPhone, legalDetails, ONLINE_PAYMENT_LIVE } from '../data/site';
 import { PolicyModal } from './PolicyPages';
 import type { PolicyKind } from './PolicyPages';
 import { useLocale, useT } from '../i18n/LocaleProvider';
@@ -14,6 +14,7 @@ import {
 import { supabase } from '../lib/supabase';
 import { classifyAuthError, nextPath, useSession, useSignOut } from '../account/useSession';
 import { formatCentavosPhp } from '../i18n/money';
+import { TrackingStatus } from './PaymentStatus';
 
 /**
  * The utility pages behind LOGIN / JOIN / DELIVERY / CONTACT, plus MY PAGE.
@@ -607,8 +608,11 @@ export function DeliveryPage() {
   return (
     <AccountShell>
       <h2 className="account_title">{copy.trackTitle}</h2>
-      <p className="account_lead">{copy.trackLead}</p>
+      {ONLINE_PAYMENT_LIVE ? <p className="account_lead">{copy.trackLead}</p> : null}
 
+      <TrackingStatus />
+
+      {ONLINE_PAYMENT_LIVE ? (
       <form onSubmit={track}>
         <input
           className="form-control"
@@ -635,6 +639,7 @@ export function DeliveryPage() {
           {looking ? copy.searching : copy.track}
         </button>
       </form>
+      ) : null}
 
       {found ? (
         <div className="track_card">

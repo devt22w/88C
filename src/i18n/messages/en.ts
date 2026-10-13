@@ -348,7 +348,15 @@ export const en: Messages = {
       'Customer service confirms the total, the shipping fee and when it can reach you.',
       'You pay in cash on delivery or at the counter, and your receipt comes with the parcel.'
     ],
-    cta: 'MESSAGE CUSTOMER SERVICE'
+    cta: 'MESSAGE CUSTOMER SERVICE',
+    trackTitle: 'Order tracking is coming soon',
+    trackBody:
+      'Tracking follows an online order, and orders are still arranged face to face. Until online payment is live, customer service holds your order and will tell you where it is.',
+    trackSteps: [
+      'Have your name and the date you ordered ready.',
+      'Call, message or email customer service — the lines are below.',
+      'They confirm what was packed, what is still coming and when it reaches you.'
+    ]
   },
   guide: {
     title: 'SHOPPING GUIDE',

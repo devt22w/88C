@@ -352,7 +352,15 @@ export const id: Messages = {
       'Layanan pelanggan mengonfirmasi total, ongkos kirim, dan perkiraan tibanya.',
       'Anda bayar tunai saat barang tiba atau di kasir, dan struk ikut bersama paket.'
     ],
-    cta: 'HUBUNGI LAYANAN PELANGGAN'
+    cta: 'HUBUNGI LAYANAN PELANGGAN',
+    trackTitle: 'Pelacakan pesanan segera hadir',
+    trackBody:
+      'Pelacakan mengikuti pesanan online, sementara pesanan masih diatur secara tatap muka. Sebelum pembayaran online aktif, layanan pelanggan yang memegang pesanan Anda dan akan memberi tahu posisinya.',
+    trackSteps: [
+      'Siapkan nama Anda dan tanggal pemesanan.',
+      'Telepon, kirim pesan, atau email ke layanan pelanggan — nomornya ada di bawah.',
+      'Mereka mengonfirmasi apa yang sudah dikemas, apa yang menyusul, dan kapan tiba.'
+    ]
   },
   guide: {
     title: 'PANDUAN BELANJA',
